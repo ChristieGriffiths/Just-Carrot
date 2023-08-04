@@ -14,7 +14,7 @@ const SignUpForm = ({ navigate }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: email, password: password })
+      body: JSON.stringify({ firstName: firstName, surname: surname, email: email, password: password })
     })
       .then(response => {
         if(response.status === 201) {
@@ -44,7 +44,7 @@ const SignUpForm = ({ navigate }) => {
 
     return (
       <form onSubmit={handleSubmit}>
-          <input placeholder="First name" id="first name" type='text' value={ firstName } onChange={handleFirstNameChange} />
+          <input placeholder="First name" id="firstName" type='text' value={ firstName } onChange={handleFirstNameChange} />
           <input placeholder="Surname" id="surname" type='text' value={ surname } onChange={handleSurnameChange} />
           <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} />
           <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} />
