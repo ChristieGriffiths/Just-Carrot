@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const LogInForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,7 +17,9 @@ const LogInForm = ({ navigate }) => {
     })
 
     if(response.status !== 201) {
-      console.log("yay")
+      console.log("Incorrect password, \n error message before change:", errorMessage)
+      setErrorMessage("Incorrect email or password")
+      console.log("Incorrect password, \n error message after change:", errorMessage)
       navigate('/login')
     } else {
       console.log("oop")
@@ -38,6 +41,7 @@ const LogInForm = ({ navigate }) => {
     return (
       <div>
         <h1 id="Log in">Log in</h1>
+        {<p>{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
           <input placeholder='Email' id="email" type='text' value={ email } onChange={handleEmailChange} />
           <input placeholder='Password' id="password" type='password' value={ password } onChange={handlePasswordChange} />
