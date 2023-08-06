@@ -46,10 +46,10 @@ const SignUpForm = ({ navigate }) => {
       <div>
         <h1 id="Sign up">Sign up</h1>
         <form onSubmit={handleSubmit}>
-            <input placeholder="First name" id="firstName" type='text' value={ firstName } minlength="2" onChange={handleFirstNameChange} required />
-            <input placeholder="Surname" id="surname" type='text' value={ surname } minlength="2" onChange={handleSurnameChange} required />
-            <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' title="Please enter a valid email address" value={ email } minlength="3" onChange={handleEmailChange} required />
-            <input placeholder="Password" id="password" type='password' value={ password } minlength="5" onChange={handlePasswordChange} required />
+            <input placeholder="First name" id="firstName" type='text' value={ firstName } minlength="2" onChange={handleFirstNameChange} />
+            <input placeholder="Surname" id="surname" type='text' value={ surname } minlength="2" onChange={handleSurnameChange} />
+            <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' value={ email } minlength="3" onChange={handleEmailChange} />
+            <input placeholder="Password" id="password" type='password' value={ password } minlength="5" onChange={handlePasswordChange} />
           <input id='submit' type="submit" value="Submit" />
         </form>
       </div>
