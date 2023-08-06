@@ -7,12 +7,13 @@ const SignUpForm = ({ navigate }) => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
+    console.log('buttonpressed')
     event.preventDefault();
 
     fetch( '/users', {
+      method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        method: 'post',
       },
       body: JSON.stringify({ firstName: firstName, surname: surname, email: email, password: password })
     })
@@ -45,11 +46,11 @@ const SignUpForm = ({ navigate }) => {
     return (
       <div>
         <h1 id="Sign up">Sign up</h1>
-        <form onSubmit={handleSubmit}>
-            <input placeholder="First name" id="firstName" type='text' value={ firstName } minlength="2" onChange={handleFirstNameChange} />
-            <input placeholder="Surname" id="surname" type='text' value={ surname } minlength="2" onChange={handleSurnameChange} />
-            <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' value={ email } minlength="3" onChange={handleEmailChange} />
-            <input placeholder="Password" id="password" type='password' value={ password } minlength="5" onChange={handlePasswordChange} />
+        <form onSubmit={ handleSubmit }>
+            <input placeholder="First name" id="firstName" type='text' value={ firstName } minLength="2" onChange={handleFirstNameChange} />
+            <input placeholder="Surname" id="surname" type='text' value={ surname } minLength="2" onChange={handleSurnameChange} />
+            <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' value={ email } minLength="3" onChange={handleEmailChange} />
+            <input placeholder="Password" id="password" type='password' value={ password } minLength="5" onChange={handlePasswordChange} />
           <input id='submit' type="submit" value="Submit" />
         </form>
       </div>
