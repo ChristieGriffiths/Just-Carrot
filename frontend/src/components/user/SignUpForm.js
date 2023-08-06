@@ -10,9 +10,9 @@ const SignUpForm = ({ navigate }) => {
     event.preventDefault();
 
     fetch( '/users', {
-      method: 'post',
       headers: {
         'Content-Type': 'application/json',
+        method: 'post',
       },
       body: JSON.stringify({ firstName: firstName, surname: surname, email: email, password: password })
     })
