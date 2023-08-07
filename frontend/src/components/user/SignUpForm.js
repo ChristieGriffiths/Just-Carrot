@@ -5,6 +5,7 @@ const SignUpForm = ({ navigate }) => {
   const [surname, setSurname] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validationError, setValidationError] = useState({ name: "", email: "", password: "" });
 
   const handleSubmit = async (event) => {
     console.log('buttonpressed')
@@ -21,7 +22,9 @@ const SignUpForm = ({ navigate }) => {
         if(response.status === 201) {
           navigate('/login')
         } else {
-          navigate('/signup')
+          response.json().then(data => {
+            setValidationError({ password: data.message });
+          });
         }
       })
   }
@@ -51,6 +54,7 @@ const SignUpForm = ({ navigate }) => {
             <input placeholder="Surname" id="surname" type='text' value={ surname } minLength="2" onChange={handleSurnameChange} required />
             <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' title="Please enter a valid email address" value={ email } minLength="3" onChange={handleEmailChange} required />
             <input placeholder="Password" id="password" type='password' value={ password } minLength="5" onChange={handlePasswordChange} required />
+            <p className="validation-error"> {validationError.password}</p>
           <input id='submit' type="submit" value="Submit" />
         </form>
       </div>
