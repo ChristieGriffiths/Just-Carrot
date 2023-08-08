@@ -30,7 +30,7 @@ const Feed = ({ navigate }) => {
     if(token) {
       return(
         <>
-          <h2>Posts</h2>
+          <h2 id='header' >Targets</h2>
             <button onClick={logout}>
               Logout
             </button>
