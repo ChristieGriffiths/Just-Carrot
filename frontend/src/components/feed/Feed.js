@@ -24,7 +24,7 @@ const Feed = ({ navigate }) => {
           setPosts(data.posts);
         })
     }
-  }, [])
+  }, [token])
     
   const logout = () => {
     window.localStorage.removeItem("token")
@@ -38,15 +38,10 @@ const Feed = ({ navigate }) => {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({ challenge: challenge, completeDate: completeDate, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity })
     })
-      .then(response => { 
-        console.log(response.status)
-      })
-      .catch( error => {
-        console.log('catch triggered, error status: ', error)
-    });
   }
 
   const handleChallengeChange = (event) => {
