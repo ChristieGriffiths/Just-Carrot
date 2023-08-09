@@ -36,8 +36,17 @@ const Feed = ({ navigate }) => {
 
     fetch('/posts', {
       method: 'post',
-    
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ challenge: challenge, completeDate: completeDate, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity })
     })
+      .then(response => { 
+        console.log(response.status)
+      })
+      .catch( error => {
+        console.log('catch triggered, error status: ', error)
+    });
   }
 
   const handleChallengeChange = (event) => {
