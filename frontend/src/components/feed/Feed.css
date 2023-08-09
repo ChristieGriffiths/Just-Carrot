@@ -1,0 +1,19 @@
+.logout-button {
+  margin: 20px;
+  padding: 10px 20px;
+  position: fixed;
+  bottom: 0;
+}
+
+#targets {
+  margin: 20px;
+}
+
+#form {
+  margin: 20px;
+}
+
+#incentive-amount {
+  width: 30px; /* Set your desired width */
+  height: 15px;
+}
