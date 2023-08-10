@@ -1,7 +1,8 @@
 import React from 'react';
 import './Home.css'
 import logo from '../../assets/logo.png';
-import HomePageImage from '../../assets/HomePageImage.png';
+import homePageImage from '../../assets/homePageImage.png';
+import aboutUs from '../../assets/aboutUs.png';
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -15,7 +16,10 @@ const Home = () => {
       </header>
       <div className="content-container">
         <div className="logo-container">
-          <img src={HomePageImage} alt="Logo" />
+          <img src={homePageImage} alt="Logo" />
+        </div>
+        <div className="logo-container">
+          <img src={aboutUs} alt="Logo" />
         </div>
       </div>
     </div>
