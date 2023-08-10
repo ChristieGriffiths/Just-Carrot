@@ -1,22 +1,26 @@
-/* header {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  padding: 10px;
-  /* background-color: #f2f2f2; Add a background color for the header if needed */
-
-  .banner {
+  .top-banner {
+    position: relative;
     background-color: black;
     height: 50px;
-    padding: 10px 15px; /* Adjust the padding as needed */
+    padding: 10px 15px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 0;
   }
   
-  .banner img {
+  .top-banner img {
     width: 100px; /* Adjust the width as needed */
     height: auto;
     margin-left: auto; /* Move the logo to the right */
+  }
+
+  .bottom-banner {
+    background-color: rgb(15, 1, 1);
+    height: 30px;
+    padding: 10px 15px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   

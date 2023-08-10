@@ -1,4 +1,5 @@
 import './App.css';
+import Home from '../home/Home';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
 import React, { useState } from 'react';
@@ -8,19 +9,23 @@ import {
   useNavigate,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom";
 
 const App = () => {
   return (
     <div>
-      <header className="banner">
+      {/* <header className="top-banner">
         <img src={logo} alt="Logo" />
-      </header>
+      </header> */}
       <Routes>
+        <Route path='/' element={<Home/>}/>
         <Route path='/posts' element={<Feed navigate={useNavigate()} />} />
         <Route path='/login' element={<LoginForm navigate={useNavigate()} />} />
         <Route path='/signup' element={<SignUpForm navigate={useNavigate()} />} />
       </Routes>
+      <header className="bottomba-banner">
+      </header>
     </div>
   );
 }
