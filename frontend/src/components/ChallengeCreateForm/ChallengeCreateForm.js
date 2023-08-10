@@ -10,9 +10,10 @@ const ChallengeCreateForm = ({token, setToken}) => {
 
 
   const handleSubmit = async (event) => {
+    console.log(token);
     event.preventDefault();
 
-    fetch('/posts', {
+    let response = await fetch('/posts', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +21,21 @@ const ChallengeCreateForm = ({token, setToken}) => {
       },
       body: JSON.stringify({ challenge: challenge, completeDate: completeDate, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity })
     })
-  }
+    
+    console.log('response status after button click', response.status);
+    // if (response.status === 201) {
+    //   // TODO: Will need to renavigate back to /posts upon 201 status
+    //   let data = await response.json();
+    //   setToken(data.token);
+    //   setPost("");
+    //   setImageUrl("");
+    //   setUploadStatus("");
+    // } else {
+    //   console.log("Failed to submit");
+    //   setValidationError("Server error");
+    // }
+}
+  
 
   const handleChallengeChange = (event) => {
     setChallenge(event.target.value)
