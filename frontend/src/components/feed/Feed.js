@@ -64,22 +64,12 @@ const Feed = ({ navigate }) => {
       return(
         <>
           <h2 id='targets' >Targets</h2>
+          <ChallengeCreateForm token={token} setToken={setToken} />
           <div id='feed' role="feed">
               {posts.map(
                 (post) => ( <Post post={ post } key={ post._id } /> )
               )}
           </div>
-          <div>
-            <form onSubmit= {handleSubmit} id='form' >
-              <input placeholder="Create challenge" id="challenge-type" type='text' value={challenge} onChange={handleChallengeChange}/>
-              <input placeholder="Complete by" id="complete-date" type='text' value={completeDate} onChange={handleCompleteDate}/> 
-              <span>  Or I'll donate  </span>
-              <input placeholder="£" id="incentive-amount" type='text' value ={incentiveAmount} onChange={handleIncentiveAmount}/>
-              <span>  To  </span>
-              <input placeholder="To Charity" id="chose-charity" type='text' value={chosenCharity} onChange={handleChosenCharity}/>
-            <input id='submit' type="submit" value="Submit" />
-          </form> 
-        </div>
             <button class="logout-button" onClick={logout}>
               Logout
             </button>
