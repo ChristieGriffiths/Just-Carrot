@@ -10,7 +10,6 @@ const ChallengeCreateForm = ({token, setToken}) => {
 
 
   const handleSubmit = async (event) => {
-    console.log(token);
     event.preventDefault();
 
     let response = await fetch('/posts', {
@@ -23,6 +22,7 @@ const ChallengeCreateForm = ({token, setToken}) => {
     })
 
     if (response.status === 201) {
+      console.log("Successfully submited")
       let data = await response.json();
       setToken(data.token);
       setChallenge("");

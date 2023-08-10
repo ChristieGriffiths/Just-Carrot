@@ -34,11 +34,11 @@ const Feed = ({ navigate }) => {
         <>
           <h2 id='targets' >Targets</h2>
           <ChallengeCreateForm token={token} setToken={setToken} />
-          {/* <div id='feed' role="feed">
+          <div id='feed' role="feed">
               {posts.map(
                 (post) => ( <Post post={ post } key={ post._id } /> )
               )}
-          </div> */}
+          </div>
             <button classform="logout-button" onClick={logout}>
               Logout
             </button>
