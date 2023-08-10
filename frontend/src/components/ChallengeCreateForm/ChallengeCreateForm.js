@@ -21,19 +21,17 @@ const ChallengeCreateForm = ({token, setToken}) => {
       },
       body: JSON.stringify({ challenge: challenge, completeDate: completeDate, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity })
     })
-    
-    console.log('response status after button click', response.status);
-    // if (response.status === 201) {
-    //   // TODO: Will need to renavigate back to /posts upon 201 status
-    //   let data = await response.json();
-    //   setToken(data.token);
-    //   setPost("");
-    //   setImageUrl("");
-    //   setUploadStatus("");
-    // } else {
-    //   console.log("Failed to submit");
-    //   setValidationError("Server error");
-    // }
+
+    if (response.status === 201) {
+      let data = await response.json();
+      setToken(data.token);
+      setChallenge("");
+      setCompleteDate("");
+      setIncentiveAmount("");
+      setChosenCharity("")
+    } else {
+      console.log("Failed to submit");
+    }
 }
   
 
