@@ -13,7 +13,7 @@ import {
 const App = () => {
   return (
     <div>
-      <header>
+      <header className="banner">
         <img src={logo} alt="Logo" />
       </header>
       <Routes>
