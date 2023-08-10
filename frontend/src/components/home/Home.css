@@ -38,6 +38,16 @@
   z-index: 2; /* Ensure it's above other content */
   color: white;
 }
+
+.sign-up-in a {
+  color: white;        /* Set the text color to white */
+  text-decoration: none; /* Remove the underline */
+}
+
+.sign-up-in a:hover {
+  color: grey; /* Change the color on hover */
+}
+
 .content-container {
   position: relative;
 }
@@ -53,3 +63,5 @@
   max-width: 100%;
   max-height: 100%;
 }
+
+

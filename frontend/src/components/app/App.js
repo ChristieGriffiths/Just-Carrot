@@ -15,9 +15,6 @@ import {
 const App = () => {
   return (
     <div>
-      {/* <header className="top-banner">
-        <img src={logo} alt="Logo" />
-      </header> */}
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/posts' element={<Feed navigate={useNavigate()} />} />
