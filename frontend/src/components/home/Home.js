@@ -10,21 +10,12 @@ import aboutUs from '../../assets/aboutUs.png';
 const Home = () => {
   const handleHowItWorksClick = () => {
     const howItWorksImageElement = document.getElementById('how-it-works-image');
+    if (howItWorksImageElement) { howItWorksImageElement.scrollIntoView({ behavior: 'smooth' }); }
 
-    if (howItWorksImageElement) {
-      howItWorksImageElement.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.log('Element not found.');
-    }
   };
   const handleAboutUsClick = () => {
     const aboutUsImageElement = document.getElementById('about-us-container');
-
-    if (aboutUsImageElement) {
-      aboutUsImageElement.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.log('Element not found.');
-    }
+    if (aboutUsImageElement) { aboutUsImageElement.scrollIntoView({ behavior: 'smooth' });}
   };
 
   return (
