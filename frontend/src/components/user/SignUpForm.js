@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import logo from '../../assets/logo.png';
+import signUpImage from '../../assets/signUpImage.jpeg';
+import './SignUpForm.css';
+
 const SignUpForm = ({ navigate }) => {
   const [firstName, setFirstName] = useState("")
   const [surname, setSurname] = useState("")
@@ -47,6 +51,9 @@ const SignUpForm = ({ navigate }) => {
 
     return (
       <div>
+      <header className="top-banner">
+        <img src={logo} alt="Logo" />
+      </header>
         <h1 id="Sign up">Sign up</h1>
         <form onSubmit={handleSubmit}>
             <input placeholder="First name" id="firstName" type='text' value={firstName} minLength="2" onChange={handleFirstNameChange} required />
@@ -56,6 +63,9 @@ const SignUpForm = ({ navigate }) => {
             <p className="validation-error"> {validationError.password}</p>
           <input id='submit' type="submit" value="Submit" />
         </form>
+        <div className="sign-up-image-container">
+          <img src={signUpImage} alt="img" />
+        </div>
       </div>
     );
 }
