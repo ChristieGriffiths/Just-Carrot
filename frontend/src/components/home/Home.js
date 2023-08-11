@@ -8,8 +8,16 @@ import howItWorks from '../../assets/howItWorks.png';
 import aboutUs from '../../assets/aboutUs.png';
 
 const Home = () => {
+  const handleHowItWorksClick = () => {
+    const howItWorksImageElement = document.getElementById('how-it-works-image');
+
+    if (howItWorksImageElement) {
+      howItWorksImageElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.log('Element not found.');
+    }
+  };
   const handleAboutUsClick = () => {
-    console.log('clicked')
     const aboutUsImageElement = document.getElementById('about-us-container');
 
     if (aboutUsImageElement) {
@@ -21,7 +29,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-        <h1 className="how-it-works">how it works</h1>
+        <h1 className="how-it-works" onClick={handleHowItWorksClick}>how it works</h1>
         <h1 className="about-us" onClick={handleAboutUsClick}>about us</h1>
         <h1 className="sign-up-in"><Link to="/signup">sign up</Link>/<Link to="/login">sign in</Link></h1>
       <header className="top-banner">
@@ -31,7 +39,7 @@ const Home = () => {
         <div className="home-page-container">
           <img src={homePageImage} alt="img" />
         </div>
-        <div className="how-it-works-image">
+        <div className="how-it-works-image" id="how-it-works-image">
           <img src={howItWorks} alt="img" />
         </div>
         <div className="about-us-container" id="about-us-container">

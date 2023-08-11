@@ -19,11 +19,16 @@
 
 .how-it-works {
   position: absolute;
-  top:1px;
+  top:-6px;
   left: 200px;
   z-index: 2; /* Ensure it's above other content */
   color: white;
 }
+
+.how-it-works:hover {
+  color: grey; /* Change the color on hover */
+}
+
 .about-us {
   position: absolute;
   top: -6px;
@@ -76,17 +81,12 @@
   max-height:100%;
 }
 
-.how-it-works-image {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .how-it-works-image img {
-  max-width: 50%;
-  max: height 50px;
-  
+  background-color: white;
+  display: block;
+  margin: 0 auto;
+  max-width: 1000px;
+  max-height: 1000px;
 }
 
 .about-us-container {
