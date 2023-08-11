@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import './LoginForm.css'
+import logo from '../../assets/logo.png';
+import loginImage from '../../assets/loginImage.jpg';
 
 const LogInForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
@@ -40,6 +43,9 @@ const LogInForm = ({ navigate }) => {
 
     return (
       <div>
+        <header className="top-banner">
+        <img src={logo} alt="Logo" />
+      </header>
         <h1 id="Log in">Log in</h1>
         {<p>{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
@@ -47,6 +53,9 @@ const LogInForm = ({ navigate }) => {
           <input placeholder='Password' id="password" type='password' value={ password } onChange={handlePasswordChange} />
           <input role='submit-button' id='submit' type="submit" value="Submit" />
         </form>
+        <div className="login-image-container">
+          <img src={loginImage} alt="img" />
+        </div>
       </div> 
     );
 }
