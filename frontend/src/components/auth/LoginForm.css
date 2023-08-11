@@ -20,7 +20,7 @@ h1#Log\ in {
 
 form {
   max-width: 300px;
-  margin: 0.3cm 0 0.39in 4%; /* Adjusted margin-left to move the form container slightly to the left */
+  margin: 0.3cm 0 0.39in 0%; /* Adjusted margin-left to move the form container slightly to the left */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;

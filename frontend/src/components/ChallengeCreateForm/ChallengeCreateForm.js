@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import './ChallengeCreateForm.css';
 
 
+import DatePicker from "react-datepicker"; // Import the DatePicker component
+import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
+
+
 const ChallengeCreateForm = ({token, setToken}) => {
   const [challenge, setChallenge] = useState("");
-  const [completeDate, setCompleteDate] = useState("");
+  const [completeDate, setCompleteDate] = useState(null); // Initialize with null
   const [incentiveAmount, setIncentiveAmount] = useState("");
   const [chosenCharity, setChosenCharity] = useState("");
 
@@ -54,7 +58,14 @@ const ChallengeCreateForm = ({token, setToken}) => {
 return (
     <form onSubmit= {handleSubmit} id='form' >
       <input placeholder="Create challenge" id="challenge-type" type='text' value={challenge} onChange={handleChallengeChange}/>
-      <input placeholder="Complete by" id="complete-date" type='text' value={completeDate} onChange={handleCompleteDate}/> 
+     
+      <DatePicker
+        placeholderText="Complete by"
+        id="complete-date"
+        selected={completeDate}
+        onChange={handleCompleteDate}
+        className="date-picker"
+      />
       <span>  Or I'll donate  </span>
       <input placeholder="£" id="incentive-amount" type='text' value ={incentiveAmount} onChange={handleIncentiveAmount}/>
       <span>  To  </span>
