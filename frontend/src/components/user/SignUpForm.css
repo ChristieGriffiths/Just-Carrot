@@ -3,10 +3,63 @@
   justify-content: flex-end; /* Align content to the right */
   align-items: flex-start; /* Align content to the top */
   height: 50vh; /* Make the container height equal to the viewport height */
-  margin-top: -15vh; /* Move the container up by 20vh (adjust as needed) */
+  margin-top: -50vh; /* Move the container up by 20vh (adjust as needed) */
 }
 
 .sign-up-image-container img {
   max-width: 70%; /* Limit the image to 50% of the container's width */
   height: auto; /* Let the image adjust its height while maintaining aspect ratio */
+}
+
+h1#signup {
+  text-align: center; /* Center the heading */
+  margin-left: 10px; /* Add some space below the heading */
+  margin-top: -10px; /* Move the heading up (adjust as needed) */
+}
+
+form {
+  max-width: 300px;
+  margin: 2.54cm 0 0.39in 7%; /* Adjust the left margin to move the container further left */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+
+/* Style for the input fields */
+input[type="text"],
+input[type="password"] {
+  width: 88%; /* Set the width to 100% to ensure the input boxes fit */
+  padding: 10px 15px; /* Add padding to the left and right */
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Change button background on hover */
+input[type="submit"]:hover {
+  background-color: #333;
+}
+
+/* Style for the validation error message */
+.validation-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
