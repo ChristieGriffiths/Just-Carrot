@@ -2,8 +2,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  height: 50vh;
-  margin-top: -45vh;
+  height: 60vh;
+  margin-top: -50vh;
 }
 
 .login-image-container img {
@@ -18,44 +18,9 @@ h1#Log\ in {
   margin-left: 95px; /* Adjusted margin-left to move the header slightly to the left */
 }
 
-form {
-  max-width: 300px;
-  margin: 0.3cm 0 0.39in 0%; /* Adjusted margin-left to move the form container slightly to the left */
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
 
-input[type="text"],
-input[type="password"] {
-  width: 88%;
-  padding: 10px 15px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 
-input[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #000;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-  background-color: #333;
-}
-
-.validation-error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
+ form {
+  position: relative;
+  left: -70px;
 }
