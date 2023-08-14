@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import './ChallengeCreateForm.css';
 
 
-import DatePicker from "react-datepicker"; // Import the DatePicker component
-import "react-datepicker/dist/react-datepicker.css"; // Import the DatePicker CSS
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 
 const ChallengeCreateForm = ({token, setToken}) => {
@@ -38,7 +38,6 @@ const ChallengeCreateForm = ({token, setToken}) => {
     }
 }
   
-
   const handleChallengeChange = (event) => {
     setChallenge(event.target.value)
   }
