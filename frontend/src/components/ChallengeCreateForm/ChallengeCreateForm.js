@@ -94,7 +94,9 @@ const ChallengeCreateForm = ({token, setToken}) => {
       {
         {
           pageone: <PageOne onButtonClick={nextPage} />,
-          pagetwo: <PageTwo onButtonClick={nextPage} />,
+          pagetwo: <PageTwo onButtonClick={nextPage} 
+                    completeDate={completeDate}
+                    handleCompleteDate={handleCompleteDate}/>,
           pagethree: <PageThree onButtonClick={nextPage} />,
           pagefour: <PageFour />,
         }[page]

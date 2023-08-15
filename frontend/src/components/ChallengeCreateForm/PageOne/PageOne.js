@@ -13,20 +13,14 @@ const PageOne = ({ onButtonClick}) => {
     
         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
           <div className="mt3">
-            <label
-              className="db lh-copy f6 mb1"
-              htmlFor="full-name"
-              style={{ textAlign: "left" }}
-            >
-              Challenge
-            </label>
+       
             <input
               className="f6 br2 ph3 pv2 mb2 dib black w-100"
               type="text"
               name="full-name"
               id="full-name"
               size="30"
-              placeholder="Steve Jobs"
+              placeholder="Run for 10 minutes"
               style={{
                 borderStyle: "solid",
                 borderWidth: "1px",
