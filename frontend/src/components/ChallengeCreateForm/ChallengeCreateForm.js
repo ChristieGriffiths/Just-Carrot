@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import './ChallengeCreateForm.css';
+import PageOne from "./PageOne/PageOne";
+import PageTwo from "./PageTwo/PageTwo";
+import PageThree from "./PageThree/PageThree";
+import PageFour from "./PageFour/PageFour";
+import MultiStepProgressBar from "./MultiStepProgressBar/MultiStepProgressBar";
+
+import tachyons from "tachyons";
+import Logo from "./Logo/Logo";
 
 
 import DatePicker from "react-datepicker"
@@ -11,6 +19,31 @@ const ChallengeCreateForm = ({token, setToken}) => {
   const [completeDate, setCompleteDate] = useState(null); // Initialize with null
   const [incentiveAmount, setIncentiveAmount] = useState("");
   const [chosenCharity, setChosenCharity] = useState("");
+  
+  const [page, setPage] = useState("pageone");
+
+  const nextPage = (page) => {
+    setPage(page);
+  };
+
+  const nextPageNumber = (pageNumber) => {
+    switch (pageNumber) {
+      case "1":
+        setPage("pageone");
+        break;
+      case "2":
+        setPage("pagetwo");
+        break;
+      case "3":
+        setPage("pagethree");
+        break;
+      case "4":
+        alert("Ooops! Seems like you did not fill the form.");
+        break;
+      default:
+        setPage("1");
+    }
+  };
 
 
   const handleSubmit = async (event) => {
@@ -54,25 +87,69 @@ const ChallengeCreateForm = ({token, setToken}) => {
     setChosenCharity(event.target.value)
   }
 
-return (
-    <form onSubmit= {handleSubmit} id='form' >
-      <input placeholder="Create challenge" id="challenge-type" type='text' value={challenge} onChange={handleChallengeChange}/>
-     
-      <DatePicker
-        placeholderText="Complete by"
-        id="complete-date"
-        selected={completeDate}
-        onChange={handleCompleteDate}
-        className="date-picker"
-      />
-      <span>  Or I'll donate  </span>
-      <input placeholder="£" id="incentive-amount" type='text' value ={incentiveAmount} onChange={handleIncentiveAmount}/>
-      <span>  To  </span>
-      <input placeholder="To Charity" id="chose-charity" type='text' value={chosenCharity} onChange={handleChosenCharity}/>
-      <input id='submit' type="submit" value="Submit" />
-    </form> 
-);
+  return (
+    <div className="App">
+      <Logo />
+      <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
+      {
+        {
+          pageone: <PageOne onButtonClick={nextPage} />,
+          pagetwo: <PageTwo onButtonClick={nextPage} />,
+          pagethree: <PageThree onButtonClick={nextPage} />,
+          pagefour: <PageFour />,
+        }[page]
+      }
+    </div>
+  );
 
 }
 
 export default ChallengeCreateForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // <form onSubmit= {handleSubmit} id='form' >
+    //   <input placeholder="Create challenge" id="challenge-type" type='text' value={challenge} onChange={handleChallengeChange}/>
+     
+    //   <DatePicker
+    //     placeholderText="Complete by"
+    //     id="complete-date"
+    //     selected={completeDate}
+    //     onChange={handleCompleteDate}
+    //     className="date-picker"
+    //   />
+    //   <span>  Or I'll donate  </span>
+    //   <input placeholder="£" id="incentive-amount" type='text' value ={incentiveAmount} onChange={handleIncentiveAmount}/>
+    //   <span>  To  </span>
+    //   <input placeholder="To Charity" id="chose-charity" type='text' value={chosenCharity} onChange={handleChosenCharity}/>
+    //   <input id='submit' type="submit" value="Submit" />
+    // </form> 
