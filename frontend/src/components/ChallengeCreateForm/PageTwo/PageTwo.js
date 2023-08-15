@@ -30,7 +30,7 @@ const PageTwo = ({ onButtonClick, completeDate, handleCompleteDate }) => {
           <div className="">
             <input
               className="f6 grow br2 ph3 pv2 mb2 dib white"
-              style={{ borderStyle: "none", width: "100%", backgroundColor: '#664DE5' }}
+              style={{ borderStyle: "none", width: "100%", backgroundColor: '#f39200' }}
               type="submit"
               value="Next"
               onClick={() => onButtonClick("pagethree")}

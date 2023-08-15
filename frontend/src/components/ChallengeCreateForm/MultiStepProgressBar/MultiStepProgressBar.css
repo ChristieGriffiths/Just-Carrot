@@ -15,7 +15,7 @@
 }
 
 .indexedStep.accomplished {
-  background-color: #664DE5;
+  background-color: #f39200;
   color: white;
   border-style: none;
 }
@@ -61,7 +61,7 @@
   top: 0;
   bottom: 0;
   border-radius: 10px;
-  background: #664DE5;
+  background: #f39200;
   z-index: -1;
 }
 

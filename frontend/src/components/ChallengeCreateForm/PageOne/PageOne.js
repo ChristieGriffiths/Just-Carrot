@@ -36,10 +36,10 @@ const PageOne = ({ onButtonClick}) => {
             style={{
               borderStyle: "none",
               width: "100%",
-              backgroundColor: "#664DE5",
+              backgroundColor: "#f39200",
             }}
             type="submit"
-            value="Create Workspace"
+            value="Next"
             onClick={() => onButtonClick("pagetwo")}
           />
         </div>
