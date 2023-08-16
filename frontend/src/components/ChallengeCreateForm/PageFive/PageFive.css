@@ -1,0 +1,81 @@
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.photo,
+.selfVerify {
+  padding: 10px;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  position: relative;
+  height: 215px;
+  width: 230px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+.photo:hover,
+.selfVerify:hover {
+  cursor: pointer;
+}
+
+.photo.selected,
+.selfVerify.selected {
+  background-color: #f39200; /* Change this color to your desired selected color */
+}
+
+.photoLogo,
+.selfVerifyLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.photoImage,
+.selfVerifyImage {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.photoInfo,
+.selfVerifyInfo {
+  flex: 1;
+}
+
+.photoName,
+.selfVerifyName {
+  font-size: 1.2em;
+  margin: 0;
+
+}
+
+.photoDescription,
+.selfVerifyDescription {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.photoWebsite,
+.selfVerifyWebsite {
+  text-align: left;
+}
+
+.photoWebsite a,
+.selfVerifyWebsite a {
+  text-align: left;
+  text-decoration: none;
+  color: rgb(66, 84, 221);
+}

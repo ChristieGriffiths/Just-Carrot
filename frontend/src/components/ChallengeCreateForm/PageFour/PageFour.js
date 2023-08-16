@@ -1,4 +1,4 @@
-import Reac, { useState }  from "react";
+import React, { useState }  from "react";
 import "./PageFour.css"
 
 import AMFImage from '../../../assets/AMFImage.png';

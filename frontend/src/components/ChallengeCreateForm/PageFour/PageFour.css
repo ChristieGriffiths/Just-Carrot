@@ -12,7 +12,7 @@
   display: flex;
   align-items: flex-start;
   position: relative;
-  height: 250px;
+  height: 220px;
   width: 700px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   border-radius: 5px; /* Add rounded corners */
@@ -66,7 +66,5 @@
 .charityWebsite a {
   text-align: left;
   text-decoration: none; /* Remove underline */
-  color: rgb(221, 66, 66); /* Change link color to gray */
+  color: rgb(66, 84, 221); /* Change link color to gray */
 }
-
-/* ... (rest of your CSS rules) */
