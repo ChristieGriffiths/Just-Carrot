@@ -9,7 +9,7 @@ const PageOne = ({ onButtonClick}) => {
       style={{ maxWidth: "40%", maxHeight: "30%", margin: "auto" }}
     >
       <form className="measure">
-        <h2>Enter your challenge ...</h2>
+        <h2>Enter your challenge: </h2>
     
         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
           <div className="mt3">

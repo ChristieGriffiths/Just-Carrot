@@ -8,36 +8,31 @@ const PageTwo = ({ onButtonClick, completeDate, handleCompleteDate }) => {
     const [chosenDate, setChosenDate] = useState("Choose Date        \u{1F4C5}")
 
     return (
-      <main
-        className="pt5 black-80 center"
-        style={{ maxWidth: "40%", maxHeight: "30%", margin: "auto" }}
-      >
-        <form className="measure">
-          <h2>Complete challenge by</h2>
-        
-          
-            <DatePicker
-          placeholderText={chosenDate}
-          id="complete-date"
-          selected={completeDate}
-          onChange={(date) => {
-            handleCompleteDate(date); // Assuming this updates your completeDate state
-            setChosenDate(`Chosen Date: ${date.toLocaleDateString()}`);
-          }}
-          className="date-picker"
-        />
-          
+      <main className="container">
+      <form className="measure">
+          <h2>Complete challenge by:</h2>
+          <DatePicker
+              className="date-picker"
+              placeholderText={chosenDate}
+              id="complete-date"
+              selected={completeDate}
+              onChange={(date) => setChosenDate(date)}
+              showTimeSelect
+              popperPlacement="bottom-start"
+              // Add any necessary styling or configuration options for the time picker here
+              timeFormat="HH:mm" // Example time format
+          />
           <div className="">
-            <input
-              className="f6 grow br2 ph3 pv2 mb2 dib white"
-              style={{ borderStyle: "none", width: "100%", backgroundColor: '#f39200' }}
-              type="submit"
-              value="Next"
-              onClick={() => onButtonClick("pagethree")}
-            />
+              <input
+                  className="f6 grow br2 ph3 pv2 mb2 dib white"
+                  style={{ borderStyle: "none", width: "100%", backgroundColor: '#f39200' }}
+                  type="submit"
+                  value="Next"
+                  onClick={() => onButtonClick("pagethree")}
+              />
           </div>
-        </form>
-      </main>
+      </form>
+  </main>
     );
 }
 

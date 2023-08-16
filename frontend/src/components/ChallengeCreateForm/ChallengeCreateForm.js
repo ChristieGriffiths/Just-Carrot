@@ -14,7 +14,7 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 
-const ChallengeCreateForm = ({token, setToken}) => {
+const ChallengeCreateForm = ({token, setToken}, ) => {
   const [challenge, setChallenge] = useState("");
   const [completeDate, setCompleteDate] = useState(null); // Initialize with null
   const [incentiveAmount, setIncentiveAmount] = useState("");
@@ -98,7 +98,7 @@ const ChallengeCreateForm = ({token, setToken}) => {
                     completeDate={completeDate}
                     handleCompleteDate={handleCompleteDate}/>,
           pagethree: <PageThree onButtonClick={nextPage} />,
-          pagefour: <PageFour />,
+          pagefour: <PageFour onButtonClick={nextPage}/>,
         }[page]
       }
     </div>
