@@ -1,4 +1,4 @@
-import React from "react";
+import Reac, { useState }  from "react";
 import "./PageFour.css"
 
 import AMFImage from '../../../assets/AMFImage.png';
@@ -24,12 +24,19 @@ const PageFour = ({ onButtonClick}) => {
       new Charity("Give Directly", "GiveDirectly makes uncondtional cash transfers to people living in extreme poverty", "www.givedirectly.org", false, GiveDirectlyImage, GiveDirectlyLogo)
     ];
 
+    const [selectedCharityIndex, setSelectedCharityIndex] = useState(null);
+
     return (
       <div className="mw5 bg-white pa2-ns mt5 dib">
         <h2>Choose your charity:</h2>
         <div className="charityList">
           {charities.map((charity, index) => (
-            <div className="charityContainer" key={index}>
+             <div
+             className={`charityContainer ${selectedCharityIndex === index ? "selected" : ""}`}
+             key={index}
+             onClick={() => setSelectedCharityIndex(index)} // Step 2: Update the selected charity index on click
+           >
+              
               <img className="charityImage" src={charity.image} alt={`${charity.name} `} />
               <div className="charityInfo">
                 <h2 className="charityName">{charity.name}</h2>
