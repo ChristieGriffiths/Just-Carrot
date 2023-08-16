@@ -6,6 +6,7 @@ import './Feed.css';
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [viewForm, setViewForm] = useState(false);
 
 
   useEffect(() => {
@@ -24,6 +25,10 @@ const Feed = ({ navigate }) => {
     }
   }, [])
     
+  const newChallenge = () => {
+    setViewForm(true)
+  }
+
   const logout = () => {
     window.localStorage.removeItem("token")
     navigate('/login')
@@ -33,12 +38,24 @@ const Feed = ({ navigate }) => {
       return(
         <>
           <h2 id='targets' >Targets</h2>
-          <ChallengeCreateForm token={token} setToken={setToken} />
-          <div id='feed' role="feed">
+          <div className='form-container'>
+            {viewForm ? (
+              <ChallengeCreateForm token={token} setToken={setToken} />
+            ) : (
+              null
+            )}
+          </div>
+
+          {/* {<div id='feed' role="feed">
               {posts.map(
                 (post) => ( <Post post={ post } key={ post._id } /> )
               )}
-          </div>
+          </div> */}
+
+          
+            <button classform="NewChallenge" onClick={newChallenge}>
+              New Challenge +
+            </button>
             <button classform="logout-button" onClick={logout}>
               Logout
             </button>

@@ -1,0 +1,57 @@
+/* PageFour.css */
+
+.charityList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* Center horizontally */
+}
+
+.charityContainer {
+  padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  height: 250px;
+  width: 700px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+.charityLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  position: absolute;
+  bottom: 20px; /* Adjust top positioning as needed */
+  right: 20px; /* Adjust right positioning as needed */
+}
+
+.charityImage {
+  width: 200px; /* Adjust width to match desired size */
+  height: 200px; /* Adjust height to match desired size */
+  object-fit: cover; /* Crop and fit image within dimensions */
+  border-radius: 5px; /* Add rounded corners */
+  margin-right: 10px; /* Add margin to separate image and text */
+}
+
+.charityInfo {
+  flex: 1;
+}
+
+.charityName {
+  font-size: 1.2em;
+  margin: 0;
+  text-align: left;
+}
+
+.charityDescription {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.charityWebsite {
+  text-align: left;
+}
+
+/* ... (rest of your CSS rules) */

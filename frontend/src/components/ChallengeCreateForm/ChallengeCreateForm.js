@@ -4,6 +4,8 @@ import PageOne from "./PageOne/PageOne";
 import PageTwo from "./PageTwo/PageTwo";
 import PageThree from "./PageThree/PageThree";
 import PageFour from "./PageFour/PageFour";
+import PageFive from "./PageFive/PageFive";
+import PageSix from "./PageSix/PageSix";
 import MultiStepProgressBar from "./MultiStepProgressBar/MultiStepProgressBar";
 
 import tachyons from "tachyons";
@@ -38,6 +40,12 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
         setPage("pagethree");
         break;
       case "4":
+        setPage("pagefour");
+        break;
+      case "5":
+        setPage("pagefive");
+        break;
+      case "6":
         alert("Ooops! Seems like you did not fill the form.");
         break;
       default:
@@ -99,6 +107,8 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
                     handleCompleteDate={handleCompleteDate}/>,
           pagethree: <PageThree onButtonClick={nextPage} />,
           pagefour: <PageFour onButtonClick={nextPage}/>,
+          pagefive: <PageFive onButtonClick={nextPage}/>,
+          pagesix: <PageSix onButtonClick={nextPage}/>,
         }[page]
       }
     </div>
