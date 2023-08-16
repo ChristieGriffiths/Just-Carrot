@@ -30,8 +30,9 @@ const PageThree = ({onButtonClick}) => {
           min={5} defaultValue={15} 
           valueLabelDisplay="on" 
           valueLabelFormat={valueLabelFormat}
-          style={{ color: '#f39200' }}/>
-         
+          style={{ color: '#f39200' }}
+          
+        /> 
       </div>
   
       <input
