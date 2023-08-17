@@ -18,7 +18,8 @@ import "react-datepicker/dist/react-datepicker.css"
 
 const ChallengeCreateForm = ({token, setToken}, ) => {
   const [challenge, setChallenge] = useState("");
-  const [completeDate, setCompleteDate] = useState(null); // Initialize with null
+  const [completeDate, setCompleteDate] = useState(null);
+  const [completeTime, setCompleteTime] = useState(null);
   const [incentiveAmount, setIncentiveAmount] = useState("");
   const [chosenCharity, setChosenCharity] = useState("");
   
@@ -89,6 +90,11 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
     setCompleteDate(event.target.value)
     console.log('does this get consoled?')
   }
+  const handleCompleteTime = (event) => {
+    console.log(event.target.value)
+    setCompleteTime(event.target.value)
+    console.log('does this get consoled?')
+  }
 
   const handleIncentiveAmount = (event) => {
     setIncentiveAmount(event.target.value)
@@ -108,7 +114,8 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
           handleChallengeChange={handleChallengeChange}/>,
           pagetwo: <PageTwo onButtonClick={nextPage} 
                     completeDate={completeDate}
-                    handleCompleteDate={handleCompleteDate}/>,
+                    handleCompleteDate={handleCompleteDate}
+                    handleCompleteTime={handleCompleteDate}/>,
           pagethree: <PageThree onButtonClick={nextPage} />,
           pagefour: <PageFour onButtonClick={nextPage}/>,
           pagefive: <PageFive onButtonClick={nextPage}/>,
