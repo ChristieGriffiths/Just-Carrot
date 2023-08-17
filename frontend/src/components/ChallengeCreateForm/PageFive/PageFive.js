@@ -1,12 +1,12 @@
 import React, { useState }  from "react";
 import "./PageFive.css"
 
-const PageFive = ({ onButtonClick }) => {
+const PageFive = ({ onButtonClick, handleChosenValidation }) => {
   const [selectedVerificationIndex, setSelectedVerificationIndex] = useState(null);
 
   const toggleSelected = (index) => {
     setSelectedVerificationIndex(index === selectedVerificationIndex ? null : index);
-    console.log(index)
+    handleChosenValidation(index);
   };
 
   return (

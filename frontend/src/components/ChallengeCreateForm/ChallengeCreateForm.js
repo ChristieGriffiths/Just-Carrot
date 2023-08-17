@@ -21,6 +21,7 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
   const [completeTime, setCompleteTime] = useState(null);
   const [incentiveAmount, setIncentiveAmount] = useState("");
   const [chosenCharity, setChosenCharity] = useState("");
+  const [chosenValidation, setChosenValidation] = useState("");
   
   const [page, setPage] = useState("pageone");
 
@@ -101,6 +102,10 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
     setChosenCharity(charityName)
     console.log(charityName);
   }
+  const handleChosenValidation = (validation) => {
+    setChosenValidation(validation)
+    console.log(validation);
+  }
 
   return (
     <div className="App">
@@ -122,9 +127,15 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
           pagefour: <PageFour onButtonClick={nextPage}
                               handleChosenCharity={handleChosenCharity}/>,
 
-          pagefive: <PageFive onButtonClick={nextPage}/>,
-
-          pagesix: <PageSix onButtonClick={nextPage}/>,
+          pagefive: <PageFive onButtonClick={nextPage}
+                              handleChosenValidation={handleChosenValidation}/>,
+          pagesix: <PageSix onButtonClick={nextPage}
+                            challenge={challenge}
+                            completeDate={completeDate}
+                            completeTime={completeTime}
+                            incentiveAmount={incentiveAmount}
+                            chosenCharity={chosenCharity}
+                            chosenValidation={chosenValidation}/>,
         }[page]
       }
     </div>

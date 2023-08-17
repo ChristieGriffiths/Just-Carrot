@@ -1,6 +1,12 @@
 import React from "react";
 
-const PageSix = ({ onButtonClick}) => {
+const PageSix = ({  challenge,
+                    completeDate,
+                    completeTime,
+                    incentiveAmount,
+                    chosenCharity,
+                    chosenValidation,
+}) => {
 
 }
 
