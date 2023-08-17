@@ -1,31 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import "./PageOne.css";
 
-const PageOne = ({ onButtonClick}) => {
+const PageOne = ({ onButtonClick, handleChallengeChange }) => {
 
   return (
     <main
       className="pt5 black-80 center"
-      style={{ maxWidth: "40%", maxHeight: "30%", margin: "auto" }}
+      style={{ maxWidth: "40%", maxHeight: "30%", marginTop: "20px" }}
     >
       <form className="measure">
         <h2>Enter your challenge: </h2>
     
         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
           <div className="mt3">
-       
+    
             <input
               className="f6 br2 ph3 pv2 mb2 dib black w-100"
               type="text"
-              name="full-name"
-              id="full-name"
               size="30"
               placeholder="Run for 10 minutes"
-              style={{
-                borderStyle: "solid",
-                borderWidth: "1px",
-                borderColor: "#EAEEF5",
-              }}
+              onChange={handleChallengeChange}
             />
           </div>
     

@@ -81,10 +81,13 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
   
   const handleChallengeChange = (event) => {
     setChallenge(event.target.value)
+    console.log('does this get consoled?')
   }
 
   const handleCompleteDate = (event) => {
+    console.log(event.target.value)
     setCompleteDate(event.target.value)
+    console.log('does this get consoled?')
   }
 
   const handleIncentiveAmount = (event) => {
@@ -101,7 +104,8 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
       <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
       {
         {
-          pageone: <PageOne onButtonClick={nextPage} />,
+          pageone: <PageOne onButtonClick={nextPage} 
+          handleChallengeChange={handleChallengeChange}/>,
           pagetwo: <PageTwo onButtonClick={nextPage} 
                     completeDate={completeDate}
                     handleCompleteDate={handleCompleteDate}/>,

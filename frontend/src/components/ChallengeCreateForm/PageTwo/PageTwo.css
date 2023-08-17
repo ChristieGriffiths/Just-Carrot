@@ -5,6 +5,11 @@
   height: 100vh; /* Adjust as needed */
 }
 
+.date-picker {
+  width: 500px; /* Adjust the width as needed */
+}
+
+
 /* Form styling */
 .measure {
   width: 100%;
@@ -13,5 +18,5 @@
   background-color: #f4f4f4;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: -500px;
+  margin-top: -50px;
 }
