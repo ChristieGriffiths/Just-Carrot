@@ -8,7 +8,7 @@ import GiveDirectlyLogo from '../../../assets/GiveDirectlyLogo.png';
 import NTIImage from '../../../assets/NTIImage.png';
 import NTILogo from '../../../assets/NTILogo.png';
 
-const PageFour = ({ onButtonClick}) => {
+const PageFour = ({ onButtonClick, handleChosenCharity}) => {
   function Charity(name, description, website, chosen, image, logo) {
     this.name = name;
     this.description = description;
@@ -34,7 +34,10 @@ const PageFour = ({ onButtonClick}) => {
              <div
              className={`charityContainer ${selectedCharityIndex === index ? "selected" : ""}`}
              key={index}
-             onClick={() => setSelectedCharityIndex(index)} // Step 2: Update the selected charity index on click
+             onClick={() => {
+              setSelectedCharityIndex(index); // Step 2: Update the selected charity index on click
+              handleChosenCharity(charity.name); // Call the handleChosenCharity function with the selected charity's name
+            }}
            >
               
               <img className="charityImage" src={charity.image} alt={`${charity.name} `} />

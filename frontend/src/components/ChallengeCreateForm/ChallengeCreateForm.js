@@ -94,11 +94,12 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
   }
 
   const handleIncentiveAmount = (event) => {
-    setIncentiveAmount(event.target.value)
+    setIncentiveAmount(event.target.value);
   }
 
-  const handleChosenCharity = (event) => {
-    setChosenCharity(event.target.value)
+  const handleChosenCharity = (charityName) => {
+    setChosenCharity(charityName)
+    console.log(charityName);
   }
 
   return (
@@ -107,7 +108,6 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
       <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
       {
         {
-
           pageone: <PageOne onButtonClick={nextPage} 
                             handleChallengeChange={handleChallengeChange}/>,
 
@@ -121,10 +121,10 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
 
           pagefour: <PageFour onButtonClick={nextPage}
                               handleChosenCharity={handleChosenCharity}/>,
+
           pagefive: <PageFive onButtonClick={nextPage}/>,
 
           pagesix: <PageSix onButtonClick={nextPage}/>,
-
         }[page]
       }
     </div>

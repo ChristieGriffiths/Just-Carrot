@@ -6,6 +6,7 @@ const PageFive = ({ onButtonClick }) => {
 
   const toggleSelected = (index) => {
     setSelectedVerificationIndex(index === selectedVerificationIndex ? null : index);
+    console.log(index)
   };
 
   return (
