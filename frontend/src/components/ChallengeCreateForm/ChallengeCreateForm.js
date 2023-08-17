@@ -11,7 +11,6 @@ import MultiStepProgressBar from "./MultiStepProgressBar/MultiStepProgressBar";
 import tachyons from "tachyons";
 import Logo from "./Logo/Logo";
 
-
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
@@ -39,6 +38,7 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
         break;
       case "3":
         setPage("pagethree");
+
         break;
       case "4":
         setPage("pagefour");
@@ -86,14 +86,11 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
   }
 
   const handleCompleteDate = (event) => {
-    console.log(event.target.value)
     setCompleteDate(event.target.value)
-    console.log('does this get consoled?')
   }
+
   const handleCompleteTime = (event) => {
-    console.log(event.target.value)
     setCompleteTime(event.target.value)
-    console.log('does this get consoled?')
   }
 
   const handleIncentiveAmount = (event) => {
@@ -110,16 +107,24 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
       <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
       {
         {
+
           pageone: <PageOne onButtonClick={nextPage} 
-          handleChallengeChange={handleChallengeChange}/>,
+                            handleChallengeChange={handleChallengeChange}/>,
+
           pagetwo: <PageTwo onButtonClick={nextPage} 
-                    completeDate={completeDate}
-                    handleCompleteDate={handleCompleteDate}
-                    handleCompleteTime={handleCompleteDate}/>,
-          pagethree: <PageThree onButtonClick={nextPage} />,
-          pagefour: <PageFour onButtonClick={nextPage}/>,
+                            completeDate={completeDate}
+                            handleCompleteDate={handleCompleteDate}
+                            handleCompleteTime={handleCompleteDate}/>,
+
+          pagethree: <PageThree onButtonClick={nextPage} 
+                                handleIncentiveAmount={handleIncentiveAmount}/>,
+
+          pagefour: <PageFour onButtonClick={nextPage}
+                              handleChosenCharity={handleChosenCharity}/>,
           pagefive: <PageFive onButtonClick={nextPage}/>,
+
           pagesix: <PageSix onButtonClick={nextPage}/>,
+
         }[page]
       }
     </div>

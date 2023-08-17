@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import "./PageThree.css";
 import Slider from '@mui/material/Slider';
 
-const PageThree = ({onButtonClick}) => {
+const PageThree = ({onButtonClick, handleIncentiveAmount}) => {
 
   const [singleUser, setSingleUser] = useState(false)
   
@@ -31,7 +31,7 @@ const PageThree = ({onButtonClick}) => {
           valueLabelDisplay="on" 
           valueLabelFormat={valueLabelFormat}
           style={{ color: '#f39200' }}
-          
+          onChange={handleIncentiveAmount}
         /> 
       </div>
   

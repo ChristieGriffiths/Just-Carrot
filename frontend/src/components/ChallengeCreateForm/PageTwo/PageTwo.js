@@ -3,7 +3,6 @@ import "./PageTwo.css";
 
 
 const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime}) => {
-    const [chosenDate, setChosenDate] = useState("Choose Date        \u{1F4C5}")
     
     return (
       <main className="container">
