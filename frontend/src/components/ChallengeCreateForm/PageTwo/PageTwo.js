@@ -2,26 +2,37 @@ import React, { useState, useEffect } from "react";
 import "./PageTwo.css";
 
 const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
-  // Generate the current date and time
   const currentDate = new Date();
 
-  // Extract and format the date
   const formattedDate = currentDate.toISOString().split("T")[0];
-  // Extract and format the time
   const formattedTime =
     String(currentDate.getHours()).padStart(2, "0") +
     ":" +
     String(currentDate.getMinutes()).padStart(2, "0");
 
-  // Use useState to set the default date and time
   const [date, setDate] = useState(formattedDate);
   const [time, setTime] = useState(formattedTime);
+  const [isTimeValid, setIsTimeValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // Use useEffect to update handleCompleteDate and handleCompleteTime initially
   useEffect(() => {
     handleCompleteDate({ target: { value: formattedDate } });
     handleCompleteTime({ target: { value: formattedTime } });
   }, []);
+
+  const checkTimeValidity = (selectedDate, selectedTime) => {
+    const selectedDateTime = new Date(`${selectedDate}T${selectedTime}`);
+    const currentTime = new Date();
+    const timeDifference = selectedDateTime - currentTime;
+
+    if (timeDifference >= 60 * 60 * 1000) { // At least one hour
+      setIsTimeValid(true);
+      setErrorMessage('');
+    } else {
+      setIsTimeValid(false);
+      setErrorMessage('You must give yourself at least an hour.');
+    }
+  };
 
   return (
     <main className="container">
@@ -32,6 +43,7 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
         onChange={(e) => {
           setDate(e.target.value);
           handleCompleteDate(e);
+          checkTimeValidity(e.target.value, time);
         }}
       />
       <input
@@ -40,15 +52,18 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
         onChange={(e) => {
           setTime(e.target.value);
           handleCompleteTime(e);
+          checkTimeValidity(date, e.target.value);
         }}
       />
       <div className="next-button">
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
         <input
           className="f6 grow br2 ph3 pv2 mb2 dib white"
           style={{ borderStyle: "none", width: "100%", backgroundColor: "#f39200" }}
           type="submit"
           value="Next"
           onClick={() => onButtonClick("pagethree")}
+          disabled={!isTimeValid}
         />
       </div>
     </main>
