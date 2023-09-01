@@ -1,12 +1,19 @@
-import React, { useState }  from "react";
-import "./PageFive.css"
+import React, { useState } from "react";
+import "./PageFive.css";
 
 const PageFive = ({ onButtonClick, handleChosenValidation }) => {
-  const [selectedVerificationIndex, setSelectedVerificationIndex] = useState(null);
+  // Changed the initial value to a string and the state variable name
+  const [selectedVerificationMethod, setSelectedVerificationMethod] = useState(null);
 
-  const toggleSelected = (index) => {
-    setSelectedVerificationIndex(index === selectedVerificationIndex ? null : index);
-    handleChosenValidation(index);
+  // Modified to handle string values instead of index
+  const toggleSelected = (method) => {
+    if (selectedVerificationMethod === method) {
+      setSelectedVerificationMethod(null);
+      handleChosenValidation(null);
+    } else {
+      setSelectedVerificationMethod(method);
+      handleChosenValidation(method);
+    }
   };
 
   return (
@@ -16,25 +23,25 @@ const PageFive = ({ onButtonClick, handleChosenValidation }) => {
       </div>
       <div className="options">
         <div
-          className={`photo ${selectedVerificationIndex === 0 ? 'selected' : ''}`}
-          onClick={() => toggleSelected(0)}
+          className={`photo ${selectedVerificationMethod === 'Photo' ? 'selected' : ''}`}
+          onClick={() => toggleSelected('Photo')}
         >
-        <h1>Photo</h1>
+          <h1>Photo</h1>
         </div>
         <div
-          className={`selfVerify ${selectedVerificationIndex === 1 ? 'selected' : ''}`}
-          onClick={() => toggleSelected(1)}
+          className={`selfVerify ${selectedVerificationMethod === 'Self-Verify' ? 'selected' : ''}`}
+          onClick={() => toggleSelected('Self-Verify')}
         >
           <h1>Self-Verify</h1>
         </div>
       </div>
-        <input
-            className="f6 grow br2 ph3 pv2 mb2 dib white"
-            style={{ borderStyle: "none", width: "11%", backgroundColor: "#f39200" }}
-            type="submit"
-            value="Next"
-            onClick={() => onButtonClick("pagesix")}
-          />
+      <input
+        className="f6 grow br2 ph3 pv2 mb2 dib white"
+        style={{ borderStyle: "none", width: "11%", backgroundColor: "#f39200" }}
+        type="submit"
+        value="Next"
+        onClick={() => onButtonClick("pagesix")}
+      />
     </main>
   );
 };
