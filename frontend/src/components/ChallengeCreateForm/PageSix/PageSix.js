@@ -1,4 +1,5 @@
 import React from "react";
+import "./PageSix.css";
 
 const PageSix = ({
   challenge,
@@ -12,7 +13,7 @@ const PageSix = ({
     <main className="confirmation-page">
       <h2>Confirmation</h2>
 
-      <div className="options">
+      <div className="options-grid">
         <div className="choice-container">
           <h3>Challenge:</h3>
           <div className="choice-content">
