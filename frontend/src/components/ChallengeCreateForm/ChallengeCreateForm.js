@@ -19,7 +19,7 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
   const [challenge, setChallenge] = useState("");
   const [completeDate, setCompleteDate] = useState(null);
   const [completeTime, setCompleteTime] = useState(null);
-  const [incentiveAmount, setIncentiveAmount] = useState("");
+  const [incentiveAmount, setIncentiveAmount] = useState("15");
   const [chosenCharity, setChosenCharity] = useState("");
   const [chosenValidation, setChosenValidation] = useState("");
   
@@ -123,7 +123,8 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
                             handleCompleteTime={handleCompleteTime}/>,
 
           pagethree: <PageThree onButtonClick={nextPage} 
-                                handleIncentiveAmount={handleIncentiveAmount}/>,
+                                handleIncentiveAmount={handleIncentiveAmount}
+                                incentiveAmount={incentiveAmount}/>,
 
           pagefour: <PageFour onButtonClick={nextPage}
                               handleChosenCharity={handleChosenCharity}/>,

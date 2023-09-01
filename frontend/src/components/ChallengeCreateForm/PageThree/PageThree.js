@@ -3,19 +3,8 @@ import React, {useState} from "react";
 import "./PageThree.css";
 import Slider from '@mui/material/Slider';
 
-const PageThree = ({onButtonClick, handleIncentiveAmount}) => {
+const PageThree = ({onButtonClick, incentiveAmount, handleIncentiveAmount}) => {
 
-  const [singleUser, setSingleUser] = useState(false)
-  
-  const onClickSingleUser = () => {
-    setSingleUser(prevSingleUser => !prevSingleUser)
-  }
-
-  const [multiUser, setMultiUser] = useState(false)
-  
-  const onClickMultiUser = () => {
-    setMultiUser(prevMultiUser => !prevMultiUser)
-  }
 
   const valueLabelFormat = (value) => {
     return `£${value}`;
@@ -27,7 +16,7 @@ const PageThree = ({onButtonClick, handleIncentiveAmount}) => {
   
       <div className="slider">
         <Slider size="large"
-          min={5} defaultValue={15} 
+          min={5} defaultValue={incentiveAmount} 
           valueLabelDisplay="on" 
           valueLabelFormat={valueLabelFormat}
           style={{ color: '#f39200' }}
