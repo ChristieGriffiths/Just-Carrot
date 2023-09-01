@@ -14,7 +14,7 @@ import Logo from "./Logo/Logo";
 import "react-datepicker/dist/react-datepicker.css"
 
 
-const ChallengeCreateForm = ({token, setToken}, ) => {
+const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   const [challenge, setChallenge] = useState("");
   const [completeDate, setCompleteDate] = useState(null);
   const [completeTime, setCompleteTime] = useState(null);
@@ -77,6 +77,7 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
       setIncentiveAmount("");
       setChosenCharity("")
       setChosenValidation("")
+      setViewForm(false)
     } else {
       console.log("Failed to submit");
     }
