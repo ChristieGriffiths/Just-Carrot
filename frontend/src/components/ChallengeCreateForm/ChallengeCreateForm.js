@@ -88,6 +88,7 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
 
   const handleCompleteDate = (event) => {
     setCompleteDate(event.target.value)
+    console.log('this is completeDate', completeDate)
   }
 
   const handleCompleteTime = (event) => {
@@ -119,7 +120,7 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
           pagetwo: <PageTwo onButtonClick={nextPage} 
                             completeDate={completeDate}
                             handleCompleteDate={handleCompleteDate}
-                            handleCompleteTime={handleCompleteDate}/>,
+                            handleCompleteTime={handleCompleteTime}/>,
 
           pagethree: <PageThree onButtonClick={nextPage} 
                                 handleIncentiveAmount={handleIncentiveAmount}/>,
