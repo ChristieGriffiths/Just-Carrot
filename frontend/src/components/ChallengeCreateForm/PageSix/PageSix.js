@@ -8,6 +8,7 @@ const PageSix = ({
   incentiveAmount,
   chosenCharity,
   chosenValidation,
+  handleSubmit,
 }) => {
   return (
     <main className="confirmation-page">
@@ -62,6 +63,7 @@ const PageSix = ({
         style={{ borderStyle: "none", width: "11%", backgroundColor: "#f39200" }}
         type="submit"
         value="Confirm"
+        onClick={(e) => { e.preventDefault(); handleSubmit(e); }}  // Add this line
       />
     </main>
   );
