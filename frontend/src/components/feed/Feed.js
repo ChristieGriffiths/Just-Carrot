@@ -40,7 +40,11 @@ const Feed = ({ navigate }) => {
           <h2 id='targets' >Targets</h2>
           <div className='form-container'>
             {viewForm ? (
-              <ChallengeCreateForm token={token} setToken={setToken} />
+               <ChallengeCreateForm 
+               token={token} 
+               setToken={setToken}
+               setViewForm={setViewForm}
+             />
             ) : (
               null
             )}

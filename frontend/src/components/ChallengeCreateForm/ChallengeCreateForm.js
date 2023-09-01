@@ -11,11 +11,10 @@ import MultiStepProgressBar from "./MultiStepProgressBar/MultiStepProgressBar";
 import tachyons from "tachyons";
 import Logo from "./Logo/Logo";
 
-import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 
-const ChallengeCreateForm = ({token, setToken}, ) => {
+const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   const [challenge, setChallenge] = useState("");
   const [completeDate, setCompleteDate] = useState(null);
   const [completeTime, setCompleteTime] = useState(null);
@@ -65,7 +64,7 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({ challenge: challenge, completeDate: completeDate, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity })
+      body: JSON.stringify({ challenge: challenge, completeDate: completeDate, completeTime: completeTime, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity, chosenValidation:chosenValidation })
     })
 
     if (response.status === 201) {
@@ -74,8 +73,11 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
       setToken(data.token);
       setChallenge("");
       setCompleteDate("");
+      setCompleteTime("")
       setIncentiveAmount("");
       setChosenCharity("")
+      setChosenValidation("")
+      setViewForm(false)
     } else {
       console.log("Failed to submit");
     }
@@ -132,13 +134,14 @@ const ChallengeCreateForm = ({token, setToken}, ) => {
           pagefive: <PageFive onButtonClick={nextPage}
                               handleChosenValidation={handleChosenValidation}/>,
           pagesix: <PageSix onButtonClick={nextPage}
-                            challenge={challenge}
-                            completeDate={completeDate}
-                            completeTime={completeTime}
-                            incentiveAmount={incentiveAmount}
-                            chosenCharity={chosenCharity}
-                            chosenValidation={chosenValidation}/>,
-        }[page]
+                    challenge={challenge}
+                    completeDate={completeDate}
+                    completeTime={completeTime}
+                    incentiveAmount={incentiveAmount}
+                    chosenCharity={chosenCharity}
+                    chosenValidation={chosenValidation}
+                    handleSubmit={handleSubmit} />,  // Add this line
+  } [page]
       }
     </div>
   );
