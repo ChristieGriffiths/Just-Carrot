@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "jwt-decode": "^3.1.2",
     "prop-types": "^15.8.1",
     "react-step-progress-bar": "^1.0.3",
     "tachyons": "^4.12.0"

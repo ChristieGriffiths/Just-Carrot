@@ -7,7 +7,7 @@ import PageFour from "./PageFour/PageFour";
 import PageFive from "./PageFive/PageFive";
 import PageSix from "./PageSix/PageSix";
 import MultiStepProgressBar from "./MultiStepProgressBar/MultiStepProgressBar";
-
+import jwt_decode from 'jwt-decode';
 import tachyons from "tachyons";
 import Logo from "./Logo/Logo";
 
@@ -57,31 +57,49 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const decoded = jwt_decode(token);
+      console.log('Decoded:', decoded);  // Log the entire decoded payload
+  
+      const userId = decoded.user_id;
 
-    let response = await fetch('/posts', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ userId: "test", challenge: challenge, completeDate: completeDate, completeTime: completeTime, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity, chosenValidation:chosenValidation })
-    })
-
-    if (response.status === 201) {
-      console.log("Successfully submited")
-      let data = await response.json();
-      setToken(data.token);
-      setChallenge("");
-      setCompleteDate("");
-      setCompleteTime("")
-      setIncentiveAmount("");
-      setChosenCharity("")
-      setChosenValidation("")
-      setViewForm(false)
-    } else {
-      console.log("Failed to submit");
+      console.log('userId should console', userId);
+  
+  
+      const response = await fetch('/posts', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          userId,
+          challenge,
+          completeDate,
+          completeTime,
+          incentiveAmount,
+          chosenCharity,
+          chosenValidation
+        })
+      });
+  
+      if (response.status === 201) {
+        console.log("Successfully submitted")
+        let data = await response.json();
+        setToken(data.token);
+        // reset form states
+      } else if (response.status === 400) {
+        // Handle bad request
+        console.log("Bad request");
+      } else {
+        // Handle other statuses
+        console.log("Failed to submit");
+      }
+    } catch (error) {
+      console.log("An error occurred", error);
     }
-}
+  };
+  
   
   const handleChallengeChange = (event) => {
     setChallenge(event.target.value)

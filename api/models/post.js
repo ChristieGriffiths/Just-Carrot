@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
-  userId: { type: String, ref: 'User', required: true},
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   challenge: { type: String, required: true },
-  completeDate: { type: String, required: true },
-  completeTime: { type: String, required: true },
-  incentiveAmount: { type: String, required: true },
+  completeDate: { type: Date, required: true },  // changed from String to Date
+  completeTime: { type: String, required: true }, // consider combining with completeDate into a single DateTime field
+  incentiveAmount: { type: Number, required: true }, // changed from String to Number
   chosenCharity: { type: String, required: true },
   chosenValidation: { type: String, required: true },
 });
 
-const Post = mongoose.model("Post", PostSchema);
+const Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
