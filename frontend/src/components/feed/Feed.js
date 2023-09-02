@@ -50,11 +50,11 @@ const Feed = ({ navigate }) => {
             )}
           </div>
 
-          {/* {<div id='feed' role="feed">
+          <div className="apple-style-container" id='feed' role="feed">
               {posts.map(
                 (post) => ( <Post post={ post } key={ post._id } /> )
               )}
-          </div> */}
+          </div>
 
           
             <button classform="NewChallenge" onClick={newChallenge}>

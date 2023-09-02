@@ -64,7 +64,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({ challenge: challenge, completeDate: completeDate, completeTime: completeTime, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity, chosenValidation:chosenValidation })
+      body: JSON.stringify({ userId: "test", challenge: challenge, completeDate: completeDate, completeTime: completeTime, incentiveAmount: incentiveAmount, chosenCharity: chosenCharity, chosenValidation:chosenValidation })
     })
 
     if (response.status === 201) {
