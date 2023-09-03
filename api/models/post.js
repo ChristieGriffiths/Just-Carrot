@@ -8,6 +8,7 @@ const PostSchema = new mongoose.Schema({
   incentiveAmount: { type: Number, required: true }, // changed from String to Number
   chosenCharity: { type: String, required: true },
   chosenValidation: { type: String, required: true },
+  completed: { type: Boolean, required: false, default: null }, 
 });
 
 const Post = mongoose.model('Post', PostSchema);

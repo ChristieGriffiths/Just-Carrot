@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import jwt_decode from 'jwt-decode'; // Assuming jwt_decode is imported
 import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
@@ -10,6 +11,9 @@ const Feed = ({ navigate }) => {
 
   useEffect(() => {
     if(token) {
+      const decoded = jwt_decode(token);
+      const userId = decoded.user_id; // Extract user_id from token
+      
       fetch("/posts", {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -19,10 +23,13 @@ const Feed = ({ navigate }) => {
         .then(async data => {
           window.localStorage.setItem("token", data.token);
           setToken(window.localStorage.getItem("token"));
-          setPosts(data.posts);
+
+          // Filter posts based on logged-in user's ID
+          const userPosts = data.posts.filter(post => post.userId === userId);
+          setPosts(userPosts);
         });
     }
-  }, []);
+  }, [token]); // Rerun useEffect when token changes
     
   const newChallenge = () => {
     setViewForm(true);
