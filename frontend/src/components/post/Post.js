@@ -2,6 +2,10 @@ import React from 'react';
 import './Post.css';
 
 const Post = ({ post, token, onUpdate }) => {
+  // Only proceed if the "completed" field is null
+  if (post.completed !== null) {
+    return null;
+  }
 
   const handleConfirm = async () => {
     try {
@@ -31,7 +35,7 @@ const Post = ({ post, token, onUpdate }) => {
     } catch (error) {
       console.log("An error occurred", error);
     }
-  }
+  };
 
   return (
     <div className="apple-style-container">
@@ -44,6 +48,6 @@ const Post = ({ post, token, onUpdate }) => {
       </article>
     </div>
   );
-}
+};
 
 export default Post;
