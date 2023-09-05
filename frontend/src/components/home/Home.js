@@ -3,7 +3,7 @@ import './Home.css'
 import { Link } from "react-router-dom";
 
 import logo from '../../assets/logo.png';
-import homePageImage from '../../assets/homePageImage.png';
+import homePageImage from '../../assets/HomePageImage.png';
 import howItWorks from '../../assets/howItWorks.png';
 import aboutUs from '../../assets/aboutUs.png';
 

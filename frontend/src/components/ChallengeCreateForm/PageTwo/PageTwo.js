@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./PageTwo.css";
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
   const currentDate = new Date();
@@ -34,26 +36,38 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
     }
   };
 
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    setDate(selectedDate);
+    handleCompleteDate(e);
+    checkTimeValidity(selectedDate, time);
+  };
+
+  const handleTimeChange = (e) => {
+    const selectedTime = e.target.value;
+    setTime(selectedTime);
+    handleCompleteTime(e);
+    checkTimeValidity(date, selectedTime);
+  };
+
+  const handleButtonClick = () => {
+    if (isTimeValid) {
+      onButtonClick("pagethree");
+    }
+  };
+
   return (
     <main className="container">
       <h2>Complete challenge by:</h2>
       <input
         type="date"
         value={date}
-        onChange={(e) => {
-          setDate(e.target.value);
-          handleCompleteDate(e);
-          checkTimeValidity(e.target.value, time);
-        }}
+        onChange={handleDateChange}
       />
       <input
         type="time"
         value={time}
-        onChange={(e) => {
-          setTime(e.target.value);
-          handleCompleteTime(e);
-          checkTimeValidity(date, e.target.value);
-        }}
+        onChange={handleTimeChange}
       />
       <div className="next-button">
         {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -62,7 +76,7 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
           style={{ borderStyle: "none", width: "100%", backgroundColor: "#f39200" }}
           type="submit"
           value="Next"
-          onClick={() => onButtonClick("pagethree")}
+          onClick={handleButtonClick}
           disabled={!isTimeValid}
         />
       </div>
