@@ -9,6 +9,7 @@ const PageSix = ({
   chosenCharity,
   chosenValidation,
   handleSubmit,
+  onButtonClick
 }) => {
   return (
     <main className="confirmation-page">
@@ -59,12 +60,17 @@ const PageSix = ({
       </div>
 
       <input
-        className="f6 grow br2 ph3 pv2 mb2 dib white"
-        style={{ borderStyle: "none", width: "11%", backgroundColor: "#f39200" }}
-        type="submit"
-        value="Confirm"
-        onClick={(e) => { e.preventDefault(); handleSubmit(e); }}  // Add this line
-      />
+  className="f6 grow br2 ph3 pv2 mb2 dib white"
+  style={{ borderStyle: "none", width: "11%", backgroundColor: "#f39200" }}
+  type="submit"
+  value="Confirm"
+  onClick={(e) => {
+    e.preventDefault();
+    onButtonClick("pageseven");
+    // handleSubmit(e);
+  }}
+/>
+
     </main>
   );
 };

@@ -6,6 +6,7 @@ import PageThree from "./PageThree/PageThree";
 import PageFour from "./PageFour/PageFour";
 import PageFive from "./PageFive/PageFive";
 import PageSix from "./PageSix/PageSix";
+import PageSeven from "./PageSeven/PageSeven";
 import MultiStepProgressBar from "./MultiStepProgressBar/MultiStepProgressBar";
 import jwt_decode from 'jwt-decode';
 import tachyons from "tachyons";
@@ -30,29 +31,32 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
 
   const nextPageNumber = (pageNumber) => {
     switch (pageNumber) {
-      case "1":
-        setPage("pageone");
+      case '1':
+        setPage('pageone');
         break;
-      case "2":
-        setPage("pagetwo");
+      case '2':
+        setPage('pagetwo');
         break;
-      case "3":
-        setPage("pagethree");
-
+      case '3':
+        setPage('pagethree');
         break;
-      case "4":
-        setPage("pagefour");
+      case '4':
+        setPage('pagefour');
         break;
-      case "5":
-        setPage("pagefive");
+      case '5':
+        setPage('pagefive');
         break;
-      case "6":
-        alert("Ooops! Seems like you did not fill the form.");
+      case '6':
+        setPage('pagesix');
+        break;
+      case '7':
+        alert('This is Page 7!'); // You can replace this line with your logic
         break;
       default:
-        setPage("1");
+        setPage('1');
     }
   };
+  
 
 
   const handleSubmit = async (event) => {
@@ -128,43 +132,23 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
     console.log(validation);
   }
 
+
   return (
     <div className="App">
       <Logo />
       <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
-      {
-        {
-          pageone: <PageOne onButtonClick={nextPage} 
-                            handleChallengeChange={handleChallengeChange}/>,
-
-          pagetwo: <PageTwo onButtonClick={nextPage} 
-                            completeDate={completeDate}
-                            handleCompleteDate={handleCompleteDate}
-                            handleCompleteTime={handleCompleteTime}/>,
-
-          pagethree: <PageThree onButtonClick={nextPage} 
-                                handleIncentiveAmount={handleIncentiveAmount}
-                                incentiveAmount={incentiveAmount}/>,
-
-          pagefour: <PageFour onButtonClick={nextPage}
-                              handleChosenCharity={handleChosenCharity}/>,
-
-          pagefive: <PageFive onButtonClick={nextPage}
-                              handleChosenValidation={handleChosenValidation}/>,
-          pagesix: <PageSix onButtonClick={nextPage}
-                    challenge={challenge}
-                    completeDate={completeDate}
-                    completeTime={completeTime}
-                    incentiveAmount={incentiveAmount}
-                    chosenCharity={chosenCharity}
-                    chosenValidation={chosenValidation}
-                    handleSubmit={handleSubmit} />,  // Add this line
-  } [page]
-      }
+      {{
+        pageone: <PageOne onButtonClick={nextPage} handleChallengeChange={handleChallengeChange} />,
+        pagetwo: <PageTwo onButtonClick={nextPage} completeDate={completeDate} handleCompleteDate={handleCompleteDate} handleCompleteTime={handleCompleteTime} />,
+        pagethree: <PageThree onButtonClick={nextPage} handleIncentiveAmount={handleIncentiveAmount} incentiveAmount={incentiveAmount} />,
+        pagefour: <PageFour onButtonClick={nextPage} handleChosenCharity={handleChosenCharity} />,
+        pagefive: <PageFive onButtonClick={nextPage} handleChosenValidation={handleChosenValidation} />,
+        pagesix: <PageSix onButtonClick={nextPage} challenge={challenge} completeDate={completeDate} completeTime={completeTime} incentiveAmount={incentiveAmount} chosenCharity={chosenCharity} chosenValidation={chosenValidation} handleSubmit={handleSubmit} />,
+        pageseven: <PageSeven />, // include the new page
+      }[page]}
     </div>
   );
-
-}
+  };
 
 export default ChallengeCreateForm;
 
