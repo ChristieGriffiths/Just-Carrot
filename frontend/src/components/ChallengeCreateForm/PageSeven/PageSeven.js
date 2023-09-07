@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import StripeContainer from './StripeContainer'
 
-const PageSeven = () => {
-  const [showItem, setShowItem] = useState(false)
-
-
-
+const PageSeven = ({handleFormSubmit, handlePaymentId}) => {
 
   return (
     <div>
     <h1> Payment Form </h1>
-      <StripeContainer/>
+      <StripeContainer handleFormSubmit={handleFormSubmit} handlePaymentId={handlePaymentId} />
      </div>
   );
-  
+
 }
 
 export default PageSeven;

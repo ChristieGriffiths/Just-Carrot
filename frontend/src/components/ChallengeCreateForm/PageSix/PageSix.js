@@ -8,7 +8,7 @@ const PageSix = ({
   incentiveAmount,
   chosenCharity,
   chosenValidation,
-  handleSubmit,
+  handleFormSubmit,
   onButtonClick
 }) => {
   return (
@@ -67,7 +67,6 @@ const PageSix = ({
   onClick={(e) => {
     e.preventDefault();
     onButtonClick("pageseven");
-    handleSubmit(e);
   }}
 />
 

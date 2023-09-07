@@ -24,7 +24,7 @@ const CARD_OPTIONS = {
   hidePostalCode: true,  // Hide the ZIP code field
 };
 
-export default function PaymentForm() {
+export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -47,6 +47,9 @@ export default function PaymentForm() {
         if (response.data.success) {
           console.log('Successful payment');
           setSuccess(true);
+          console.log('paymentId', id)
+          handlePaymentId(id)
+          handleFormSubmit()
         }
       } catch (error) {
         console.log('Error', error);

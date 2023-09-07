@@ -22,6 +22,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   const [incentiveAmount, setIncentiveAmount] = useState("15");
   const [chosenCharity, setChosenCharity] = useState("");
   const [chosenValidation, setChosenValidation] = useState("");
+  const [paymentId, setPaymentId] = useState("")
   
   const [page, setPage] = useState("pageone");
 
@@ -58,18 +59,15 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   };
   
 
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = async () => {
     try {
       const decoded = jwt_decode(token);
-      console.log('Decoded:', decoded);  // Log the entire decoded payload
-  
       const userId = decoded.user_id;
 
-      console.log('userId should console', userId);
-  
-  
+      console.log({
+        paymentId
+      });
+
       const response = await fetch('/posts', {
         method: 'post',
         headers: {
@@ -83,7 +81,8 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
           completeTime,
           incentiveAmount,
           chosenCharity,
-          chosenValidation
+          chosenValidation,
+          paymentId,
         })
       });
   
@@ -91,12 +90,9 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         console.log("Successfully submitted")
         let data = await response.json();
         setToken(data.token);
-        // reset form states
       } else if (response.status === 400) {
-        // Handle bad request
         console.log("Bad request");
       } else {
-        // Handle other statuses
         console.log("Failed to submit");
       }
     } catch (error) {
@@ -107,12 +103,10 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   
   const handleChallengeChange = (event) => {
     setChallenge(event.target.value)
-    console.log('does this get consoled?')
   }
 
   const handleCompleteDate = (event) => {
     setCompleteDate(event.target.value)
-    console.log('this is completeDate', completeDate)
   }
 
   const handleCompleteTime = (event) => {
@@ -125,13 +119,15 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
 
   const handleChosenCharity = (charityName) => {
     setChosenCharity(charityName)
-    console.log(charityName);
   }
   const handleChosenValidation = (validation) => {
     setChosenValidation(validation)
-    console.log(validation);
   }
 
+  const handlePaymentId = (id) => {
+    setPaymentId(id)
+    console.log('gets logged in the create form', id)
+  }
 
   return (
     <div className="App">
@@ -143,8 +139,8 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         pagethree: <PageThree onButtonClick={nextPage} handleIncentiveAmount={handleIncentiveAmount} incentiveAmount={incentiveAmount} />,
         pagefour: <PageFour onButtonClick={nextPage} handleChosenCharity={handleChosenCharity} />,
         pagefive: <PageFive onButtonClick={nextPage} handleChosenValidation={handleChosenValidation} />,
-        pagesix: <PageSix onButtonClick={nextPage} challenge={challenge} completeDate={completeDate} completeTime={completeTime} incentiveAmount={incentiveAmount} chosenCharity={chosenCharity} chosenValidation={chosenValidation} handleSubmit={handleSubmit} />,
-        pageseven: <PageSeven />, // include the new page
+        pagesix: <PageSix onButtonClick={nextPage} challenge={challenge} completeDate={completeDate} completeTime={completeTime} incentiveAmount={incentiveAmount} chosenCharity={chosenCharity} chosenValidation={chosenValidation} />,
+        pageseven: <PageSeven handlePaymentId={handlePaymentId} handleFormSubmit={handleFormSubmit} />,
       }[page]}
     </div>
   );
@@ -178,24 +174,3 @@ export default ChallengeCreateForm;
 
 
 
-
-
-
-
-
-    // <form onSubmit= {handleSubmit} id='form' >
-    //   <input placeholder="Create challenge" id="challenge-type" type='text' value={challenge} onChange={handleChallengeChange}/>
-     
-    //   <DatePicker
-    //     placeholderText="Complete by"
-    //     id="complete-date"
-    //     selected={completeDate}
-    //     onChange={handleCompleteDate}
-    //     className="date-picker"
-    //   />
-    //   <span>  Or I'll donate  </span>
-    //   <input placeholder="£" id="incentive-amount" type='text' value ={incentiveAmount} onChange={handleIncentiveAmount}/>
-    //   <span>  To  </span>
-    //   <input placeholder="To Charity" id="chose-charity" type='text' value={chosenCharity} onChange={handleChosenCharity}/>
-    //   <input id='submit' type="submit" value="Submit" />
-    // </form> 
