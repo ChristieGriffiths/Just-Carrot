@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -15,57 +16,55 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
+console.log(`Stripe key is: ${process.env.STRIPE_SECRET_TEST}`);
+// Middleware setup
+app.use(logger("dev"));
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
 
-app.post("payment", cors(), async(req, res) => {
-  let {amount, id} = req.body 
+// Payment Route
+app.post("/payment", cors(), async (req, res) => {
+  let { amount, id } = req.body;
   try {
     const payment = await stripe.paymentIntents.create({
-      amount, 
-      currency: "USD",
-      description: "Just Carrot",
-      payment_method: id,
-      confirm: true
-    })
-    console.log("Payment", payment)
+  amount,
+  currency: "USD",
+  description: "Just Carrot",
+  payment_method: id,
+  confirm: true,
+  automatic_payment_methods: {
+    enabled: true,
+    allow_redirects: "never"  // Add this line
+  }
+});
+    console.log("Payment", payment);
     res.json({
-      message: "Payment successfull",
+      message: "Payment successful",
       success: true
-    })
+    });
   } catch (error) {
-    console.log("Error", error)
+    console.log("Error", error);
     res.json({
       message: "Payment failed",
       success: false
-    })
+    });
   }
-} )
+});
 
-app.listen(process.env.PORT || 4000, () => {
-  console.log("Server is listening on port 4000")
-})
-// setup for receiving JSON
-
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
-
-// middleware function to check for valid tokens
+// Middleware for token checking
 const tokenChecker = (req, res, next) => {
-
   let token;
-  const authHeader = req.get("Authorization")
-
-  if(authHeader) {
-    token = authHeader.slice(7)
+  const authHeader = req.get("Authorization");
+  if (authHeader) {
+    token = authHeader.slice(7);
   }
-
   JWT.verify(token, process.env.JWT_SECRET, (err, payload) => {
-    if(err) {
-      console.log(err)
-      res.status(401).json({message: "auth error"});
+    if (err) {
+      console.log(err);
+      res.status(401).json({ message: "auth error" });
     } else {
       req.user_id = payload.user_id;
       next();
@@ -73,24 +72,24 @@ const tokenChecker = (req, res, next) => {
   });
 };
 
-// route setup
+// Route setup
 app.use("/posts", tokenChecker, postsRouter);
 app.use("/tokens", tokensRouter);
 app.use("/users", usersRouter);
 
-// catch 404 and forward to error handler
+// Error handling
 app.use((req, res, next) => {
   next(createError(404));
 });
-
-// error handler
 app.use((err, req, res) => {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.status(err.status || 500).json({ message: 'server error' });
+});
 
-  // respond with details of the error
-  res.status(err.status || 500).json({message: 'server error'})
+// Server listening
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Server is listening on port 4000");
 });
 
 module.exports = app;
