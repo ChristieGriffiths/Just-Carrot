@@ -10,7 +10,7 @@ const PageSeven = () => {
   return (
     <div>
     <h1> Payment Form </h1>
-      {showItem ? <StripeContainer/> : <> <h3>£5</h3><button onClick={() => setShowItem(true)}> Purchase</button></>} 
+      <StripeContainer/>
      </div>
   );
   
