@@ -54,6 +54,26 @@ app.post("/payment", cors(), async (req, res) => {
   }
 });
 
+app.post("/refund", cors(), async (req, res) => {
+  let { paymentId } = req.body;
+  try {
+    const refund = await stripe.refunds.create({
+      payment_intent: paymentId,
+    });
+    console.log("Refund", refund);
+    res.json({
+      message: "Refund successful",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error", error);
+    res.json({
+      message: "Refund failed",
+      success: false,
+    });
+  }
+});
+
 // Middleware for token checking
 const tokenChecker = (req, res, next) => {
   let token;

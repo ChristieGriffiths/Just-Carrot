@@ -67,7 +67,7 @@ const PageSix = ({
   onClick={(e) => {
     e.preventDefault();
     onButtonClick("pageseven");
-    // handleSubmit(e);
+    handleSubmit(e);
   }}
 />
 

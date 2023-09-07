@@ -15,6 +15,29 @@ const Post = ({ post, token, onUpdate }) => {
     return null;
   }
 
+  const handleRefund = async () => {
+    try {
+      const response = await fetch('/refund', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          paymentId: post.paymentId,  // Assuming each post has an associated payment ID
+        }),
+      });
+
+      if (response.status === 200) {
+        console.log("Refund Successful");
+      } else {
+        console.log("Refund Failed");
+      }
+    } catch (error) {
+      console.log("An error occurred while refunding", error);
+    }
+  };
+
   const handleConfirm = async () => {
     try {
       const response = await fetch(`/posts/${post._id}`, {
@@ -32,6 +55,7 @@ const Post = ({ post, token, onUpdate }) => {
         console.log("Successfully updated");
         const data = await response.json();
         onUpdate(data);
+        handleRefund();
       } else if (response.status === 400) {
         console.log("Bad request");
       } else {
