@@ -4,6 +4,10 @@ const path = require("path");
 const logger = require("morgan");
 const JWT = require("jsonwebtoken");
 
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+const cors = require("cors");
 
 const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
@@ -11,6 +15,14 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "public")));
+app.use(logger("dev"));
+
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Server is listening on port 4000")
+})
 // setup for receiving JSON
 
 app.use(logger("dev"));
