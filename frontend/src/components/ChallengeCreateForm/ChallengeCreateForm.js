@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './ChallengeCreateForm.css';
 import PageOne from "./PageOne/PageOne";
 import PageTwo from "./PageTwo/PageTwo";
@@ -51,56 +51,13 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         setPage('pagesix');
         break;
       case '7':
-        alert('This is Page 7!'); // You can replace this line with your logic
+        alert('This is Page 7!'); // You can replace this line with your logic ??
         break;
       default:
         setPage('1');
     }
   };
-  
 
-  const handleFormSubmit = async () => {
-    try {
-      const decoded = jwt_decode(token);
-      const userId = decoded.user_id;
-
-      console.log({
-        paymentId
-      });
-
-      const response = await fetch('/posts', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          userId,
-          challenge,
-          completeDate,
-          completeTime,
-          incentiveAmount,
-          chosenCharity,
-          chosenValidation,
-          paymentId,
-        })
-      });
-  
-      if (response.status === 201) {
-        console.log("Successfully submitted")
-        let data = await response.json();
-        setToken(data.token);
-      } else if (response.status === 400) {
-        console.log("Bad request");
-      } else {
-        console.log("Failed to submit");
-      }
-    } catch (error) {
-      console.log("An error occurred", error);
-    }
-  };
-  
-  
   const handleChallengeChange = (event) => {
     setChallenge(event.target.value)
   }
@@ -124,11 +81,56 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
     setChosenValidation(validation)
   }
 
-  const handlePaymentId = (id) => {
-    setPaymentId(id)
-    console.log('gets logged in the create form', id)
-  }
 
+  const handlePaymentId = (id) => {
+    setPaymentId(id);
+    console.log('paymentId logged on line 86: ', paymentId);
+  };
+  
+  useEffect(() => {
+    if (paymentId) {
+      console.log('paymentId logged on line 86: ', paymentId);
+      handleFormSubmit();
+    }
+  }, [paymentId]);
+  
+  const handleFormSubmit = async () => {
+    try {
+      const decoded = jwt_decode(token);
+      const userId = decoded.user_id;
+
+      const response = await fetch('/posts', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          userId,
+          challenge,
+          completeDate,
+          completeTime,
+          incentiveAmount,
+          chosenCharity,
+          chosenValidation,
+          paymentId,
+        })
+      });
+  
+      if (response.status === 201) {
+        console.log("Form successfully submitted")
+        let data = await response.json();
+        setToken(data.token);
+      } else if (response.status === 400) {
+        console.log("Bad request");
+      } else {
+        console.log("Failed to submit");
+      }
+    } catch (error) {
+      console.log("An error occurred", error);
+    }
+  };
+  
   return (
     <div className="App">
       <Logo />
@@ -140,37 +142,10 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         pagefour: <PageFour onButtonClick={nextPage} handleChosenCharity={handleChosenCharity} />,
         pagefive: <PageFive onButtonClick={nextPage} handleChosenValidation={handleChosenValidation} />,
         pagesix: <PageSix onButtonClick={nextPage} challenge={challenge} completeDate={completeDate} completeTime={completeTime} incentiveAmount={incentiveAmount} chosenCharity={chosenCharity} chosenValidation={chosenValidation} />,
-        pageseven: <PageSeven handlePaymentId={handlePaymentId} handleFormSubmit={handleFormSubmit} />,
+        pageseven: <PageSeven handleFormSubmit={handleFormSubmit} handlePaymentId={handlePaymentId} />,
       }[page]}
     </div>
   );
   };
 
 export default ChallengeCreateForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

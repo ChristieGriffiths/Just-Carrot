@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const PostSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   challenge: { type: String, required: true },
-  completeDate: { type: Date, required: true },  // changed from String to Date
-  completeTime: { type: String, required: true }, // consider combining with completeDate into a single DateTime field
-  incentiveAmount: { type: Number, required: true }, // changed from String to Number
+  completeDate: { type: Date, required: true },  
+  completeTime: { type: String, required: true }, 
+  incentiveAmount: { type: Number, required: true }, 
   chosenCharity: { type: String, required: true },
   chosenValidation: { type: String, required: true },
   completed: { type: Boolean, required: false, default: null },
-  paymentId: { type: String, required: true },  // New field added
+  paymentId: { type: String, required: false, default: "default" },
 });
 
 const Post = mongoose.model('Post', PostSchema);

@@ -43,14 +43,13 @@ export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
           amount: 1000,
           id,
         });
-
+  
         if (response.data.success) {
           console.log('Successful payment');
           setSuccess(true);
-          console.log('paymentId', id)
-          handlePaymentId(id)
-          handleFormSubmit()
+          handlePaymentId(id);
         }
+  
       } catch (error) {
         console.log('Error', error);
       }
