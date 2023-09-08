@@ -11,17 +11,17 @@ const CARD_OPTIONS = {
       color: '#000',
       fontWeight: 500,
       fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-      fontSize: '18px', // Increased font size
+      fontSize: '18px',
       fontSmoothing: 'antialiased',
       ':-webkit-autofill': { color: '#fce883' },
-      '::placeholder': { color: '#87bbfd' },
+      '::placeholder': { color: '#87bbfd' }
     },
     invalid: {
       iconColor: '#ffc6ee',
-      color: '#ffc6ee',
-    },
+      color: '#ffc6ee'
+    }
   },
-  hidePostalCode: true,  // Hide the ZIP code field
+  hidePostalCode: true
 };
 
 export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
@@ -31,9 +31,10 @@ export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
-      card: elements.getElement(CardElement),
+      card: elements.getElement(CardElement)
     });
 
     if (!error) {
@@ -41,15 +42,15 @@ export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
         const { id } = paymentMethod;
         const response = await axios.post('http://localhost:4000/payment', {
           amount: 1000,
-          id,
+          id
         });
-  
+
         if (response.data.success) {
           console.log('Successful payment');
           setSuccess(true);
           handlePaymentId(id);
         }
-  
+
       } catch (error) {
         console.log('Error', error);
       }

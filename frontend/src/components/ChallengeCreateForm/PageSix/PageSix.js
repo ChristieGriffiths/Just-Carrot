@@ -8,7 +8,6 @@ const PageSix = ({
   incentiveAmount,
   chosenCharity,
   chosenValidation,
-  handleFormSubmit,
   onButtonClick
 }) => {
   return (
