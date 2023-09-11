@@ -22,7 +22,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   const [incentiveAmount, setIncentiveAmount] = useState("15");
   const [chosenCharity, setChosenCharity] = useState("");
   const [chosenValidation, setChosenValidation] = useState("");
-  const [paymentId, setPaymentId] = useState("")
+  const [paymentIntentId, setPaymentIntentId] = useState("")
   
   const [page, setPage] = useState("pageone");
 
@@ -83,16 +83,14 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
 
 
   const handlePaymentId = (id) => {
-    setPaymentId(id);
-    console.log('paymentId logged on line 86: ', paymentId);
+    setPaymentIntentId(id);
   };
   
   useEffect(() => {
-    if (paymentId) {
-      console.log('paymentId logged on line 86: ', paymentId);
+    if (paymentIntentId) {
       handleFormSubmit();
-    }
-  }, [paymentId]);
+     }
+  }, [paymentIntentId]);
   
   const handleFormSubmit = async () => {
     try {
@@ -113,7 +111,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
           incentiveAmount,
           chosenCharity,
           chosenValidation,
-          paymentId,
+          paymentIntentId,
         })
       });
   

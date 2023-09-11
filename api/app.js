@@ -16,34 +16,40 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
-console.log(`Stripe key is: ${process.env.STRIPE_SECRET_TEST}`);
-// Middleware setup
 app.use(logger("dev"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
+const Post = require('./models/post');
 
-// Payment Route
 app.post("/payment", cors(), async (req, res) => {
-  let { amount, id } = req.body;
+  let { amount, id, postId } = req.body;  // postId is now included
   try {
     const payment = await stripe.paymentIntents.create({
-  amount,
-  currency: "USD",
-  description: "Just Carrot",
-  payment_method: id,
-  confirm: true,
-  automatic_payment_methods: {
-    enabled: true,
-    allow_redirects: "never"  // Add this line
-  }
-});
+      amount,
+      currency: "USD",
+      description: "Just Carrot",
+      payment_method: id,
+      confirm: true,
+      automatic_payment_methods: {
+        enabled: true,
+        allow_redirects: "never"
+      }
+    });
+
+    const post = await Post.findById(postId);
+    if (post) {
+      post.paymentIntentId = payment.id;
+      await post.save();
+    }
+
     console.log("Payment", payment);
     res.json({
       message: "Payment successful",
-      success: true
+      success: true,
+      paymentIntentId: payment.id 
     });
   } catch (error) {
     console.log("Error", error);
@@ -54,12 +60,22 @@ app.post("/payment", cors(), async (req, res) => {
   }
 });
 
+
 app.post("/refund", cors(), async (req, res) => {
-  let { paymentId } = req.body;
+  let { paymentIntentId } = req.body;  // Retrieve paymentIntentId instead of postId
+  console.log(`Payment Intent ID from client: ${paymentIntentId}`); // Debug log
+
   try {
+    const post = await Post.findOne({ paymentIntentId: paymentIntentId });  // Find by paymentIntentId
+    if (!post) {
+      console.log(`Post with Payment Intent ID ${paymentIntentId} not found`); // Debug log
+      return res.status(404).json({ message: "Post not found" });
+    }
+
     const refund = await stripe.refunds.create({
-      payment_intent: paymentId,
+      payment_intent: paymentIntentId,
     });
+
     console.log("Refund", refund);
     res.json({
       message: "Refund successful",
@@ -67,14 +83,14 @@ app.post("/refund", cors(), async (req, res) => {
     });
   } catch (error) {
     console.log("Error", error);
-    res.json({
+    res.status(500).json({
       message: "Refund failed",
       success: false,
     });
   }
 });
 
-// Middleware for token checking
+
 const tokenChecker = (req, res, next) => {
   let token;
   const authHeader = req.get("Authorization");

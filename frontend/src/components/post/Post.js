@@ -17,26 +17,29 @@ const Post = ({ post, token, onUpdate }) => {
 
   const handleRefund = async () => {
     try {
-      const response = await fetch('/refund', {
+      // Use the full URL including the domain and port where your backend server is running
+      const response = await fetch('http://localhost:4000/refund', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          paymentId: post.paymentId,  // Assuming each post has an associated payment ID
+          paymentIntentId: post.paymentIntentId, // Directly use paymentIntentId
         }),
       });
-
-      if (response.status === 200) {
+  
+      if (response.ok) {
         console.log("Refund Successful");
       } else {
-        console.log("Refund Failed");
+        console.log(`Refund Failed with status: ${response.status}, ${response.statusText}`);
       }
+  
     } catch (error) {
       console.log("An error occurred while refunding", error);
     }
   };
+  
 
   const handleConfirm = async () => {
     try {

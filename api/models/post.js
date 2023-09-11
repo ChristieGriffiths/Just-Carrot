@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema({
   chosenCharity: { type: String, required: true },
   chosenValidation: { type: String, required: true },
   completed: { type: Boolean, required: false, default: null },
-  paymentId: { type: String, required: false, default: "default" },
+  paymentIntentId: { type: String, required: false, default: "default" },
 });
 
 const Post = mongoose.model('Post', PostSchema);

@@ -48,7 +48,8 @@ export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
         if (response.data.success) {
           console.log('Successful payment');
           setSuccess(true);
-          handlePaymentId(id);
+          console.log('this should display paymentIntentId', response.data.paymentIntentId)
+          handlePaymentId(response.data.paymentIntentId);
         }
 
       } catch (error) {
