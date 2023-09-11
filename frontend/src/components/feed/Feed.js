@@ -12,7 +12,7 @@ const Feed = ({ navigate }) => {
   useEffect(() => {
     if(token) {
       const decoded = jwt_decode(token);
-      const userId = decoded.user_id; // Extract user_id from token
+      const userId = decoded.user_id;
       
       fetch("/posts", {
         headers: {
@@ -24,16 +24,22 @@ const Feed = ({ navigate }) => {
           window.localStorage.setItem("token", data.token);
           setToken(window.localStorage.getItem("token"));
 
-          // Filter posts based on logged-in user's ID
           const userPosts = data.posts.filter(post => post.userId === userId);
           setPosts(userPosts);
         });
     }
   }, [token]); // Rerun useEffect when token changes
-    
+  
   const newChallenge = () => {
     setViewForm(true);
   }
+
+  const onUpdate = (updatedPost) => {
+    const updatedPosts = posts.map(post => 
+      post._id === updatedPost._id ? updatedPost : post
+    );
+    setPosts(updatedPosts);
+  };
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -56,7 +62,7 @@ const Feed = ({ navigate }) => {
         
         <div id='feed' role="feed">
           {posts.map(
-            (post) => ( <Post post={post} key={post._id} token={token} /> )
+            (post) => ( <Post post={post} key={post._id} token={token}  onUpdate={onUpdate}/> )
           )}
         </div>
 

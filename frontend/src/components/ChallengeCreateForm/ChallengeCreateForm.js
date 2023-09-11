@@ -130,6 +130,8 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
       console.log("An error occurred", error);
     }
   };
+
+  
   
   return (
     <div className="App">
