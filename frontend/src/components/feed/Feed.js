@@ -59,12 +59,19 @@ const Feed = ({ navigate }) => {
     setViewForm(true);
   }
 
-  const onUpdate = (updatedPost) => {
+  const onUpdate = (receivedData) => {
+    const updatedPost = receivedData.post;
     const updatedPosts = posts.map(post => 
       post._id === updatedPost._id ? updatedPost : post
     );
-    setPosts(updatedPosts);
+    
+    setPosts([...updatedPosts]);
   };
+
+  useEffect(() => {
+    console.log("Posts state updated:", posts);
+  }, [posts]);
+  
 
   const logout = () => {
     window.localStorage.removeItem("token");

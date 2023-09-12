@@ -47,6 +47,34 @@ const Post = ({ post, token, onUpdate }) => {
     setShowConfirmation(true);
   };
 
+  const handleConfirm = async () => {
+  try {
+    const response = await fetch(`/posts/${post._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        completed: true
+      })
+    });
+
+    if (response.status === 200) {
+      const data = await response.json();  // Make sure this line is reached
+      console.log("Response data:", data);  // Debugging line
+      onUpdate(data);
+      handleRefund();
+    } else if (response.status === 400) {
+      console.log("Bad request");
+    } else {
+      console.log("Failed to update");
+    }
+  } catch (error) {
+    console.log("An error occurred", error);
+  }
+};
+  
   const handleRefund = async () => {
     try {
       const response = await fetch('http://localhost:4000/refund', {
@@ -72,34 +100,6 @@ const Post = ({ post, token, onUpdate }) => {
   };
   
 
-  const handleConfirm = async () => {
-    try {
-      const response = await fetch(`/posts/${post._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          completed: true
-        })
-      });
-
-      if (response.status === 200) {
-        console.log("Successfully updated");
-        const data = await response.json();
-        onUpdate(data);
-        handleRefund();
-      } else if (response.status === 400) {
-        console.log("Bad request");
-      } else {
-        console.log("Failed to update");
-      }
-
-    } catch (error) {
-      console.log("An error occurred", error);
-    }
-  };
 
   return (
     <div className="apple-style-container">
