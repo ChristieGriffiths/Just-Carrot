@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Post.css';
 
 const formatDate = (isoDate) => {
@@ -10,14 +10,40 @@ const formatDate = (isoDate) => {
 };
 
 const Post = ({ post, token, onUpdate }) => {
-  // Only proceed if the "completed" field is null
+    const [remainingTime, setRemainingTime] = useState('');
+
+    useEffect(() => {
+      const calculateTimeLeft = () => {
+        const dateOnly = post.completeDate.split('T')[0];
+
+        const targetDateStr = `${dateOnly}T${post.completeTime}`;
+        const targetDate = new Date(targetDateStr);
+    
+        const now = new Date();
+        const timeLeft = targetDate - now;
+    
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  
+        if (timeLeft > 0) {
+          setRemainingTime(`${hours}h ${minutes}m ${seconds}s`);
+        } else {
+          setRemainingTime('Expired');
+        }
+      };
+
+      const timerId = setInterval(calculateTimeLeft, 1000);
+  
+      return () => clearInterval(timerId);
+    }, [post]);
+
   if (post.completed !== null) {
     return null;
   }
 
   const handleRefund = async () => {
     try {
-      // Use the full URL including the domain and port where your backend server is running
       const response = await fetch('http://localhost:4000/refund', {
         method: 'POST',
         headers: {
@@ -25,7 +51,7 @@ const Post = ({ post, token, onUpdate }) => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          paymentIntentId: post.paymentIntentId, // Directly use paymentIntentId
+          paymentIntentId: post.paymentIntentId,
         }),
       });
   
@@ -76,7 +102,7 @@ const Post = ({ post, token, onUpdate }) => {
     <div className="apple-style-container">
       <article data-cy="post" key={post.challenge}>
         Challenge: {post.challenge} <br />
-        Complete by: {formattedDate} {post.completeTime} <br />
+        Complete by: {remainingTime} <br />
         Incentive: £ {post.incentiveAmount} <br />
         Charity: {post.chosenCharity} <br />
         <button onClick={handleConfirm}>Confirm</button>
