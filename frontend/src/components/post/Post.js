@@ -11,6 +11,7 @@ const formatDate = (isoDate) => {
 
 const Post = ({ post, token, onUpdate }) => {
     const [remainingTime, setRemainingTime] = useState('');
+    const [showConfirmation, setShowConfirmation] = useState(false);
 
     useEffect(() => {
       const calculateTimeLeft = () => {
@@ -41,6 +42,10 @@ const Post = ({ post, token, onUpdate }) => {
   if (post.completed !== null) {
     return null;
   }
+
+  const handleShowConfirmation = () => {
+    setShowConfirmation(true);
+  };
 
   const handleRefund = async () => {
     try {
@@ -96,8 +101,6 @@ const Post = ({ post, token, onUpdate }) => {
     }
   };
 
-  const formattedDate = formatDate(post.completeDate);
-
   return (
     <div className="apple-style-container">
       <article data-cy="post" key={post.challenge}>
@@ -105,7 +108,14 @@ const Post = ({ post, token, onUpdate }) => {
         Complete by: {remainingTime} <br />
         Incentive: £ {post.incentiveAmount} <br />
         Charity: {post.chosenCharity} <br />
-        <button onClick={handleConfirm}>Confirm</button>
+        {showConfirmation ? (
+          <>
+            <button onClick={handleConfirm}>Are you sure?</button>
+            <button onClick={() => setShowConfirmation(false)}>Cancel</button>
+          </>
+        ) : (
+          <button onClick={handleShowConfirmation}>Confirm</button>
+        )}
       </article>
     </div>
   );
