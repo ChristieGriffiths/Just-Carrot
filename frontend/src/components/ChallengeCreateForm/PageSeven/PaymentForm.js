@@ -24,7 +24,7 @@ const CARD_OPTIONS = {
   hidePostalCode: true
 };
 
-export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
+export default function PaymentForm({ incentiveAmount, handlePaymentId }) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -40,8 +40,9 @@ export default function PaymentForm({ handleFormSubmit, handlePaymentId }) {
     if (!error) {
       try {
         const { id } = paymentMethod;
+        const amountInCents = incentiveAmount * 100;  // Convert to cents
         const response = await axios.post('http://localhost:4000/payment', {
-          amount: 1000,
+          amount: amountInCents,
           id
         });
 

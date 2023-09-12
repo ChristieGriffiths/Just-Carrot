@@ -142,7 +142,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         pagefour: <PageFour onButtonClick={nextPage} handleChosenCharity={handleChosenCharity} />,
         pagefive: <PageFive onButtonClick={nextPage} handleChosenValidation={handleChosenValidation} />,
         pagesix: <PageSix onButtonClick={nextPage} challenge={challenge} completeDate={completeDate} completeTime={completeTime} incentiveAmount={incentiveAmount} chosenCharity={chosenCharity} chosenValidation={chosenValidation} />,
-        pageseven: <PageSeven handleFormSubmit={handleFormSubmit} handlePaymentId={handlePaymentId} />,
+        pageseven: <PageSeven incentiveAmount={incentiveAmount} handlePaymentId={handlePaymentId} />,
       }[page]}
     </div>
   );

@@ -5,6 +5,7 @@ import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
 
 const Feed = ({ navigate }) => {
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [viewForm, setViewForm] = useState(false);
@@ -12,20 +13,17 @@ const Feed = ({ navigate }) => {
   useEffect(() => {
     if (token) {
       try {
-        // Decode the token and check for expiration
         const decoded = jwt_decode(token);
         const userId = decoded.user_id;
         const exp = decoded.exp;
 
-        // Check if token is expired
-        const currentTime = Date.now() / 1000; // Convert to seconds
+        const currentTime = Date.now() / 1000; 
         if (exp < currentTime) {
           console.log("Token has expired");
           navigate("/login");
           return;
         }
 
-        // Fetch data
         fetch("/posts", {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -39,26 +37,24 @@ const Feed = ({ navigate }) => {
             const userPosts = data.posts.filter(post => post.userId === userId);
             setPosts(userPosts);
           } else {
-            // Navigate to login if the token is invalid
             navigate("/login");
           }
         })
         .catch(error => {
-          // Handle errors or navigate to login
           console.error("Error fetching posts:", error);
           navigate("/login");
         });
 
       } catch (error) {
-        // Handle JWT decode error or navigate to login
         console.error("JWT decode error:", error);
         navigate("/login");
       }
     } else {
-      // Navigate to login if no token is found
       navigate("/login");
     }
   }, [token, navigate]);
+
+  
   
   const newChallenge = () => {
     setViewForm(true);
