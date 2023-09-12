@@ -10,25 +10,55 @@ const Feed = ({ navigate }) => {
   const [viewForm, setViewForm] = useState(false);
 
   useEffect(() => {
-    if(token) {
-      const decoded = jwt_decode(token);
-      const userId = decoded.user_id;
-      
-      fetch("/posts", {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-        .then(response => response.json())
-        .then(async data => {
-          window.localStorage.setItem("token", data.token);
-          setToken(window.localStorage.getItem("token"));
+    if (token) {
+      try {
+        // Decode the token and check for expiration
+        const decoded = jwt_decode(token);
+        const userId = decoded.user_id;
+        const exp = decoded.exp;
 
-          const userPosts = data.posts.filter(post => post.userId === userId);
-          setPosts(userPosts);
+        // Check if token is expired
+        const currentTime = Date.now() / 1000; // Convert to seconds
+        if (exp < currentTime) {
+          console.log("Token has expired");
+          navigate("/login");
+          return;
+        }
+
+        // Fetch data
+        fetch("/posts", {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.posts) {
+            window.localStorage.setItem("token", data.token);
+            setToken(window.localStorage.getItem("token"));
+            const userPosts = data.posts.filter(post => post.userId === userId);
+            setPosts(userPosts);
+          } else {
+            // Navigate to login if the token is invalid
+            navigate("/login");
+          }
+        })
+        .catch(error => {
+          // Handle errors or navigate to login
+          console.error("Error fetching posts:", error);
+          navigate("/login");
         });
+
+      } catch (error) {
+        // Handle JWT decode error or navigate to login
+        console.error("JWT decode error:", error);
+        navigate("/login");
+      }
+    } else {
+      // Navigate to login if no token is found
+      navigate("/login");
     }
-  }, [token]); // Rerun useEffect when token changes
+  }, [token, navigate]);
   
   const newChallenge = () => {
     setViewForm(true);
