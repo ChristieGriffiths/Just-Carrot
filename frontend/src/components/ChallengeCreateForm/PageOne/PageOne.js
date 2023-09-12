@@ -20,12 +20,17 @@ const PageOne = ({ onButtonClick, handleChallengeChange }) => {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent default form submission
+    handleNextClick();
+  };
+
   return (
     <main
       className="pt5 black-80 center"
       style={{ maxWidth: "40%", maxHeight: "30%", marginTop: "20px" }}
     >
-      <form className="measure">
+      <form className="measure" onSubmit={handleSubmit}>
         <h2>Enter your challenge: </h2>
 
         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -50,7 +55,7 @@ const PageOne = ({ onButtonClick, handleChallengeChange }) => {
               width: "100%",
               backgroundColor: "#f39200",
             }}
-            type="button" // Changed from 'submit' to 'button' to avoid form submission
+            type="button"
             value="Next"
             onClick={handleNextClick}
           />
