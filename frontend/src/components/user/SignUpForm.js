@@ -63,6 +63,7 @@ const SignUpForm = ({ navigate }) => {
             <p className="validation-error"> {validationError.password}</p>
           <input id='submit' type="submit" value="Submit" />
         </form>
+        <button onClick={() => navigate('/login')}>Go to Log In</button>
         <div className="sign-up-image-container">
           <img src={signUpImage} alt="img" />
         </div>

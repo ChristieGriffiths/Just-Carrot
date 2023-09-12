@@ -61,8 +61,7 @@ const Post = ({ post, token, onUpdate }) => {
     });
 
     if (response.status === 200) {
-      const data = await response.json();  // Make sure this line is reached
-      console.log("Response data:", data);  // Debugging line
+      const data = await response.json();
       onUpdate(data);
       handleRefund();
     } else if (response.status === 400) {

@@ -53,6 +53,7 @@ const LogInForm = ({ navigate }) => {
           <input placeholder='Password' id="password" type='password' value={ password } onChange={handlePasswordChange} />
           <input role='submit-button' id='submit' type="submit" value="Submit" />
         </form>
+        <button onClick={() => navigate('/signup')}>Go to Sign Up</button>
         <div className="login-image-container">
           <img src={loginImage} alt="img" />
         </div>
