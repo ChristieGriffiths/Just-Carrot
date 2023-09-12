@@ -5,7 +5,6 @@ import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
 
 const Feed = ({ navigate }) => {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [viewForm, setViewForm] = useState(false);
@@ -78,23 +77,27 @@ const Feed = ({ navigate }) => {
         <h2 id='targets'>Targets</h2>
         <div className='form-container'>
           {viewForm ? (
-             <ChallengeCreateForm 
-             token={token} 
-             setToken={setToken}
-             setViewForm={setViewForm}
-           />
-          ) : null}
-        </div>
-        
-        <div id='feed' role="feed">
-          {posts.map(
-            (post) => ( <Post post={post} key={post._id} token={token}  onUpdate={onUpdate}/> )
+            <ChallengeCreateForm 
+              token={token} 
+              setToken={setToken}
+              setViewForm={setViewForm}
+              navigate={navigate} 
+            />
+          ) : (
+            <div id='feed' role="feed">
+              {posts.map(
+                (post) => ( <Post post={post} key={post._id} token={token} onUpdate={onUpdate}/> )
+              )}
+            </div>
           )}
         </div>
 
-        <button className="NewChallenge" onClick={newChallenge}>
-          New Challenge +
-        </button>
+        {!viewForm && (
+          <button className="NewChallenge" onClick={newChallenge}>
+            New Challenge +
+          </button>
+        )}
+        
         <button className="logout-button" onClick={logout}>
           Logout
         </button>
@@ -103,6 +106,7 @@ const Feed = ({ navigate }) => {
   } else {
     navigate('/signin');
   }
+
 }
 
 export default Feed;

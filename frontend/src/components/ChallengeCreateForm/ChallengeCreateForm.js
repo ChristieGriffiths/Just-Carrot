@@ -12,6 +12,7 @@ import jwt_decode from 'jwt-decode';
 import tachyons from "tachyons";
 import Logo from "./Logo/Logo";
 
+
 import "react-datepicker/dist/react-datepicker.css"
 
 
@@ -23,7 +24,6 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   const [chosenCharity, setChosenCharity] = useState("");
   const [chosenValidation, setChosenValidation] = useState("");
   const [paymentIntentId, setPaymentIntentId] = useState("")
-  
   const [page, setPage] = useState("pageone");
 
   const nextPage = (page) => {
@@ -81,9 +81,19 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
     setChosenValidation(validation)
   }
 
-
   const handlePaymentId = (id) => {
     setPaymentIntentId(id);
+  };
+
+  const resetForm = () => {
+    setChallenge("");
+    setCompleteDate(null);
+    setCompleteTime(null);
+    setIncentiveAmount("15");
+    setChosenCharity("");
+    setChosenValidation("");
+    setPaymentIntentId("");
+    setPage("pageone");
   };
   
   useEffect(() => {
@@ -119,6 +129,8 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         console.log("Form successfully submitted")
         let data = await response.json();
         setToken(data.token);
+        setViewForm(false);
+        resetForm();
       } else if (response.status === 400) {
         console.log("Bad request");
       } else {
