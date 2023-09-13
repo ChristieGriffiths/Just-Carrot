@@ -8,6 +8,9 @@ const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [viewForm, setViewForm] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [completedChallenge, setCompletedChallenge] = useState(null);
+
 
   useEffect(() => {
     if (token) {
@@ -64,13 +67,20 @@ const Feed = ({ navigate }) => {
     const updatedPosts = posts.map(post => 
       post._id === updatedPost._id ? updatedPost : post
     );
-    
     setPosts([...updatedPosts]);
+    setCompletedChallenge(receivedData.post.challenge);
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 10000); 
   };
 
-  useEffect(() => {
-    console.log("Posts state updated:", posts);
-  }, [posts]);
+  const showTemporaryMessage = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 10000); // hides after 10 seconds
+  };
   
 
   const logout = () => {
@@ -93,10 +103,20 @@ const Feed = ({ navigate }) => {
           ) : (
             <div id='feed' role="feed">
               {posts.map(
-                (post) => ( <Post post={post} key={post._id} token={token} onUpdate={onUpdate}/> )
+                (post) => ( <Post
+                  post={post} 
+                  key={post._id} 
+                  token={token} 
+                  onUpdate={onUpdate} 
+                   /> )
               )}
             </div>
           )}
+           {showSuccessMessage && (
+        <div className="success-message">
+          Congratulations - Great Job on completing your challenge of {completedChallenge}!
+        </div>
+      )}
         </div>
 
         {!viewForm && (

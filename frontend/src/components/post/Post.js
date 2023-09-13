@@ -48,6 +48,7 @@ const Post = ({ post, token, onUpdate }) => {
   };
 
   const handleConfirm = async () => {
+    console.log("handleConfirm called"); // Debugging line
   try {
     const response = await fetch(`/posts/${post._id}`, {
       method: 'PUT',
@@ -61,6 +62,7 @@ const Post = ({ post, token, onUpdate }) => {
     });
 
     if (response.status === 200) {
+      console.log("Status is 200, setting showSuccessMessage to true"); 
       const data = await response.json();
       onUpdate(data);
       handleRefund();
@@ -97,8 +99,6 @@ const Post = ({ post, token, onUpdate }) => {
       console.log("An error occurred while refunding", error);
     }
   };
-  
-
 
   return (
     <div className="apple-style-container">

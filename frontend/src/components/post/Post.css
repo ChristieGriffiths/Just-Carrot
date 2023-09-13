@@ -1,4 +1,5 @@
-.apple-style-container {
+.apple-style-container,
+.success-message {
   border: 1px solid #ccc;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
@@ -8,6 +9,13 @@
   transition: box-shadow 0.3s ease;
 }
 
-.apple-style-container:hover {
+.apple-style-container:hover,
+.success-message:hover {
   box-shadow: 0 8px 12px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.success-message {
+  color: black;
+  font-size: 24px;
+  z-index: 9999;
 }
