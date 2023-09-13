@@ -9,7 +9,7 @@ const formatDate = (isoDate) => {
   return `${day}/${month}/${year}`;
 };
 
-const Post = ({ post, token, onUpdate }) => {
+const Post = ({ post, token, onUpdate, onUnsuccessful }) => {
     const [remainingTime, setRemainingTime] = useState('');
     const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -75,6 +75,31 @@ const Post = ({ post, token, onUpdate }) => {
     console.log("An error occurred", error);
   }
 };
+
+const handleUnsuccessful = async () => {
+  try {
+    const response = await fetch(`/posts/${post._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        completed: false
+      })
+    });
+
+    if (response.status === 200) {
+      const data = await response.json();
+      onUpdate(data);
+      onUnsuccessful(post.challenge);
+    } else {
+      console.log("Failed to mark as unsuccessful");
+    }
+  } catch (error) {
+    console.log("An error occurred", error);
+  }
+};
   
   const handleRefund = async () => {
     try {
@@ -113,7 +138,10 @@ const Post = ({ post, token, onUpdate }) => {
             <button onClick={() => setShowConfirmation(false)}>Cancel</button>
           </>
         ) : (
-          <button onClick={handleShowConfirmation}>Confirm</button>
+          <>
+            <button onClick={handleShowConfirmation}>Confirm</button>
+            <button onClick={handleUnsuccessful}>Unsuccessful</button>
+          </>
         )}
       </article>
     </div>

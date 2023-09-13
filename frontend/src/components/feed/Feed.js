@@ -10,7 +10,8 @@ const Feed = ({ navigate }) => {
   const [viewForm, setViewForm] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [completedChallenge, setCompletedChallenge] = useState(null);
-
+  const [showUnsuccessfulMessage, setShowUnsuccessfulMessage] = useState(false);
+  const [unsuccessfulChallenge, setUnsuccessfulChallenge] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -75,6 +76,15 @@ const Feed = ({ navigate }) => {
     }, 10000); 
   };
 
+  const onUnsuccessful = (challengeName) => {
+    setUnsuccessfulChallenge(challengeName);
+    setShowUnsuccessfulMessage(true);
+    setShowSuccessMessage(false);
+    setTimeout(() => {
+      setShowUnsuccessfulMessage(false);
+    }, 10000); // hides after 10 seconds
+  };
+
   const showTemporaryMessage = () => {
     setShowSuccessMessage(true);
     setTimeout(() => {
@@ -108,17 +118,22 @@ const Feed = ({ navigate }) => {
                   key={post._id} 
                   token={token} 
                   onUpdate={onUpdate} 
+                  onUnsuccessful={onUnsuccessful} 
                    /> )
               )}
             </div>
           )}
-           {showSuccessMessage && (
-        <div className="success-message">
-          Congratulations - Great Job on completing your challenge of {completedChallenge}!
+          {showSuccessMessage && (
+            <div className="success-message">
+              Congratulations - Great Job on completing your challenge of {completedChallenge}!
+            </div>
+          )}
+          {showUnsuccessfulMessage && (
+            <div className="unsuccessful-message">
+              Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
+            </div>
+          )}
         </div>
-      )}
-        </div>
-
         {!viewForm && (
           <button className="NewChallenge" onClick={newChallenge}>
             New Challenge +

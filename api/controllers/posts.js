@@ -1,13 +1,16 @@
 const Post = require("../models/post");
 const TokenGenerator = require("../models/token_generator");
 
+
 const PostsController = {
   Index: async (req, res) => {
     try {
       let posts = await Post.find();
 
+      const updatedAndFilteredPosts = [];
+      
       // Loop through posts and update those with elapsed times and null 'completed' fields.
-      const updatedPosts = await Promise.all(posts.map(async (post) => {
+      await Promise.all(posts.map(async (post) => {
         const completeDateTime = new Date(`${post.completeDate}T${post.completeTime}`);
         const currentDateTime = new Date();
         
@@ -16,11 +19,14 @@ const PostsController = {
           await post.save();
         }
         
-        return post;
+        // Add a condition to filter out or keep the post in the feed.
+        if (post.completed === null || post.completed === true) {
+          updatedAndFilteredPosts.push(post);
+        }
       }));
 
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
-      res.status(200).json({ posts: updatedPosts, token: token });
+      res.status(200).json({ posts: updatedAndFilteredPosts, token: token });
     } catch (err) {
       return res.status(500).json({ message: err.message });
     }
