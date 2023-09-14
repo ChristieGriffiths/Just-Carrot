@@ -84,7 +84,7 @@ const handleUnsuccessful = async () => {
     if (response.status === 200) {
       const data = await response.json();
       onUpdate(data);
-      onUnsuccessful(post.challenge, post.incentiveAmount);
+      onUnsuccessful(post._id, post.challenge, post.incentiveAmount);
     } else {
       console.log("Failed to mark as unsuccessful");
     }

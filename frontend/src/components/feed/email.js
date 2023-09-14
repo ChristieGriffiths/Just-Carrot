@@ -1,17 +1,37 @@
 import axios from 'axios';
 
-export const sendEmail = (type, challengeName, incentiveAmount) => {
+export const fetchEmail = async (postId, token) => {
+  try {
+    const response = await fetch(`/posts/${postId}/email`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data.email;
+    } else {
+      console.log('Failed to fetch email');
+      return null;
+    }
+  } catch (error) {
+    console.log('An error occurred while fetching the email', error);
+    return null;
+  }
+};
+
+export const sendEmail = (type, email, challengeName, incentiveAmount) => {
   let emailData;
 
   if (type === 'success') {
     emailData = {
-      to: 'christiegriffiths@outlook.com', // Replace with the actual user's email
+      to: email,
       subject: 'Congratulations!',
       text: `Congratulations - Great Job on completing your challenge of ${challengeName}! Your £${incentiveAmount} will be back in your account within 5 working days!`
     };
   } else {
     emailData = {
-      to: 'christiegriffiths@outlook.com', // Replace with the actual user's email
+      to: email,
       subject: 'Nice Try!',
       text: `Unlucky but nice try! On the bright side, you donated £${incentiveAmount} to ${challengeName}.`
     };

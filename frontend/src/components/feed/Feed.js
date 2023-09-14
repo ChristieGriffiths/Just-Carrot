@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode'; // Assuming jwt_decode is imported
 import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
-import { sendEmail } from './email'; 
+import { sendEmail, fetchEmail } from './email'; 
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -70,7 +70,10 @@ const Feed = ({ navigate }) => {
       post._id === updatedPost._id ? updatedPost : post
     );
     setPosts([...updatedPosts]);
-    sendEmail('success', receivedData.post.challenge, receivedData.post.incentiveAmount);
+    const email = await fetchEmail(receivedData.post._id, token);
+    if (email) {
+      await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
+    }
     setCompletedChallenge(receivedData.post.challenge);
     setShowSuccessMessage(true);
     setTimeout(() => {
@@ -78,8 +81,11 @@ const Feed = ({ navigate }) => {
     }, 10000); 
   };
 
-  const onUnsuccessful = async (challengeName, incentiveAmount) => {
-    sendEmail('unsuccess', challengeName, incentiveAmount);
+  const onUnsuccessful = async (challengeId, challengeName, incentiveAmount) => {
+    const email = await fetchEmail(challengeId, token);
+    if (email) {
+      await sendEmail('unsuccess', email, challengeName, incentiveAmount);
+    }
     setUnsuccessfulChallenge(challengeName);
     setShowUnsuccessfulMessage(true);
     setShowSuccessMessage(false);

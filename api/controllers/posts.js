@@ -1,5 +1,7 @@
 const Post = require("../models/post");
 const TokenGenerator = require("../models/token_generator");
+const User = require('../models/user');
+
 
 
 const PostsController = {
@@ -32,6 +34,23 @@ const PostsController = {
     }
   },
 
+  GetEmailByPostId: async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      if (!post) {
+        return res.status(404).json({ message: 'Post not found' });
+      }
+      const user = await User.findById(post.userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json({ email: user.email });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }, 
+
   Create: (req, res) => {
     const post = new Post(req.body);
     post.save(async (err) => {
@@ -61,5 +80,7 @@ const PostsController = {
     }
   },
 };
+
+
 
 module.exports = PostsController;
