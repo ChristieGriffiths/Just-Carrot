@@ -70,7 +70,7 @@ const Feed = ({ navigate }) => {
       post._id === updatedPost._id ? updatedPost : post
     );
     setPosts([...updatedPosts]);
-    sendEmail('success', receivedData.post.challenge);
+    sendEmail('success', receivedData.post.challenge, receivedData.post.incentiveAmount);
     setCompletedChallenge(receivedData.post.challenge);
     setShowSuccessMessage(true);
     setTimeout(() => {
@@ -78,8 +78,8 @@ const Feed = ({ navigate }) => {
     }, 10000); 
   };
 
-  const onUnsuccessful = async (challengeName) => {
-    sendEmail('unsuccess', challengeName);
+  const onUnsuccessful = async (challengeName, incentiveAmount) => {
+    sendEmail('unsuccess', challengeName, incentiveAmount);
     setUnsuccessfulChallenge(challengeName);
     setShowUnsuccessfulMessage(true);
     setShowSuccessMessage(false);

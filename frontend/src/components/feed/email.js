@@ -1,19 +1,19 @@
 import axios from 'axios';
 
-export const sendEmail = (type, challengeName) => {
+export const sendEmail = (type, challengeName, incentiveAmount) => {
   let emailData;
 
   if (type === 'success') {
     emailData = {
       to: 'christiegriffiths@outlook.com', // Replace with the actual user's email
       subject: 'Congratulations!',
-      text: `Congratulations - Great Job on completing your challenge of ${challengeName}!`
+      text: `Congratulations - Great Job on completing your challenge of ${challengeName}! Your £${incentiveAmount} will be back in your account within 5 working days!`
     };
   } else {
     emailData = {
       to: 'christiegriffiths@outlook.com', // Replace with the actual user's email
       subject: 'Nice Try!',
-      text: `Unlucky but nice try! On the bright side, you donated to ${challengeName}.`
+      text: `Unlucky but nice try! On the bright side, you donated £${incentiveAmount} to ${challengeName}.`
     };
   }
 
