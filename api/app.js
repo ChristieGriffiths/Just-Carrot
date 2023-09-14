@@ -14,6 +14,8 @@ const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
 
+const emailRoutes = require('./routes/emailRoutes');
+
 const app = express();
 
 app.use(logger("dev"));
@@ -112,6 +114,7 @@ const tokenChecker = (req, res, next) => {
 app.use("/posts", tokenChecker, postsRouter);
 app.use("/tokens", tokensRouter);
 app.use("/users", usersRouter);
+app.use('/email', emailRoutes);
 
 // Error handling
 app.use((req, res, next) => {

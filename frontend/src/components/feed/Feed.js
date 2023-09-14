@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode'; // Assuming jwt_decode is imported
 import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
+import { sendEmail } from './email'; 
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -63,12 +64,13 @@ const Feed = ({ navigate }) => {
     setViewForm(true);
   }
 
-  const onUpdate = (receivedData) => {
+  const onUpdate = async (receivedData) => {
     const updatedPost = receivedData.post;
     const updatedPosts = posts.map(post => 
       post._id === updatedPost._id ? updatedPost : post
     );
     setPosts([...updatedPosts]);
+    sendEmail('success', receivedData.post.challenge);
     setCompletedChallenge(receivedData.post.challenge);
     setShowSuccessMessage(true);
     setTimeout(() => {
@@ -76,22 +78,15 @@ const Feed = ({ navigate }) => {
     }, 10000); 
   };
 
-  const onUnsuccessful = (challengeName) => {
+  const onUnsuccessful = async (challengeName) => {
+    sendEmail('unsuccess', challengeName);
     setUnsuccessfulChallenge(challengeName);
     setShowUnsuccessfulMessage(true);
     setShowSuccessMessage(false);
     setTimeout(() => {
       setShowUnsuccessfulMessage(false);
-    }, 10000); // hides after 10 seconds
+    }, 10000)
   };
-
-  const showTemporaryMessage = () => {
-    setShowSuccessMessage(true);
-    setTimeout(() => {
-      setShowSuccessMessage(false);
-    }, 10000); // hides after 10 seconds
-  };
-  
 
   const logout = () => {
     window.localStorage.removeItem("token");
