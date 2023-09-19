@@ -23,17 +23,18 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
   }, []);
 
   const checkTimeValidity = (selectedDate, selectedTime) => {
-    const selectedDateTime = new Date(`${selectedDate}T${selectedTime}`);
-    const currentTime = new Date();
-    const timeDifference = selectedDateTime - currentTime;
+    // const selectedDateTime = new Date(`${selectedDate}T${selectedTime}`);
+    // const currentTime = new Date();
+    // const timeDifference = selectedDateTime - currentTime;
 
-    if (timeDifference >= 60 * 60 * 1000) { // At least one hour
-      setIsTimeValid(true);
-      setErrorMessage('');
-    } else {
-      setIsTimeValid(false);
-      setErrorMessage('You must give yourself at least an hour.');
-    }
+    // if (timeDifference >= 60 * 60 * 1000) { // At least one hour
+    //   setIsTimeValid(true);
+    //   setErrorMessage('');
+    // } else {
+    //   setIsTimeValid(false);
+    //   setErrorMessage('You must give yourself at least an hour.');
+    // }
+    setIsTimeValid(true)
   };
 
   const handleDateChange = (e) => {

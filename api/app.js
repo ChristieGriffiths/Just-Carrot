@@ -13,7 +13,6 @@ const cors = require("cors");
 const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
-
 const emailRoutes = require('./routes/emailRoutes');
 
 const app = express();
@@ -130,5 +129,7 @@ app.use((err, req, res) => {
 app.listen(process.env.PORT || 4000, () => {
   console.log("Server is listening on port 4000");
 });
+
+require('./controllers/schedule');  
 
 module.exports = app;

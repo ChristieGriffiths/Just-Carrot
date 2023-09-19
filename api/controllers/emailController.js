@@ -4,8 +4,8 @@ const path = require('path');
 const imagePath = path.join(__dirname, './assets/logo.png');
 const imageAsBase64 = fs.readFileSync(imagePath, { encoding: 'base64' });
 
-const sendEmail = async (req, res) => {
-  const { to, subject, text } = req.body;
+const sendEmail = async (options) => {
+  const { to, subject, text } = options.body;
 
   const transporter = nodemailer.createTransport({
     service: 'outlook',
@@ -27,9 +27,9 @@ const sendEmail = async (req, res) => {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    res.status(200).send('Email sent: ' + info.response);
+    return info.response;
   } catch (error) {
-    res.status(500).send(error);
+    throw new Error(error);
   }
 };
 

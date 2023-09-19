@@ -1,55 +1,85 @@
 const Post = require("../models/post");
 const TokenGenerator = require("../models/token_generator");
 const User = require('../models/user');
+const { sendEmail } = require('./emailController');
+const mongoose = require('mongoose');
+const postLocks = {};
 
 
 
 const PostsController = {
   Index: async (req, res) => {
     try {
-      let posts = await Post.find();
-
-      const updatedAndFilteredPosts = [];
+      console.log("Function Start"); // Debugging line
+      const posts = await Post.find();
       
-      // Loop through posts and update those with elapsed times and null 'completed' fields.
-      await Promise.all(posts.map(async (post) => {
-        const completeDateTime = new Date(`${post.completeDate}T${post.completeTime}`);
+      for (const post of posts) {
+        const sessionId = new Date().getTime(); // Unique Identifier for this operation
+        console.log(`Session ID: ${sessionId}, Post ID: ${post._id}`); // Debugging line
+
+        if (postLocks[post._id]) {
+          console.log(`Skipped due to lock, Session ID: ${sessionId}`); // Debugging line
+          continue;
+        }
+
+        postLocks[post._id] = true;
+
+        const datePart = post.completeDate.toISOString().split('T')[0];
+        const completeDateTime = new Date(`${datePart}T${post.completeTime}:00`);
         const currentDateTime = new Date();
+
+        const refreshedPost = await Post.findById(post._id);
         
-        if (currentDateTime > completeDateTime && post.completed === null) {
-          post.completed = false;
-          await post.save();
+        if (currentDateTime > completeDateTime && refreshedPost.completed === null && refreshedPost.emailReminder === false) {
+          console.log(`Inside If Block, Session ID: ${sessionId}`); // Debugging line
+          
+          const email = await PostsController.GetEmailByPostId({ params: { id: refreshedPost._id } });
+          
+          if (email) {
+            await sendEmail({
+              body: {
+                to: email,
+                subject: 'Completion Time Elapsed',
+                text: "Hey there, you have 24 hours to confirm or deny the completion of your challenge otherwise your money will automatically be donated to charity"
+              }
+            });
+
+            await Post.findByIdAndUpdate(refreshedPost._id, { emailReminder: true }, { new: true });
+          }
         }
-        
-        // Add a condition to filter out or keep the post in the feed.
-        if (post.completed === null || post.completed === true) {
-          updatedAndFilteredPosts.push(post);
-        }
-      }));
+
+        postLocks[post._id] = false;
+      }
 
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
-      res.status(200).json({ posts: updatedAndFilteredPosts, token: token });
+      console.log("Generated token:", token); // Debugging line
+      res.status(200).json({ posts: posts, token: token });
+
+      console.log("Function End"); // Debugging line
     } catch (err) {
+      console.log("Error in Index:", err); // Debugging line
       return res.status(500).json({ message: err.message });
     }
   },
 
-  GetEmailByPostId: async (req, res) => {
+  GetEmailByPostId: async (req) => {
     try {
       const post = await Post.findById(req.params.id);
       if (!post) {
-        return res.status(404).json({ message: 'Post not found' });
+        return null; // Post not found
       }
+      
       const user = await User.findById(post.userId);
       if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return null; // User not found
       }
-      res.status(200).json({ email: user.email });
+      
+      return user.email;
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: 'Internal server error' });
+      return null; // Internal server error
     }
-  }, 
+  },
 
   Create: (req, res) => {
     const post = new Post(req.body);
