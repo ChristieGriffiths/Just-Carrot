@@ -4,6 +4,7 @@ import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
 import { sendEmail, fetchEmail } from './email'; 
+import logo from '../../assets/logo.png';
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -94,6 +95,7 @@ const Feed = ({ navigate }) => {
     }, 10000)
   };
 
+
   const logout = () => {
     window.localStorage.removeItem("token");
     navigate('/login');
@@ -102,6 +104,14 @@ const Feed = ({ navigate }) => {
   if(token) {
     return (
       <>
+       <div className="navbar">
+        <img src={logo} alt="Logo" className="navbar-logo" />
+        <div className="navbar-items">
+          <button className="navbar-button" onClick={() => navigate('/posts')}>Home</button>
+          <button className="navbar-button" onClick={newChallenge}>Create Challenge</button>
+          <button className="navbar-button" onClick={logout}>Log out </button>
+        </div>
+      </div>
         <h2 id='targets'>Targets</h2>
         <div className='form-container'>
           {viewForm ? (
@@ -135,15 +145,6 @@ const Feed = ({ navigate }) => {
             </div>
           )}
         </div>
-        {!viewForm && (
-          <button className="NewChallenge" onClick={newChallenge}>
-            New Challenge +
-          </button>
-        )}
-        
-        <button className="logout-button" onClick={logout}>
-          Logout
-        </button>
       </>
     );
   } else {
