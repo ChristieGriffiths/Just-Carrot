@@ -10,54 +10,10 @@ const postLocks = {};
 const PostsController = {
   Index: async (req, res) => {
     try {
-      console.log("Function Start"); // Debugging line
-      const posts = await Post.find();
-      
-      for (const post of posts) {
-        const sessionId = new Date().getTime(); // Unique Identifier for this operation
-        console.log(`Session ID: ${sessionId}, Post ID: ${post._id}`); // Debugging line
-
-        if (postLocks[post._id]) {
-          console.log(`Skipped due to lock, Session ID: ${sessionId}`); // Debugging line
-          continue;
-        }
-
-        postLocks[post._id] = true;
-
-        const datePart = post.completeDate.toISOString().split('T')[0];
-        const completeDateTime = new Date(`${datePart}T${post.completeTime}:00`);
-        const currentDateTime = new Date();
-
-        const refreshedPost = await Post.findById(post._id);
-        
-        if (currentDateTime > completeDateTime && refreshedPost.completed === null && refreshedPost.emailReminder === false) {
-          console.log(`Inside If Block, Session ID: ${sessionId}`); // Debugging line
-          
-          const email = await PostsController.GetEmailByPostId({ params: { id: refreshedPost._id } });
-          
-          if (email) {
-            await sendEmail({
-              body: {
-                to: email,
-                subject: 'Completion Time Elapsed',
-                text: "Hey there, you have 24 hours to confirm or deny the completion of your challenge otherwise your money will automatically be donated to charity"
-              }
-            });
-
-            await Post.findByIdAndUpdate(refreshedPost._id, { emailReminder: true }, { new: true });
-          }
-        }
-
-        postLocks[post._id] = false;
-      }
-
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
-      console.log("Generated token:", token); // Debugging line
+      const posts = await Post.find();
       res.status(200).json({ posts: posts, token: token });
-
-      console.log("Function End"); // Debugging line
     } catch (err) {
-      console.log("Error in Index:", err); // Debugging line
       return res.status(500).json({ message: err.message });
     }
   },
@@ -66,18 +22,18 @@ const PostsController = {
     try {
       const post = await Post.findById(req.params.id);
       if (!post) {
-        return null; // Post not found
+        return null;
       }
       
       const user = await User.findById(post.userId);
       if (!user) {
-        return null; // User not found
+        return null;
       }
       
       return user.email;
     } catch (error) {
       console.log(error);
-      return null; // Internal server error
+      return null;
     }
   },
 
@@ -109,8 +65,66 @@ const PostsController = {
       res.status(500).json({ message: err.message });
     }
   },
+
+  CheckForReminderEmails: async () => {
+    try {
+      const posts = await Post.find({ completed: null, emailReminder: false });
+      for (const post of posts) {
+        const datePart = post.completeDate.toISOString().split('T')[0];
+        const completeDateTime = new Date(`${datePart}T${post.completeTime}:00`);
+        const currentDateTime = new Date();
+        if (currentDateTime > completeDateTime) {
+          const email = await PostsController.GetEmailByPostId({ params: { id: post._id } });
+          if (email) {
+            await sendEmail({
+              body: {
+                to: email,
+                subject: 'Completion Time Elapsed',
+                text: "Hey there, you have 24 hours to confirm or deny the completion of your challenge otherwise your money will automatically be donated to charity"
+              }
+            });
+            await Post.findByIdAndUpdate(post._id, { emailReminder: true }, { new: true });
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Error in CheckForReminderEmails:", err);
+    }
+  },
+
+  CheckForExpiredPosts: async () => {
+    try {
+      const posts = await Post.find({ completed: null, emailReminder: true });
+      for (const post of posts) {
+        const datePart = post.completeDate.toISOString().split('T')[0];
+        const completeDateTime = new Date(`${datePart}T${post.completeTime}:00`);
+        const currentDateTime = new Date();
+        const timeDifference = (currentDateTime - completeDateTime) / (1000 * 60 * 60);
+        if (timeDifference > 24) {
+          const email = await PostsController.GetEmailByPostId({ params: { id: post._id } });
+          if (email) {
+            await sendEmail({
+              body: {
+                to: email,
+                subject: 'Challenge Unconfirmed',
+                text: "You have not confirmed or denied the completion of your challenge, and your incentive has been donated to your chosen charity."
+              }
+            });
+            await Post.findByIdAndUpdate(post._id, { completed: false }, { new: true });
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Error in CheckForExpiredPosts:", err);
+    }
+  },
+
+  RunScheduledChecks: async () => {
+    await PostsController.CheckForReminderEmails();
+    await PostsController.CheckForExpiredPosts();
+  }
 };
 
-
+setInterval(PostsController.RunScheduledChecks, 1000 * 60);
 
 module.exports = PostsController;
