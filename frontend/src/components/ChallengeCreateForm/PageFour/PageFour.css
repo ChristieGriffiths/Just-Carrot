@@ -28,8 +28,8 @@
 }
 
 .charityLogo {
-  width: 50px;
-  height: 50px;
+  width: 85px;
+  height: 85px;
   object-fit: contain;
   position: absolute;
   bottom: 20px; /* Adjust top positioning as needed */
@@ -67,4 +67,8 @@
   text-align: left;
   text-decoration: none; /* Remove underline */
   color: rgb(66, 84, 221); /* Change link color to gray */
+}
+
+.transparent-bg {
+  background-color: transparent;
 }
