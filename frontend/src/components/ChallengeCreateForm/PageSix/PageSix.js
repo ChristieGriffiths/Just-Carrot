@@ -1,5 +1,5 @@
-import React from "react";
-import "./PageSix.css";
+import React from 'react';
+import './PageSix.css';
 
 const PageSix = ({
   challenge,
@@ -59,16 +59,15 @@ const PageSix = ({
       </div>
 
       <input
-  className="f6 grow br2 ph3 pv2 mb2 dib white"
-  style={{ borderStyle: "none", width: "11%", backgroundColor: "#f39200" }}
-  type="submit"
-  value="Confirm"
-  onClick={(e) => {
-    e.preventDefault();
-    onButtonClick("pageseven");
-  }}
-/>
-
+        className="f6 grow br2 ph3 pv2 mb2 dib white"
+        style={{ borderStyle: 'none', width: '11%', backgroundColor: '#f39200' }}
+        type="submit"
+        value="Confirm"
+        onClick={(e) => {
+          e.preventDefault();
+          onButtonClick('pageseven');
+        }}
+      />
     </main>
   );
 };

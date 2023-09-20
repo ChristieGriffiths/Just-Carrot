@@ -1,25 +1,23 @@
-.confirmation-page {
-  /* Your styles for the main container */
-}
 
 .options-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Adjusted column width */
   gap: 16px;
+  max-width: 1200px;  /* Constrained the maximum width */
+  margin: auto;  /* Centered the grid */
 }
 
 .choice-container {
   padding: 16px;
-  background-color: #ffffff;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .choice-content {
   font-size: 24px;
   text-align: center;
   padding: 16px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: 0;
 }
