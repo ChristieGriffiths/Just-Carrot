@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css'
+import './Home.css';
 import { Link } from "react-router-dom";
 
 import logo from '../../assets/logo.png';
@@ -11,33 +11,37 @@ const Home = () => {
   const handleHowItWorksClick = () => {
     const howItWorksImageElement = document.getElementById('how-it-works-image');
     if (howItWorksImageElement) { howItWorksImageElement.scrollIntoView({ behavior: 'smooth' }); }
-
   };
+
   const handleAboutUsClick = () => {
     const aboutUsImageElement = document.getElementById('about-us-container');
-    if (aboutUsImageElement) { aboutUsImageElement.scrollIntoView({ behavior: 'smooth' });}
+    if (aboutUsImageElement) { aboutUsImageElement.scrollIntoView({ behavior: 'smooth' }); }
   };
 
   return (
-    <div className="home-container">
-        <h1 className="how-it-works" onClick={handleHowItWorksClick}>how it works</h1>
-        <h1 className="about-us" onClick={handleAboutUsClick}>about us</h1>
-        <h1 className="sign-up-in"><Link to="/signup">sign up</Link>/<Link to="/login">sign in</Link></h1>
-      <header className="top-banner">
-        <img src={logo} alt="Logo" />
-      </header>
-      <div className="content-container">
-        <div className="home-page-container">
-          <img src={homePageImage} alt="img" />
-        </div>
-        <div className="how-it-works-image" id="how-it-works-image">
-          <img src={howItWorks} alt="img" />
-        </div>
-        <div className="about-us-container" id="about-us-container">
-          <img src={aboutUs} alt="img" />
+    <>
+      <div className="navbar">
+        <img src={logo} alt="Logo" className="navbar-logo" />
+        <div className="navbar-items">
+          <button className="navbar-button" onClick={() => window.scrollTo(0, 0)}>How it works</button>
+          <button className="navbar-button" onClick={() => window.scrollTo(0, document.body.scrollHeight)}>About Us</button>
+          <Link to="/signup" className="navbar-button">Sign Up</Link>
+          <Link to="/login" className="navbar-button">Sign In</Link>
         </div>
       </div>
-    </div>
+        <div className="content-container">
+          <div className="home-page-container">
+            <img src={homePageImage} alt="Home Page" />
+          </div>
+          <div className="how-it-works-image" id="how-it-works-image">
+            <img src={howItWorks} alt="How It Works" />
+          </div>
+          <div className="about-us-container" id="about-us-container">
+            <img src={aboutUs} alt="About Us" />
+          </div>
+        </div>
+    
+    </>
   );
 }
 

@@ -1,84 +1,47 @@
-.home-container {
-  position: relative;
-}
-
-.top-banner {
-  background-color: black;
-  height: 50px;
-  padding: 10px 15px;
+.navbar {
+  background-color: #333;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.top-banner img {
-  width: 130px;
-  height: auto;
-  margin-left: auto;
+.navbar-logo {
+  height: 100px;
 }
 
-.how-it-works {
-  position: absolute;
-  top:-6px;
-  left: 200px;
-  z-index: 2; /* Ensure it's above other content */
+.navbar-items {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.navbar-button {
   color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 0;
+  flex-grow: 1;
+  text-decoration: none;
 }
 
-.how-it-works:hover {
-  color: grey; /* Change the color on hover */
-}
-
-.about-us {
-  position: absolute;
-  top: -6px;
-  left: 800px;
-  z-index: 2; /* Ensure it's above other content */
-  color: white;
-}
-
-.about-us:hover {
-  color: grey; /* Change the color on hover */
-}
-
-.sign-up-in {
-  position: absolute;
-  top: -6px;
-  left: 1400px;
-  z-index: 2; /* Ensure it's above other content */
-  color: white;
-}
-
-.sign-up-in a {
-  color: white;        /* Set the text color to white */
-  text-decoration: none; /* Remove the underline */
-}
-
-.sign-up-in a:hover {
-  color: grey; /* Change the color on hover */
+/* Add this to remove hover effect */
+.navbar-button:hover {
+  background-color: transparent;
+  border: none;
 }
 
 .content-container {
   position: relative;
 }
 
-.logo-container {
-  display: flex;
-  min-height: 81vh;
-  min-width: 81vh;
-}
-
-.logo-container img {
-  right:10px;
-  max-width: 80%;
-  max-height:80%;
-}
-
-
-
-.home-page-container img{
+.home-page-container img {
   max-width: 100%;
-  max-height:100%;
+  max-height: 100%;
 }
 
 .how-it-works-image img {
@@ -100,4 +63,3 @@
   max-width: 50%;
   max-height: 60%;
 }
-

@@ -1,26 +1,109 @@
+/* Existing styles */
 .login-image-container {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  height: 60vh;
+  height: 70%;
   margin-top: -50vh;
+  margin-bottom: 0;
+  z-index: 0;
 }
 
 .login-image-container img {
-  max-width: 77%;
+  max-width: %;
   height: auto;
+  margin-bottom: 0;
 }
+
 
 h1#Log\ in {
   text-align: left;
   margin: 0;
   margin-top: 200px;
-  margin-left: 95px; /* Adjusted margin-left to move the header slightly to the left */
+  margin-left: 95px;
 }
 
-
-
- form {
+form {
   position: relative;
   left: -70px;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #333;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+}
+
+.navbar-logo {
+  height: 100px;
+}
+
+.navbar-items {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.navbar-button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 0;
+  flex-grow: 1;
+  text-decoration: none;
+}
+
+.navbar-button:hover {
+  background-color: transparent;
+  border: none;
+}
+
+/* Main container */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content holder */
+.content {
+  flex: 1;
+}
+
+/* Footer styles */
+.website-footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 0;  /* Ensure no top margin */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }

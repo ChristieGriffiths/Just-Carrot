@@ -5,6 +5,7 @@ import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
 import { sendEmail, fetchEmail } from './email'; 
 import logo from '../../assets/logo.png';
+import carrots from '../../assets/blue.png';
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -113,6 +114,7 @@ const Feed = ({ navigate }) => {
         </div>
       </div>
         <h2 id='targets'>Targets</h2>
+       <div className="container" style={{ backgroundImage: `url(${carrots})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
         <div className='form-container'>
           {viewForm ? (
             <ChallengeCreateForm 

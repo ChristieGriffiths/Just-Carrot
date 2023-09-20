@@ -19,7 +19,7 @@
 }
 
 .navbar-logo {
-  height:100px;
+  height: 100px;
 }
 
 .navbar-items {
@@ -30,8 +30,8 @@
 
 .navbar-button, .dropdown-content button {
   color: white;
-  background-color: #555;
-  border: none;
+  background-color: transparent;  /* Changed from #555 to transparent */
+  border: none;  /* Added */
   padding: 10px 20px;
   text-align: center;
   cursor: pointer;
@@ -40,7 +40,8 @@
 }
 
 .navbar-button:hover, .dropdown-content button:hover {
-  background-color: #777;
+  background-color: transparent;  /* Changed from #777 to transparent */
+  border: none;  /* Added */
 }
 
 /* Dropdown styles */
@@ -59,4 +60,10 @@
   color: white;
   padding: 10px;
   display: block;
+}
+
+.container {
+  /* Other styles you might want */
+  min-height: 100vh;  /* Full height */
+  width: 100%;  /* Full width */
 }
