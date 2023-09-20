@@ -4,6 +4,7 @@ import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
 import { sendEmail, fetchEmail } from './email'; 
+import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
 import carrots from '../../assets/blue.png';
 
@@ -146,6 +147,16 @@ const Feed = ({ navigate }) => {
               Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
             </div>
           )}
+        </div>
+  <div className="website-footer">
+          <div className="footer-content">
+            <p>Copyright © 2023 Your Company</p>
+            <div className="footer-links">
+              <Link to="/">Home</Link>
+              <Link to="/about">About Us</Link>
+              <Link to="/contact">Contact</Link>
+            </div>
+          </div>
         </div>
       </>
     );

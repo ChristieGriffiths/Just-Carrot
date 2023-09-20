@@ -55,7 +55,7 @@ const LogInForm = ({ navigate }) => {
         </div>
       </div>
       <div className="content">
-        <h1 id="Log in">Log in</h1>
+        <div className="login-form">
         <p>{errorMessage}</p>
         <form onSubmit={handleSubmit}>
           <input placeholder='Email' id="email" type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -63,6 +63,7 @@ const LogInForm = ({ navigate }) => {
           <input role='submit-button' id='submit' type="submit" value="Submit" />
         </form>
         <button onClick={() => navigate('/signup')}>Go to Sign Up</button>
+        </div>
         <div className="login-image-container">
           <img src={loginImage} alt="img" />
         </div>

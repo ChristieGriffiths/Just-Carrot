@@ -1,4 +1,4 @@
-/* Existing styles */
+
 .login-image-container {
   display: flex;
   justify-content: flex-end;
@@ -10,22 +10,9 @@
 }
 
 .login-image-container img {
-  max-width: %;
+  max-width: 100%;
   height: auto;
   margin-bottom: 0;
-}
-
-
-h1#Log\ in {
-  text-align: left;
-  margin: 0;
-  margin-top: 200px;
-  margin-left: 95px;
-}
-
-form {
-  position: relative;
-  left: -70px;
 }
 
 /* Navbar styles */
@@ -85,7 +72,7 @@ form {
   color: white;
   padding: 1rem;
   text-align: center;
-  margin-top: 0;  /* Ensure no top margin */
+  margin-top: 0;
 }
 
 .footer-content {
@@ -106,4 +93,23 @@ form {
 
 .footer-links a:hover {
   text-decoration: underline;
+}
+
+.login-form {
+  margin-left: 40px;  /* Add left margin */
+}
+
+/* Adjustments for "Log in" header */
+h1#Log\ in {
+  text-align: left;
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+/* Adjustments for form */
+form {
+  position: relative;
+  left: 0;
+  margin-left: 0;
 }

@@ -40,6 +40,16 @@ const Home = () => {
             <img src={aboutUs} alt="About Us" />
           </div>
         </div>
+        <div className="website-footer">
+        <div className="footer-content">
+          <p>Copyright © 2023 Just Carrot</p>
+          <div className="footer-links">
+            <Link to="/">Home</Link>
+            <Link to="/about">About Us</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+        </div>
+      </div>
     
     </>
   );

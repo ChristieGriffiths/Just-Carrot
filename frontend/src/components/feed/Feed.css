@@ -63,7 +63,46 @@
 }
 
 .container {
-  /* Other styles you might want */
+  position: relative; 
   min-height: 100vh;  /* Full height */
   width: 100%;  /* Full width */
+}
+
+.website-footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.form-container {
+  position: absolute;  /* Position it absolutely */
+  top: 0;             /* Align to the top of the container */
+  left: 0;            /* Align to the left of the container */
+  width: 100%;        /* Take full width */
+  /* ... existing styles ... */
+}
+
+#feed {
+  margin-top: 150px; /* Adjust this value according to your navbar's height */
 }

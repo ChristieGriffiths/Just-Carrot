@@ -59,27 +59,31 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
 
   return (
     <main className="container">
-      <h2>Complete challenge by:</h2>
-      <input
-        type="date"
-        value={date}
-        onChange={handleDateChange}
-      />
-      <input
-        type="time"
-        value={time}
-        onChange={handleTimeChange}
-      />
-      <div className="next-button">
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
+      <div className="measure"> {/* Added this wrapper div */}
+        <h2>Complete challenge by:</h2>
         <input
-          className="f6 grow br2 ph3 pv2 mb2 dib white"
-          style={{ borderStyle: "none", width: "100%", backgroundColor: "#f39200" }}
-          type="submit"
-          value="Next"
-          onClick={handleButtonClick}
-          disabled={!isTimeValid}
+          type="date"
+          className="date-picker"
+          value={date}
+          onChange={handleDateChange}
         />
+        <input
+          type="time"
+          className="time-picker"
+          value={time}
+          onChange={handleTimeChange}
+        />
+        <div className="next-button">
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+          <input
+            className="f6 grow br2 ph3 pv2 mb2 dib white"
+            style={{ borderStyle: "none", width: "100%", backgroundColor: "#f39200" }}
+            type="submit"
+            value="Next"
+            onClick={handleButtonClick}
+            disabled={!isTimeValid}
+          />
+        </div>
       </div>
     </main>
   );

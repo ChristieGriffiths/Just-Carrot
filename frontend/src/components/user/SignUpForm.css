@@ -1,13 +1,93 @@
+.navbar {
+  background-color: #333;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+}
+
+.navbar-logo {
+  height: 100px;
+}
+
+.navbar-items {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.navbar-button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 0;
+  flex-grow: 1;
+  text-decoration: none;
+}
+
+.navbar-button:hover {
+  background-color: transparent;
+  border: none;
+}
+
+/* Main container */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content holder */
+.content {
+  flex: 1;
+}
+
+/* Footer styles */
+.website-footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+
 .sign-up-image-container {
   display: flex;
   justify-content: flex-end; /* Align content to the right */
   align-items: flex-start; /* Align content to the top */
   height: 50vh; /* Make the container height equal to the viewport height */
-  margin-top: -55vh; /* Move the container up by 20vh (adjust as needed) */
+  margin-top: -50vh; /* Move the container up by 20vh (adjust as needed) */
 }
 
 .sign-up-image-container img {
-  max-width: 70%; /* Limit the image to 50% of the container's width */
+  max-width: %; /* Limit the image to 50% of the container's width */
   height: auto; /* Let the image adjust its height while maintaining aspect ratio */
 }
 
@@ -19,36 +99,36 @@ h1#Sign\ up {
 }
 
 form {
-  max-width: 300px;
+  max-width: 400px;  /* Increased max-width */
   margin: 0.3cm 0 0.39in 7%;
-  padding: 20px;
+  padding: 30px;  /* Increased padding */
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  
 }
 
-
-/* Style for the input fields */
+/* Modified style for the input fields */
 input[type="text"],
 input[type="password"] {
-  width: 88%; /* Set the width to 100% to ensure the input boxes fit */
-  padding: 10px 15px; /* Add padding to the left and right */
-  margin: 8px 0;
+  width: 100%;  /* Increased width to 100% */
+  padding: 15px 20px;  /* Increased padding */
+  margin: 10px 0;  /* Increased margin */
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-/* Style for the submit button */
+/* Modified style for the submit button */
 input[type="submit"] {
   width: 100%;
-  padding: 10px;
-  margin-top: 15px;
+  padding: 15px;  /* Increased padding */
+  margin-top: 20px;  /* Increased margin-top */
   border: none;
   border-radius: 5px;
   background-color: #000;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;  /* Increased font size */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
