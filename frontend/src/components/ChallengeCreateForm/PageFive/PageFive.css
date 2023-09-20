@@ -79,3 +79,7 @@
   text-decoration: none;
   color: rgb(66, 84, 221);
 }
+
+.mw5 bg-white pa2-ns mt5 dib {
+  background-color: transparent;
+}

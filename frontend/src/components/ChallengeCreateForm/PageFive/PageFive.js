@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import "./PageFive.css";
 
 const PageFive = ({ onButtonClick, handleChosenValidation }) => {
-  // Changed the initial value to a string and the state variable name
   const [selectedVerificationMethod, setSelectedVerificationMethod] = useState(null);
 
-  // Modified to handle string values instead of index
   const toggleSelected = (method) => {
     if (selectedVerificationMethod === method) {
       setSelectedVerificationMethod(null);
@@ -18,7 +16,7 @@ const PageFive = ({ onButtonClick, handleChosenValidation }) => {
 
   return (
     <main>
-      <div className="mw5 bg-white pa2-ns mt5 dib">
+      <div className="mw5 transparent-bg pa2-ns mt5 dib">
         <h2>How would you like to verify completion:</h2>
       </div>
       <div className="options">
