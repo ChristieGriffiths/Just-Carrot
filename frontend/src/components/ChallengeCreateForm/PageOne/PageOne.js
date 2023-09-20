@@ -26,17 +26,14 @@ const PageOne = ({ onButtonClick, handleChallengeChange }) => {
   };
 
   return (
-    <main
-      className="pt5 black-80 center"
-      style={{ maxWidth: "40%", maxHeight: "30%", marginTop: "20px" }}
-    >
-      <form className="measure" onSubmit={handleSubmit}>
+    <main className="mainContent">
+      <form className="formContainer" onSubmit={handleSubmit}>
         <h2>Enter your challenge: </h2>
 
-        <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-          <div className="mt3">
+        <fieldset id="challengeField" className="noBorder">
+          <div className="inputWrapper">
             <input
-              className="f6 br2 ph3 pv2 mb2 dib black w-100"
+              className="textInput"
               type="text"
               size="30"
               placeholder="Run for 10 minutes"
@@ -49,12 +46,7 @@ const PageOne = ({ onButtonClick, handleChallengeChange }) => {
 
         <div>
           <input
-            className="f6 grow br2 ph3 pv2 mb2 dib white"
-            style={{
-              borderStyle: "none",
-              width: "100%",
-              backgroundColor: "#f39200",
-            }}
+            className="nextButton"
             type="button"
             value="Next"
             onClick={handleNextClick}

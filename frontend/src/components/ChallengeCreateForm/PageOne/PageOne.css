@@ -1,22 +1,59 @@
-::placeholder { 
-  color: #929EB6;
-  opacity: 1; 
+/* Placeholder styles */
+::placeholder {
+  color: transparent;
+  opacity: 1;
 }
 
-.container {
+/* Main content styling */
+.mainContent {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200vh; /* Adjust as needed */
-  margin-top: 100px; /* Adjust th
+  flex-direction: column;
+  height: 100vh;
+  background-color: transparent;
 }
 
-.measure {
+/* Form container styling */
+/* Form container styling */
+.formContainer {
   width: 100%;
-  max-width: 400px; /* Adjust as needed */
+  max-width: 400px;
   padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 10px;
+  background-color: transparent;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: -100px;
+  margin: -1000px auto 0 auto; /* Adjust this value to move the form up or down */
+}
+
+
+/* Fieldset styling */
+.noBorder {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Text input styling */
+.textInput {
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+/* Next button styling */
+.nextButton {
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  border: none;
+  background-color: #f39200;
+  color: white;
+  cursor: pointer;
 }

@@ -116,25 +116,30 @@ const handleUnsuccessful = async () => {
       console.log("An error occurred while refunding", error);
     }
   };
-
+  
   return (
     <div className="apple-style-container">
       <article data-cy="post" key={post.challenge}>
-        Challenge: {post.challenge} <br />
-        Complete by: {remainingTime} <br />
-        Incentive: £ {post.incentiveAmount} <br />
-        Charity: {post.chosenCharity} <br />
-        {showConfirmation ? (
-          <>
-            <button onClick={handleConfirm}>Are you sure?</button>
-            <button onClick={() => setShowConfirmation(false)}>Cancel</button>
-          </>
-        ) : (
-          <>
-            <button onClick={handleShowConfirmation}>Confirm</button>
-            <button onClick={handleUnsuccessful}>Unsuccessful</button>
-          </>
-        )}
+        <div>
+          <span style={{ fontSize: '2rem' }}>Challenge: </span> {/* Bigger font */}
+          {post.challenge} 
+        </div>
+        <div>Complete by: {remainingTime}</div>
+        <div>Incentive: £ {post.incentiveAmount}</div>
+        <div>Charity: {post.chosenCharity}</div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          {showConfirmation ? (
+            <>
+              <button onClick={handleConfirm}>Are you sure?</button>
+              <button onClick={() => setShowConfirmation(false)}>Cancel</button>
+            </>
+          ) : (
+            <>
+              <button onClick={handleShowConfirmation}>Confirm</button>
+              <button onClick={handleUnsuccessful}>Unsuccessful</button>
+            </>
+          )}
+        </div>
       </article>
     </div>
   );

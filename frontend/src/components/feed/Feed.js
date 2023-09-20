@@ -114,7 +114,6 @@ const Feed = ({ navigate }) => {
           <button className="navbar-button" onClick={logout}>Log out </button>
         </div>
       </div>
-        <h2 id='targets'>Targets</h2>
        <div className="container" style={{ backgroundImage: `url(${carrots})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
         <div className='form-container'>
           {viewForm ? (
