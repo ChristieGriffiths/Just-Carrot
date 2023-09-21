@@ -1,5 +1,5 @@
 import React from 'react';
-import './Privacy.css';
+import './Home.css';
 import { Link } from "react-router-dom";
 
 import logo from '../../assets/logo.png';
@@ -18,12 +18,16 @@ const Privacy = () => {
         </div>
       </div>
       <div className="content-container">
-        <img src={privacy} alt="Privacy Policy" className="privacy-image" />
-        <p className="privacy-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
-          Donec in efficitur leo. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-          Nullam dictum felis eu pede mollis pretium.
-        </p>
+        <div className="privacy-content">  {/* New wrapper div */}
+          <img src={privacy} alt="Privacy Policy" className="privacy-image" />
+          <div className="privacy-text-wrapper">  {/* New wrapper div */}
+            <p className="privacy-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
+              Donec in efficitur leo. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+              Nullam dictum felis eu pede mollis pretium.
+            </p>
+          </div>
+        </div>
       </div>
       <div className="website-footer">
         <div className="footer-content">

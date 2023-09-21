@@ -9,9 +9,10 @@
   height: 100px;
 }
 
+
 .navbar-items {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;  /* Align items to both ends */
   flex-grow: 1;
 }
 
@@ -24,10 +25,9 @@
   cursor: pointer;
   margin: 0 5px;
   padding: 0;
-  flex-grow: 1;
+  /* Removed flex-grow: 1 */
   text-decoration: none;
 }
-
 .navbar-button:hover {
   background-color: transparent;
   border: none;

@@ -9,10 +9,10 @@ const AboutUs = () => {
 
   return (
     <>
-      <div className="navbar">
+   <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="navbar-items">
-        <Link to="/" className="navbar-button">Home</Link>
+        <div className="auth-links"> {/* Wrap the buttons in a div with class "auth-links" */}
+          <Link to="/" className="navbar-button">Home</Link>
           <Link to="/signup" className="navbar-button">Sign Up</Link>
           <Link to="/login" className="navbar-button">Sign In</Link>
         </div>

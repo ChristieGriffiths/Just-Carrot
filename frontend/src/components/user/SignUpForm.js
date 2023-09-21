@@ -53,12 +53,9 @@ const SignUpForm = ({ navigate }) => {
     <div className="main-container">
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="navbar-items">
-          
-      
-          <Link to="/" className="navbar-button">Home</Link>
-
-          <Link to="/login" className="navbar-button">Sign In</Link>
+        <div className="auth-links"> {/* Wrapped buttons with auth-links div */}
+          <Link to="/" className="navbar-button link-button">Home</Link>
+          <Link to="/login" className="navbar-button link-button">Sign In</Link>
         </div>
       </div>
       <div className="content">

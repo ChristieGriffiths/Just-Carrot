@@ -6,7 +6,65 @@
   max-width: 100%;
   height: auto;
 
+}/* Existing styles */
+.navbar {
+  background-color: #333;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
 }
+
+.navbar-logo {
+  height: 100px;
+}
+
+.navbar-items {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.navbar-button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 15px;
+  padding: 0;
+  flex-grow: 0;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+}
+
+/* ... (existing styles) */
+
+.privacy-content {
+  display: flex;
+  align-items: start; /* Align items to the top */
+}
+
+.privacy-image {
+  max-width: 50%;  /* Adjust based on your preference */
+  height: auto;
+
+}
+
+.privacy-text-wrapper {
+  flex: 1;  /* Take up remaining space */
+  margin: 20px;
+}
+
+.privacy-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 
 .privacy-text {
   margin: 20px 0;
