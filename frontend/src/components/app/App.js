@@ -1,5 +1,7 @@
 import './App.css';
 import Home from '../home/Home';
+import Privacy from '../home/Privacy';
+import Terms from '../home/Terms';
 import AboutUs from '../home/AboutUs';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
@@ -13,11 +15,14 @@ import {
   Navigate
 } from "react-router-dom";
 
+
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/terms' element={<Terms/>}/>
+        <Route path='/privacy' element={<Privacy/>}/>
         <Route path='/aboutus' element={<AboutUs/>}/>
         <Route path='/posts' element={<Feed navigate={useNavigate()} />} />
         <Route path='/login' element={<LoginForm navigate={useNavigate()} />} />

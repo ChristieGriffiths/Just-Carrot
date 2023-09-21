@@ -1,0 +1,15 @@
+/* Existing styles */
+/* ... */
+
+/* New styles */
+.privacy-image {
+  max-width: 100%;
+  height: auto;
+
+}
+
+.privacy-text {
+  margin: 20px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
