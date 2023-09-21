@@ -25,5 +25,7 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
   padding: 16px;
   border-radius: 4px;
-  width:65%;
+  width:60%;
+  margin: auto; 
+  padding: 20px;
 }

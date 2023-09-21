@@ -67,6 +67,10 @@ const Feed = ({ navigate }) => {
     setViewForm(true);
   }
 
+  const goToHome = () => {
+    setViewForm(false);
+  };
+
   const onUpdate = async (receivedData) => {
     const updatedPost = receivedData.post;
     const updatedPosts = posts.map(post => 
@@ -109,7 +113,7 @@ const Feed = ({ navigate }) => {
        <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
         <div className="navbar-items">
-          <button className="navbar-button" onClick={() => navigate('/posts')}>Home</button>
+          <button className="navbar-button" onClick={goToHome}>Home</button>
           <button className="navbar-button" onClick={newChallenge}>Create Challenge</button>
           <button className="navbar-button" onClick={logout}>Log out </button>
         </div>

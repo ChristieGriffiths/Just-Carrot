@@ -16,7 +16,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Helvetica Neue', sans-serif; /* Added */
+  font-weight: bold; /* Added */
 }
+
 
 .navbar-logo {
   height: 100px;

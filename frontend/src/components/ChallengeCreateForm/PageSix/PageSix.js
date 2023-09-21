@@ -10,9 +10,12 @@ const PageSix = ({
   chosenValidation,
   onButtonClick
 }) => {
+
+  const formattedDate = completeDate.split('-').reverse().join('/');
+
   return (
     <main className="confirmation-page">
-      <h2>Confirmation</h2>
+      <h1>Confirmation</h1>
 
       <div className="options-grid">
         <div className="choice-container">
@@ -23,9 +26,9 @@ const PageSix = ({
         </div>
 
         <div className="choice-container">
-          <h3>Completion Date:</h3>
+          <h3>Completion By:</h3>
           <div className="choice-content">
-            <h1>{completeDate}</h1>
+            <h1>{formattedDate}</h1>
           </div>
         </div>
 
@@ -39,7 +42,7 @@ const PageSix = ({
         <div className="choice-container">
           <h3>Incentive Amount:</h3>
           <div className="choice-content">
-            <h1>{incentiveAmount}</h1>
+            <h1>£{incentiveAmount}</h1>
           </div>
         </div>
 

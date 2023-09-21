@@ -28,7 +28,7 @@ const PageFour = ({ onButtonClick, handleChosenCharity }) => {
 
   return (
     <div className="mw5 transparent-bg pa2-ns mt5 dib">
-      <h2>Choose your charity:</h2>
+      <h1>Choose your charity:</h1>
       <div className="charityList">
         {charities.map((charity, index) => (
           <div

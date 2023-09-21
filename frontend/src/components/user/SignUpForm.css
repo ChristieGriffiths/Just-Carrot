@@ -84,7 +84,6 @@
 }
 
 .sign-up-image-container img {
-  max-width: %; /* Limit the image to 50% of the container's width */
   height: auto; /* Let the image adjust its height while maintaining aspect ratio */
 }
 

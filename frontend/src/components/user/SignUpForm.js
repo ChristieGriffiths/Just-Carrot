@@ -54,9 +54,10 @@ const SignUpForm = ({ navigate }) => {
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
         <div className="navbar-items">
-          <button className="navbar-button" onClick={() => window.scrollTo(0, 0)}>How it works</button>
-          <button className="navbar-button" onClick={() => window.scrollTo(0, document.body.scrollHeight)}>About Us</button>
-          <Link to="/signup" className="navbar-button">Sign Up</Link>
+          
+      
+          <Link to="/" className="navbar-button">Home</Link>
+
           <Link to="/login" className="navbar-button">Sign In</Link>
         </div>
       </div>

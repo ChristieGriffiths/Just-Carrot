@@ -1,5 +1,6 @@
 import './App.css';
 import Home from '../home/Home';
+import AboutUs from '../home/AboutUs';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
 import React, { useState } from 'react';
@@ -17,6 +18,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/aboutus' element={<AboutUs/>}/>
         <Route path='/posts' element={<Feed navigate={useNavigate()} />} />
         <Route path='/login' element={<LoginForm navigate={useNavigate()} />} />
         <Route path='/signup' element={<SignUpForm navigate={useNavigate()} />} />

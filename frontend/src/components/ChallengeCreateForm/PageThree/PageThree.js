@@ -12,7 +12,7 @@ const PageThree = ({onButtonClick, incentiveAmount, handleIncentiveAmount}) => {
 
   return (
     <main className="pt5 black-80" style={{ maxWidth: "50%", maxHeight: "25%", margin: "auto" }}>
-      <h2>Choose your incentive:</h2>
+      <h1>Choose your incentive:</h1>
   
       <div className="slider">
         <Slider size="large"
