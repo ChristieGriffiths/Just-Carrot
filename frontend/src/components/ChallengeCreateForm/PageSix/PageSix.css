@@ -1,10 +1,9 @@
-
 .options-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* Adjusted column width */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  max-width: 1200px;  /* Constrained the maximum width */
-  margin: auto;  /* Centered the grid */
+  max-width: 1200px;
+  margin: auto;
 }
 
 .choice-container {
@@ -20,4 +19,11 @@
   padding: 16px;
   background-color: transparent;
   border-radius: 0;
+}
+
+.confirmation-page {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  padding: 16px;
+  border-radius: 4px;
+  width:65%;
 }

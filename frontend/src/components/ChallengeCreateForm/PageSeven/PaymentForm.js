@@ -11,7 +11,7 @@ const CARD_OPTIONS = {
       color: '#000',
       fontWeight: 500,
       fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-      fontSize: '18px',
+      fontSize: '32px',  // Changed font size to 24px
       fontSmoothing: 'antialiased',
       ':-webkit-autofill': { color: '#fce883' },
       '::placeholder': { color: '#87bbfd' }
@@ -23,7 +23,6 @@ const CARD_OPTIONS = {
   },
   hidePostalCode: true
 };
-
 export default function PaymentForm({ incentiveAmount, handlePaymentId }) {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
@@ -62,21 +61,17 @@ export default function PaymentForm({ incentiveAmount, handlePaymentId }) {
   };
 
   return (
-    <>
+    <div className="PaymentFormContainer">
       {!success ? (
-        <form onSubmit={handleSubmit}>
-          <fieldset className="FormGroup">
-            <div className="FormRow">
+        <form className="Form" onSubmit={handleSubmit} >
               <CardElement options={CARD_OPTIONS} />
-            </div>
-          </fieldset>
-          <button>Pay</button>
+          <button type="submit">Pay</button>
         </form>
       ) : (
-        <div>
+        <div className="CenteredMessage">
           <h2>Good luck!</h2>
         </div>
       )}
-    </>
+    </div>
   );
 }
