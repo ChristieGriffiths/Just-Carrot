@@ -60,7 +60,7 @@ const SignUpForm = ({ navigate }) => {
       </div>
       <div className="content">
         <h1 id="Sign up">Sign up</h1>
-        <form onSubmit={handleSubmit}>
+        <form className="SignUpForm" onSubmit={handleSubmit}>
           <input placeholder="First name" id="firstName" type='text' value={firstName} minLength="2" onChange={handleFirstNameChange} required />
           <input placeholder="Surname" id="surname" type='text' value={surname} minLength="2" onChange={handleSurnameChange} required />
           <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' title="Please enter a valid email address" value={email} minLength="3" onChange={handleEmailChange} required />

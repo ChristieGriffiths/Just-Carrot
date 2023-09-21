@@ -113,7 +113,7 @@ h1#Log\ in {
 }
 
 /* Adjustments for form */
-form {
+.LoginForm {
   position: relative;
   left: 0;
   margin-left: 0;

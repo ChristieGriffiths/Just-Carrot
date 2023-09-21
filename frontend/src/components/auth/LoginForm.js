@@ -56,7 +56,7 @@ const LogInForm = ({ navigate }) => {
       <div className="content">
         <div className="login-form">
         <p>{errorMessage}</p>
-        <form onSubmit={handleSubmit}>
+        <form className="LoginForm" onSubmit={handleSubmit}>
           <input placeholder='Email' id="email" type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
           <input placeholder='Password' id="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
           <input role='submit-button' id='submit' type="submit" value="Submit" />

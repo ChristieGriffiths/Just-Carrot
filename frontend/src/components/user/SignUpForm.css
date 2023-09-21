@@ -94,7 +94,7 @@ h1#Sign\ up {
   margin-left: 160px;
 }
 
-form {
+.SignUpForm {
   max-width: 400px;  /* Increased max-width */
   margin: 0.3cm 0 0.39in 7%;
   padding: 30px;  /* Increased padding */
