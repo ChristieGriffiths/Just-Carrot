@@ -44,7 +44,7 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
 
   return (
     <main className="main-container">
-      <div className="form-wrapper">
+      <div className="PageTwoFormContainer">
         <h1>Complete challenge by:</h1>
         <input
           type="date"

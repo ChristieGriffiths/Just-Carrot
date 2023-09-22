@@ -27,9 +27,8 @@ const PageOne = ({ onButtonClick, handleChallengeChange }) => {
 
   return (
     <main className="mainContent">
-      <form className="formContainer" onSubmit={handleSubmit}>
+      <form className="PageOneFormContainer" onSubmit={handleSubmit}>
         <h1>Enter your challenge: </h1>
-
         <fieldset id="challengeField" className="noBorder">
           <div className="inputWrapper">
             <input

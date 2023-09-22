@@ -1,32 +1,31 @@
-/* Placeholder styles */
+
 ::placeholder {
-  color: transparent;
+  color: black;
   opacity: 1;
 }
 
-/* Main content styling */
 .mainContent {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 30vh;
   background-color: transparent;
 }
 
-/* Form container styling */
-/* Form container styling */
-.formContainer {
+.PageOneFormContainer {
+  
   width: 100%;
   max-width: 400px;
   padding: 20px;
   background-color: transparent;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: -1000px auto 0 auto; /* Adjust this value to move the form up or down */
+  border-radius: 10px;
+  align-items: center; 
 }
 
 
-/* Fieldset styling */
+
 .noBorder {
   border: none;
   padding: 0;

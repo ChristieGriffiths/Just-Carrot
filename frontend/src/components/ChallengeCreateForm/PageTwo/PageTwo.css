@@ -6,21 +6,24 @@
   background-color: transparent; /* Making container transparent */
 }
 
-.date-input, .time-input {
-  width: 100%;
-  margin-bottom: 10px;
-  text-align: center; /* Centering the text inside the inputs */
-}
-
-.form-wrapper {
+.PageTwoFormContainer {
+  margin: 100px;
   width: 100%;
   max-width: 400px;
   padding: 20px;
   background-color: transparent; 
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 50px; /* Added to move form up */
+  height: 20vh;
 }
+
+
+.date-input, .time-input {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center; /* Centering the text inside the inputs */
+}
+
 
 .button-wrapper {
   margin-top: 10px;
