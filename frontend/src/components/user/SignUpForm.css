@@ -11,16 +11,14 @@
 
 
 
-.SignUpForm {
-
+.Login-SignUp-Form {
   max-width: 400px;  /* Increased max-width */
-  margin: 0.3cm 0 0.39in 7%;
+  margin: 3cm 0 0.39in 7%;
   padding: 30px;  /* Increased padding */
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  
 }
 
 /* Modified style for the input fields */
@@ -40,7 +38,7 @@ input[type="password"] {
   margin-top: 20px;  /* Increased margin-top */
   border: none;
   border-radius: 5px;
-  background-color: #000;
+  background-color: orange;
   color: #fff;
   font-size: 18px;  /* Increased font size */
   cursor: pointer;

@@ -56,12 +56,14 @@ const SignUpForm = ({ navigate }) => {
     <div className="sign-up-main-container">
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
+        <div className="navbar-button">
           <Link to="/" className="navbar-button link-button">Home</Link>
           <Link to="/login" className="navbar-button link-button">Sign In</Link>
+        </div>
       </div>
       <div className="content">
 
-        <form className="SignUpForm" onSubmit={handleSubmit}>
+        <form className="Login-SignUp-Form" onSubmit={handleSubmit}>
           <input placeholder="First name" id="firstName" type='text' value={firstName} minLength="2" onChange={handleFirstNameChange} required />
           <input placeholder="Surname" id="surname" type='text' value={surname} minLength="2" onChange={handleSurnameChange} required />
           <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' title="Please enter a valid email address" value={email} minLength="3" onChange={handleEmailChange} required />
@@ -75,9 +77,8 @@ const SignUpForm = ({ navigate }) => {
         <div className="footer-content">
           <p>Copyright © 2023 Just Carrot</p>
           <div className="footer-links">
-            <Link to="/">Home</Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/contact">Contact</Link>
+          <Link to="/terms">Terms & Conditions</Link>
+            <Link to="/privacy">Privacy Policy</Link>
           </div>
         </div>
       </div>
