@@ -3,6 +3,9 @@ import jwt_decode from 'jwt-decode'; // Assuming jwt_decode is imported
 import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
+import '../Navbar.css';
+import '../Footer.css';
+
 import { sendEmail, fetchEmail } from './email'; 
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
@@ -110,14 +113,14 @@ const Feed = ({ navigate }) => {
   if(token) {
     return (
       <>
-       <div className="navbar">
-        <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="navbar-items">
-          <button className="navbar-button" onClick={goToHome}>Home</button>
-          <button className="navbar-button" onClick={newChallenge}>Create Challenge</button>
-          <button className="navbar-button" onClick={logout}>Log out </button>
-        </div>
+        <div className="navbar">
+      <img src={logo} alt="Logo" className="navbar-logo" />
+      <div className="navbar-buttons">
+        <button onClick={goToHome} className="navbar-button">Home</button>
+        <button onClick={newChallenge} className="navbar-button">Create Challenge</button>
+        <button onClick={logout} className="navbar-button">Log out</button>
       </div>
+    </div>
        <div className="container" style={{ backgroundImage: `url(${carrots})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
         <div className='form-container'>
           {viewForm ? (

@@ -65,7 +65,7 @@ export default function PaymentForm({ incentiveAmount, handlePaymentId }) {
       {!success ? (
         <form className="Form" onSubmit={handleSubmit} >
               <CardElement options={CARD_OPTIONS} />
-          <button type="submit">Pay</button>
+          <button className="PaymentButton" type="submit">Pay</button>
         </form>
       ) : (
         <div className="CenteredMessage">

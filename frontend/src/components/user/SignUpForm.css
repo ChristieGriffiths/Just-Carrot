@@ -1,100 +1,18 @@
-.navbar, .website-footer {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-
-.navbar-logo {
-  height: 100px;
-}
-
-
-.navbar-items {
-  display: flex;
-  justify-content: space-between;  /* Align items to both ends */
-  flex-grow: 1;
-}
-
-.navbar-button {
-  color: white;
-  background-color: transparent;
-  border: none;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  margin: 0 5px;
-  padding: 0;
-  /* Removed flex-grow: 1 */
-  text-decoration: none;
-}
-.navbar-button:hover {
-  background-color: transparent;
-  border: none;
-}
-
-/* Main container */
-.main-container {
+.sign-up-main-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
+  min-height: 100vh; /* Minimum full height of the viewport */
 
-/* Main content holder */
-.content {
-  flex: 1;
-}
-
-/* Footer styles */
-.website-footer {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  margin-top: 0;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.footer-links {
-  margin-top: 0.5rem;
-}
-
-.footer-links a {
-  color: white;
-  margin: 0 1rem;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
+  background-image: url('../../assets/signUpImage.jpeg');
+  background-size: cover; /* To make sure the image covers the full container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
 
-.sign-up-image-container {
-  display: flex;
-  justify-content: flex-end; /* Align content to the right */
-  align-items: flex-start; /* Align content to the top */
-  height: 50vh; /* Make the container height equal to the viewport height */
-  margin-top: -50vh; /* Move the container up by 20vh (adjust as needed) */
-}
-
-.sign-up-image-container img {
-  height: auto; /* Let the image adjust its height while maintaining aspect ratio */
-}
-
-h1#Sign\ up {
-  text-align: left;
-  margin: 0; /* Remove default margin */
-  margin-top:200px;
-  margin-left: 160px;
-}
 
 .SignUpForm {
+
   max-width: 400px;  /* Increased max-width */
   margin: 0.3cm 0 0.39in 7%;
   padding: 30px;  /* Increased padding */
@@ -116,7 +34,7 @@ input[type="password"] {
 }
 
 /* Modified style for the submit button */
-input[type="submit"] {
+.SignUpInput {
   width: 100%;
   padding: 15px;  /* Increased padding */
   margin-top: 20px;  /* Increased margin-top */

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import './LoginForm.css'
+import '../Navbar.css';
 import logo from '../../assets/logo.png';
 import loginImage from '../../assets/loginImage.jpg';
 

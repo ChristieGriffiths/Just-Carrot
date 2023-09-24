@@ -14,14 +14,17 @@
   background-color: transparent; 
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: 20vh;
+  height: 18vh;
 }
 
 
 .date-input, .time-input {
+
   width: 100%;
   margin-bottom: 10px;
   text-align: center; /* Centering the text inside the inputs */
+  background: transparent;
+  border:  none;
 }
 
 
@@ -34,7 +37,7 @@
   margin-bottom: 10px;
 }
 
-.next-button {
+.PageTwoNextButton {
   border-style: none;
   width: 100%;
   background-color: orange; /* Making the button orange */

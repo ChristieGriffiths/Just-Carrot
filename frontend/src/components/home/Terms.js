@@ -1,5 +1,8 @@
 import React from 'react';
 import './Terms.css';
+import '../Navbar.css';
+import '../Footer.css';
+
 import { Link } from "react-router-dom";
 
 import logo from '../../assets/logo.png';

@@ -31,3 +31,14 @@ button[type="submit"] {
   text-align: center;
   font-size: 2em;
 }
+
+
+.PaymentButton {
+  border-style: none;
+  width: 100%;
+  background-color: orange; /* Making the button orange */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 30px;
+}

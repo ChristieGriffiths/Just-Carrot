@@ -145,7 +145,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   
   return (
     <div className="App">
-      <Logo />
+    
       <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
       {{
         pageone: <PageOne onButtonClick={nextPage} handleChallengeChange={handleChallengeChange} />,
