@@ -113,6 +113,7 @@ const Feed = ({ navigate }) => {
   if(token) {
     return (
       <>
+       <div className="feed-background">
         <div className="navbar">
       <img src={logo} alt="Logo" className="navbar-logo" />
       <div className="navbar-buttons">
@@ -121,7 +122,6 @@ const Feed = ({ navigate }) => {
         <button onClick={logout} className="navbar-button">Log out</button>
       </div>
     </div>
-       <div className="container" style={{ backgroundImage: `url(${carrots})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
         <div className='form-container'>
           {viewForm ? (
             <ChallengeCreateForm 
@@ -154,13 +154,13 @@ const Feed = ({ navigate }) => {
             </div>
           )}
         </div>
+     </div>
   <div className="website-footer">
           <div className="footer-content">
-            <p>Copyright © 2023 Your Company</p>
+            <p>Copyright © 2023 Just Carrot</p>
             <div className="footer-links">
-              <Link to="/">Home</Link>
-              <Link to="/about">About Us</Link>
-              <Link to="/contact">Contact</Link>
+            <Link to="/terms">Terms & Conditions</Link>
+            <Link to="/privacy">Privacy Policy</Link>
             </div>
           </div>
         </div>

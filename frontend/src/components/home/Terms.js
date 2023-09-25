@@ -12,6 +12,7 @@ const Terms = () => {
 
   return (
     <>
+    <div></div>
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
         <div className="navbar-items">

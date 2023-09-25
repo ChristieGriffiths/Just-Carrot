@@ -1,8 +1,21 @@
-.container {
+.feed-background {
+  display: flex;
+  flex-direction: column;
+  min-height:150vh; /* Minimum full height of the viewport */
+
+  background-image: url('../../assets/blue.png');
+  background-size: 100%; /* To make sure the image covers the full container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+
+/* .backgroundcontainer {
   position: relative; 
   min-height: 100vh;  /* Full height */
   width: 100%;  /* Full width */
-}
+  z-index: -1;
+*/
 
 .form-container {
   position: absolute;  /* Position it absolutely */
@@ -14,4 +27,16 @@
 
 #feed {
   margin-top: 150px; /* Adjust this value according to your navbar's height */
+}
+
+.success-message, .unsuccessful-message {
+  position: fixed; /* or absolute, depending on your needs */
+  z-index: 9999; /* high value to make sure it's in front of other elements */
+  top: 100px; /* you can adjust this */
+  left: 0; /* you can adjust this */
+  width: 100%; /* takes full width */
+  padding: 200px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+  color: white; /* text color */
 }
