@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 import '../Navbar.css';
 import '../Footer.css';
+import './Privacy.css'
 
 import { Link } from "react-router-dom";
 
@@ -21,7 +22,7 @@ const Privacy = () => {
         </div>
       </div>
       <div className="content-container">
-        <div className="privacy-content">  {/* New wrapper div */}
+        <div className="privacy-content">
           <img src={privacy} alt="Privacy Policy" className="privacy-image" />
           <div className="privacy-text-wrapper">  {/* New wrapper div */}
             <p className="privacy-text">

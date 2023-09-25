@@ -1,5 +1,5 @@
 import React from 'react';
-import './Terms.css';
+import './Privacy.css';
 import '../Navbar.css';
 import '../Footer.css';
 
@@ -12,7 +12,6 @@ const Terms = () => {
 
   return (
     <>
-    <div></div>
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
         <div className="navbar-items">
@@ -22,12 +21,14 @@ const Terms = () => {
         </div>
       </div>
       <div className="content-container">
-        <img src={terms} alt="Privacy Policy" className="privacy-image" />
+      <div className="privacy-content"> 
+        <img src={terms} alt="TermsPolicy" className="privacy-image" />
         <p className="privacy-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
           Donec in efficitur leo. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
           Nullam dictum felis eu pede mollis pretium.
         </p>
+        </div>
       </div>
       <div className="website-footer">
         <div className="footer-content">
