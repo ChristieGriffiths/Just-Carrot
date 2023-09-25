@@ -6,10 +6,9 @@ import './Feed.css';
 import '../Navbar.css';
 import '../Footer.css';
 
-import { sendEmail, fetchEmail } from './email'; 
+import { sendEmail, fetchUserEmailByEmail, fetchUserEmailById } from './email'; 
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
-import carrots from '../../assets/blue.png';
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -80,21 +79,36 @@ const Feed = ({ navigate }) => {
       post._id === updatedPost._id ? updatedPost : post
     );
     setPosts([...updatedPosts]);
-    const email = await fetchEmail(receivedData.post._id, token);
-    if (email) {
-      await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
+    try {
+      const email = await fetchUserEmailById(receivedData.post.userId);
+      if (email) {
+        console.log('About to send email');
+        await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
+        console.log('Email sent');
+      }
+    
+      console.log('About to set completed challenge');
+      setCompletedChallenge(receivedData.post.challenge);
+      console.log('Completed challenge set');
+    
+      console.log('About to show success message');
+      setShowSuccessMessage(true);
+      console.log('Success message shown:', showSuccessMessage);
+    
+      setTimeout(() => {
+        console.log('About to hide success message');
+        setShowSuccessMessage(false);
+        console.log('Success message hidden');
+      }, 10000);
+    } catch (error) {
+      console.log('An error occurred:', error);
     }
-    setCompletedChallenge(receivedData.post.challenge);
-    setShowSuccessMessage(true);
-    setTimeout(() => {
-      setShowSuccessMessage(false);
-    }, 10000); 
   };
-
+  
   const onUnsuccessful = async (challengeId, challengeName, incentiveAmount) => {
-    const email = await fetchEmail(challengeId, token);
+    const email = await fetchUserEmailById(challengeId);
     if (email) {
-      await sendEmail('unsuccess', email, challengeName, incentiveAmount);
+      sendEmail('unsuccess', email, challengeName, incentiveAmount);
     }
     setUnsuccessfulChallenge(challengeName);
     setShowUnsuccessfulMessage(true);
@@ -110,40 +124,21 @@ const Feed = ({ navigate }) => {
     navigate('/login');
   }
 
-  if(token) {
+  if (token) {
     return (
       <>
-       <div className="feed-background">
-        <div className="navbar">
-      <img src={logo} alt="Logo" className="navbar-logo" />
-      <div className="navbar-buttons">
-        <button onClick={goToHome} className="navbar-button">Home</button>
-        <button onClick={newChallenge} className="navbar-button">Create Challenge</button>
-        <button onClick={logout} className="navbar-button">Log out</button>
-      </div>
-    </div>
-        <div className='form-container'>
-          {viewForm ? (
-            <ChallengeCreateForm 
-              token={token} 
-              setToken={setToken}
-              setViewForm={setViewForm}
-              navigate={navigate} 
-            />
-          ) : (
-            <div id='feed' role="feed">
-              {posts.map(
-                (post) => ( <Post
-                  post={post} 
-                  key={post._id} 
-                  token={token} 
-                  onUpdate={onUpdate} 
-                  onUnsuccessful={onUnsuccessful} 
-                   /> )
-              )}
+        <div className="feed-background">
+
+          <div className="navbar">
+            <img src={logo} alt="Logo" className="navbar-logo" />
+            <div className="navbar-buttons">
+              <button onClick={goToHome} className="navbar-button">Home</button>
+              <button onClick={newChallenge} className="navbar-button">Create Challenge</button>
+              <button onClick={logout} className="navbar-button">Log out</button>
             </div>
-          )}
-          {showSuccessMessage && (
+          </div>
+
+        {showSuccessMessage && (
             <div className="success-message">
               Congratulations - Great Job on completing your challenge of {completedChallenge}!
             </div>
@@ -153,17 +148,41 @@ const Feed = ({ navigate }) => {
               Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
             </div>
           )}
+
+          <div className="form-container">
+            {viewForm ? (
+              <ChallengeCreateForm 
+                token={token}
+                setToken={setToken}
+                setViewForm={setViewForm}
+                navigate={navigate}
+              />
+            ) : (
+              <div id="feed" role="feed">
+                {posts.map((post) => (
+                  <Post
+                    post={post}
+                    key={post._id}
+                    token={token}
+                    onUpdate={onUpdate}
+                    onUnsuccessful={onUnsuccessful}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-     </div>
-  <div className="website-footer">
+
+        <div className="website-footer">
           <div className="footer-content">
             <p>Copyright © 2023 Just Carrot</p>
             <div className="footer-links">
-            <Link to="/terms">Terms & Conditions</Link>
-            <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms & Conditions</Link>
+              <Link to="/privacy">Privacy Policy</Link>
             </div>
           </div>
         </div>
+  
       </>
     );
   } else {
