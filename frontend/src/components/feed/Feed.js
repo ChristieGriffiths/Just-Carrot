@@ -64,9 +64,10 @@ const Feed = ({ navigate }) => {
     }
   }, [token, navigate]);
 
-  
-  
   const newChallenge = () => {
+    setShowSuccessMessage(false)
+    setShowUnsuccessfulMessage(false)
+    setShowPaymentMessage(false)
     setViewForm(true);
   }
 
