@@ -33,7 +33,6 @@ const Feed = ({ navigate }) => {
           navigate("/login");
           return;
         }
-
         fetch("/posts", {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -71,19 +70,24 @@ const Feed = ({ navigate }) => {
     setViewForm(true);
   }
 
-  const goToHome = () => {
+  const HideChallengeForm = () => {
     setViewForm(false);
   };
 
   const onUpdate = async (receivedData) => {
-    console.log('recieved data', receivedData)
-    const updatedPost = receivedData.post;
-    const updatedPosts = posts.map(post => 
-      post._id === updatedPost._id ? updatedPost : post
-    );
-    setPosts([...updatedPosts]);
     try {
+      const updatedPost = receivedData.post;
+      const updatedPosts = posts.map(post => 
+        post._id === updatedPost._id ? updatedPost : post
+      );
+      setPosts([...updatedPosts]);
+      
       const email = await fetchUserEmailById(receivedData.post.userId);
+      if (!email) {
+        console.error('Email not found for user ID:', receivedData.post.userId);
+        return;
+      }
+  
       if (receivedData.post.completed) {
         await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
         setCompletedChallenge(receivedData.post.challenge);
@@ -94,11 +98,12 @@ const Feed = ({ navigate }) => {
         setShowUnsuccessfulMessage(true);
       }
       setTimeout(() => {
-        setShowSuccessMessage(false)
+        setShowSuccessMessage(false);
         setShowUnsuccessfulMessage(false);
-      }, 10000)   
+      }, 10000);
+  
     } catch (error) {
-      console.log('An error occurred:', error);
+      console.error('An error occurred during the onUpdate function:', error);
     }
   };
 
@@ -115,7 +120,7 @@ const Feed = ({ navigate }) => {
           <div className="navbar">
             <img src={logo} alt="Logo" className="navbar-logo" />
             <div className="navbar-buttons">
-              <button onClick={goToHome} className="navbar-button">Home</button>
+              <button onClick={HideChallengeForm} className="navbar-button">Home</button>
               <button onClick={newChallenge} className="navbar-button">Create Challenge</button>
               <button onClick={logout} className="navbar-button">Log out</button>
             </div>
