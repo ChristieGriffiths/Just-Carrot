@@ -6,7 +6,7 @@ import './Feed.css';
 import '../Navbar.css';
 import '../Footer.css';
 
-import { sendEmail, fetchUserEmailByEmail, fetchUserEmailById } from './email'; 
+import { sendEmail, fetchUserEmailById } from './email'; 
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
 

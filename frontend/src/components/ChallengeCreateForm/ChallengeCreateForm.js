@@ -93,17 +93,12 @@ const ChallengeCreateForm = ({token, setToken, setViewForm, setShowPaymentMessag
     setPage("pageone");
   };
   
-  useEffect(() => {
-    if (paymentIntentId) {
-      handleFormSubmit();
-     }
-  }, [paymentIntentId]);
   
   const handleFormSubmit = async () => {
     try {
       const decoded = jwt_decode(token);
       const userId = decoded.user_id;
-
+      
       const response = await fetch('/posts', {
         method: 'post',
         headers: {
@@ -121,7 +116,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm, setShowPaymentMessag
           paymentIntentId,
         })
       });
-  
+      
       if (response.status === 201) {
         console.log("Form successfully submitted")
         let data = await response.json();
@@ -137,7 +132,12 @@ const ChallengeCreateForm = ({token, setToken, setViewForm, setShowPaymentMessag
       console.log("An error occurred", error);
     }
   };
-
+  
+  useEffect(() => {
+    if (paymentIntentId) {
+      handleFormSubmit();
+    }
+  }, [paymentIntentId, handleFormSubmit]);
   
   
   return (

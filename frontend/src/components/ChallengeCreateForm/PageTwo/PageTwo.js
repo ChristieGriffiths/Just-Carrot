@@ -11,7 +11,6 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
   const [date, setDate] = useState(formattedDate);
   const [time, setTime] = useState(formattedTime);
   const [isTimeValid, setIsTimeValid] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     handleCompleteDate({ target: { value: formattedDate } });
@@ -59,7 +58,6 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
           onChange={handleTimeChange}
         />
         <div className="button-wrapper">
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
           <input
             className="PageTwoNextButton"
             type="submit"

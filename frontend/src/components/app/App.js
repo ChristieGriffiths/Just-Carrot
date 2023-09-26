@@ -5,14 +5,12 @@ import Terms from '../home/Terms';
 import AboutUs from '../home/AboutUs';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
-import React, { useState } from 'react';
+import React from 'react';
 import Feed from '../feed/Feed'
-import logo from '../../assets/logo.png';
 import {
   useNavigate,
   Routes,
   Route,
-  Navigate
 } from "react-router-dom";
 
 

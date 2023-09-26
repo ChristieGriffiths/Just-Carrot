@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import './PaymentForm.css';
@@ -24,7 +24,6 @@ const CARD_OPTIONS = {
   hidePostalCode: true
 };
 export default function PaymentForm({ incentiveAmount, handlePaymentId, setShowPaymentMessage }) {
-  const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -50,7 +49,6 @@ export default function PaymentForm({ incentiveAmount, handlePaymentId, setShowP
           setTimeout(() => {
             setShowPaymentMessage(false);
           }, 10000);
-
           handlePaymentId(response.data.paymentIntentId);
         }
 
