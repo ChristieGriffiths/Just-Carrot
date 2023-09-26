@@ -20,4 +20,27 @@
 #feed {
   margin-top: 150px; 
 }
- 
+
+.success-message,
+.unsuccessfull-message {
+    /* Dimensions */
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    
+    /* Centering */
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    
+    /* Visuals */
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    
+    /* Text */
+    color: white;
+    font-size: large;
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
+}

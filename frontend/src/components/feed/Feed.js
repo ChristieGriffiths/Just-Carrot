@@ -74,6 +74,7 @@ const Feed = ({ navigate }) => {
   };
 
   const onUpdate = async (receivedData) => {
+    console.log('recieved data', receivedData)
     const updatedPost = receivedData.post;
     const updatedPosts = posts.map(post => 
       post._id === updatedPost._id ? updatedPost : post
@@ -81,43 +82,29 @@ const Feed = ({ navigate }) => {
     setPosts([...updatedPosts]);
     try {
       const email = await fetchUserEmailById(receivedData.post.userId);
-      if (email) {
-        console.log('About to send email');
+      if (receivedData.post.completed) {
         await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
-        console.log('Email sent');
+        setCompletedChallenge(receivedData.post.challenge);
+        setShowSuccessMessage(true);
+      } else { 
+        await sendEmail('unsuccess', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
+        setUnsuccessfulChallenge(receivedData.post.chosenCharity);
+        setShowUnsuccessfulMessage(true);
       }
+      // setTimeout(() => {
+      //   setShowSuccessMessage(false) && setShowUnsuccessfulMessage(false);
+      // }, 10000)
     
       console.log('About to set completed challenge');
-      setCompletedChallenge(receivedData.post.challenge);
       console.log('Completed challenge set');
     
       console.log('About to show success message');
-      setShowSuccessMessage(true);
       console.log('Success message shown:', showSuccessMessage);
-    
-      setTimeout(() => {
-        console.log('About to hide success message');
-        setShowSuccessMessage(false);
-        console.log('Success message hidden');
-      }, 10000);
+      
     } catch (error) {
       console.log('An error occurred:', error);
     }
   };
-  
-  const onUnsuccessful = async (challengeId, challengeName, incentiveAmount) => {
-    const email = await fetchUserEmailById(challengeId);
-    if (email) {
-      sendEmail('unsuccess', email, challengeName, incentiveAmount);
-    }
-    setUnsuccessfulChallenge(challengeName);
-    setShowUnsuccessfulMessage(true);
-    setShowSuccessMessage(false);
-    setTimeout(() => {
-      setShowUnsuccessfulMessage(false);
-    }, 10000)
-  };
-
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -144,7 +131,7 @@ const Feed = ({ navigate }) => {
             </div>
           )}
           {showUnsuccessfulMessage && (
-            <div className="unsuccessful-message">
+            <div className="unsuccessfull-message">
               Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
             </div>
           )}
@@ -165,7 +152,7 @@ const Feed = ({ navigate }) => {
                     key={post._id}
                     token={token}
                     onUpdate={onUpdate}
-                    onUnsuccessful={onUnsuccessful}
+    
                   />
                 ))}
               </div>
