@@ -18,6 +18,7 @@ const Feed = ({ navigate }) => {
   const [completedChallenge, setCompletedChallenge] = useState(null);
   const [showUnsuccessfulMessage, setShowUnsuccessfulMessage] = useState(false);
   const [unsuccessfulChallenge, setUnsuccessfulChallenge] = useState(null);
+  const [showPaymentMessage, setShowPaymentMessage] = useState(null)
 
   useEffect(() => {
     if (token) {
@@ -94,14 +95,7 @@ const Feed = ({ navigate }) => {
       setTimeout(() => {
         setShowSuccessMessage(false)
         setShowUnsuccessfulMessage(false);
-      }, 10000)
-    
-      console.log('About to set completed challenge');
-      console.log('Completed challenge set');
-    
-      console.log('About to show success message');
-      console.log('Success message shown:', showSuccessMessage);
-      
+      }, 10000)   
     } catch (error) {
       console.log('An error occurred:', error);
     }
@@ -126,6 +120,12 @@ const Feed = ({ navigate }) => {
             </div>
           </div>
 
+        {showPaymentMessage && (
+            <div className="payment-message">
+              Payment Success, Good luck with your challenge!
+            </div>
+          )}
+
         {showSuccessMessage && (
             <div className="success-message">
               Congratulations - Great Job on completing your challenge of {completedChallenge}!
@@ -143,6 +143,7 @@ const Feed = ({ navigate }) => {
                 token={token}
                 setToken={setToken}
                 setViewForm={setViewForm}
+                setShowPaymentMessage={setShowPaymentMessage}
                 navigate={navigate}
               />
             ) : (

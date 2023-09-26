@@ -22,7 +22,8 @@
 }
 
 .success-message,
-.unsuccessful-message {
+.unsuccessful-message,
+.payment-message {
     /* Dimensions */
     width: 100%;
     max-width: 1000px;
@@ -40,7 +41,7 @@
     
     text-align: center;
     color: white;
-    font-size: 50;
+    font-size: 40px;
     font-family: 'Helvetica Neue';
     font-weight: bold;
 }
