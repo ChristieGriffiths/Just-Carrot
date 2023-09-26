@@ -10,9 +10,6 @@ import PageSeven from "./PageSeven/PageSeven";
 import MultiStepProgressBar from "./MultiStepProgressBar/MultiStepProgressBar";
 import jwt_decode from 'jwt-decode';
 import tachyons from "tachyons";
-import Logo from "./Logo/Logo";
-
-
 import "react-datepicker/dist/react-datepicker.css"
 
 
@@ -145,7 +142,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
   
   return (
     <div className="App">
-      <Logo />
+    
       <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
       {{
         pageone: <PageOne onButtonClick={nextPage} handleChallengeChange={handleChallengeChange} />,

@@ -1,111 +1,47 @@
-.logout-button {
-  margin: 20px;
-  padding: 10px 20px;
-  position: fixed;
-  bottom: 0;
-}
-
-#targets {
-  margin: 20px;
-}
-
-/* Navbar styles */
-.navbar {
-  background-color: #333;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Helvetica Neue', sans-serif; /* Added */
-  font-weight: bold; /* Added */
-}
-
-
-.navbar-logo {
-  height: 100px;
-}
-
-.navbar-items {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.navbar-button, .dropdown-content button {
-  color: white;
-  background-color: transparent;  /* Changed from #555 to transparent */
-  border: none;  /* Added */
-  padding: 10px 20px;
-  text-align: center;
-  cursor: pointer;
-  margin: 0 5px;
-  flex: 1;
-}
-
-.navbar-button:hover, .dropdown-content button:hover {
-  background-color: transparent;  /* Changed from #777 to transparent */
-  border: none;  /* Added */
-}
-
-/* Dropdown styles */
-.dropdown-button {
-  position: relative;
-}
-
-.dropdown-content {
-  position: absolute;
-  background-color: #333;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content button {
-  color: white;
-  padding: 10px;
-  display: block;
-}
-
-.container {
-  position: relative; 
-  min-height: 100vh;  /* Full height */
-  width: 100%;  /* Full width */
-}
-
-.website-footer {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
-.footer-content {
+.feed-background {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  min-height:150vh; /* Minimum full height of the viewport */
 
-.footer-links {
-  margin-top: 0.5rem;
-}
-
-.footer-links a {
-  color: white;
-  margin: 0 1rem;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
+  background-image: url('../../assets/blue.png');
+  background-size: 100%; /* To make sure the image covers the full container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
 .form-container {
-  position: absolute;  /* Position it absolutely */
-  top: 0;             /* Align to the top of the container */
-  left: 0;            /* Align to the left of the container */
-  width: 100%;        /* Take full width */
-  /* ... existing styles ... */
+  position: absolute;  
+  top: 0;         
+  left: 0;          
+  width: 100%;    
+
 }
 
 #feed {
-  margin-top: 150px; /* Adjust this value according to your navbar's height */
+  margin-top: 150px; 
+}
+
+.success-message,
+.unsuccessful-message,
+.payment-message {
+    /* Dimensions */
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    
+    /* Centering */
+    margin: auto;
+    margin-top: 250px;
+;
+    
+    /* Visuals */
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
 }

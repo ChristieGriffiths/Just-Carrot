@@ -1,11 +1,11 @@
 import React from 'react';
 import './Home.css';
+import '../Footer.css';
+import '../Navbar.css';
 import { Link } from "react-router-dom";
-
 import logo from '../../assets/logo.png';
 import homePageImage from '../../assets/HomePageImage.png';
 import howItWorks from '../../assets/howItWorks.png';
-import aboutUs from '../../assets/aboutUs.png';
 
 const Home = () => {
   const handleHowItWorksClick = () => {
@@ -17,12 +17,12 @@ const Home = () => {
     <>
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
-          <div className="auth-links">
-          <button className="navbar-button" onClick={handleHowItWorksClick}>How it works</button>
-          <Link to="/aboutus" className="navbar-button link-button">About us</Link> {/* added link-button class */}
-            <Link to="/signup" className="navbar-button link-button">Sign Up</Link>
-            <Link to="/login" className="navbar-button link-button">Sign In</Link>
-          </div>
+        <div className="navbar-button">
+        <button className="navbar-button" onClick={handleHowItWorksClick}>How it works</button>
+        <Link to="/aboutus" className="navbar-button link-button">About us</Link> {/* added link-button class */}
+        <Link to="/signup" className="navbar-button link-button">Sign Up</Link>
+        <Link to="/login" className="navbar-button link-button">Sign In</Link>
+        </div>
       </div>
       <div className="content-container">
         <div className="home-page-container">

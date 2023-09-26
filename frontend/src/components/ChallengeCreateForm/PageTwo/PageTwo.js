@@ -61,7 +61,7 @@ const PageTwo = ({ onButtonClick, handleCompleteDate, handleCompleteTime }) => {
         <div className="button-wrapper">
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <input
-            className="next-button"
+            className="PageTwoNextButton"
             type="submit"
             value="Next"
             onClick={handleButtonClick}

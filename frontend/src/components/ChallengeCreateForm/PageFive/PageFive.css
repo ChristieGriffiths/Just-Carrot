@@ -59,6 +59,7 @@
 .selfVerifyName {
   font-size: 1.2em;
   margin: 0;
+  border: 20px;
 
 }
 
@@ -82,4 +83,14 @@
 
 .mw5 bg-white pa2-ns mt5 dib {
   background-color: transparent;
+}
+
+.PageFiveNextButton {
+  border-style: none;
+  width: 100%;
+  background-color: orange; /* Making the button orange */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 30px;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import './LoginForm.css'
+import '../Navbar.css';
 import logo from '../../assets/logo.png';
 import loginImage from '../../assets/loginImage.jpg';
 
@@ -44,32 +45,28 @@ const LogInForm = ({ navigate }) => {
 
   
   return (
-    <div className="main-container">
+    <div className="log-in-main-container">
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="auth-links"> {/* Wrap the buttons in a div with class "auth-links" */}
+        <div className="auth-links"> 
           <Link to="/" className="navbar-button">Home</Link>
           <Link to="/signup" className="navbar-button">Sign Up</Link>
-          <Link to="/login" className="navbar-button">Sign In</Link>
         </div>
       </div>
       <div className="content">
-        <div className="login-form">
+   
         <p>{errorMessage}</p>
-        <form className="LoginForm" onSubmit={handleSubmit}>
+        <form className="Login-SignUp-Form" onSubmit={handleSubmit}>
           <input placeholder='Email' id="email" type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
           <input placeholder='Password' id="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-          <input role='submit-button' id='submit' type="submit" value="Submit" />
+          <input className="SignUpInput" id='submit' type="submit" value="Submit" />
         </form>
-        <button onClick={() => navigate('/signup')}>Go to Sign Up</button>
-        </div>
-        <div className="login-image-container">
-          <img src={loginImage} alt="img" />
-        </div>
+      
+    
       </div>
       <footer className="website-footer">
         <div className="footer-content">
-          <p>&copy; 2023 YourWebsiteName. All rights reserved.</p>
+          <p>&copy; 2023 Just Carrot. All rights reserved.</p>
           <div className="footer-links">
             <Link to="/terms">Terms & Conditions</Link>
             <Link to="/privacy">Privacy Policy</Link>

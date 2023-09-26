@@ -1,5 +1,7 @@
 import React from 'react';
 import './AboutUs.css';
+import '../Navbar.css';
+import '../Footer.css';
 import { Link } from "react-router-dom";
 
 import logo from '../../assets/logo.png';
@@ -11,10 +13,10 @@ const AboutUs = () => {
     <>
    <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="auth-links"> {/* Wrap the buttons in a div with class "auth-links" */}
-          <Link to="/" className="navbar-button">Home</Link>
-          <Link to="/signup" className="navbar-button">Sign Up</Link>
-          <Link to="/login" className="navbar-button">Sign In</Link>
+        <div className="navbar-button"> 
+        <Link to="/" className="navbar-button">Home</Link>
+        <Link to="/signup" className="navbar-button">Sign Up</Link>
+        <Link to="/login" className="navbar-button">Sign In</Link>
         </div>
       </div>
         <div className="content-container">

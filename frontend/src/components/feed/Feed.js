@@ -3,10 +3,12 @@ import jwt_decode from 'jwt-decode'; // Assuming jwt_decode is imported
 import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
-import { sendEmail, fetchEmail } from './email'; 
+import '../Navbar.css';
+import '../Footer.css';
+
+import { sendEmail, fetchUserEmailByEmail, fetchUserEmailById } from './email'; 
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
-import carrots from '../../assets/blue.png';
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -16,6 +18,7 @@ const Feed = ({ navigate }) => {
   const [completedChallenge, setCompletedChallenge] = useState(null);
   const [showUnsuccessfulMessage, setShowUnsuccessfulMessage] = useState(false);
   const [unsuccessfulChallenge, setUnsuccessfulChallenge] = useState(null);
+  const [showPaymentMessage, setShowPaymentMessage] = useState(null)
 
   useEffect(() => {
     if (token) {
@@ -61,9 +64,10 @@ const Feed = ({ navigate }) => {
     }
   }, [token, navigate]);
 
-  
-  
   const newChallenge = () => {
+    setShowSuccessMessage(false)
+    setShowUnsuccessfulMessage(false)
+    setShowPaymentMessage(false)
     setViewForm(true);
   }
 
@@ -72,75 +76,58 @@ const Feed = ({ navigate }) => {
   };
 
   const onUpdate = async (receivedData) => {
+    console.log('recieved data', receivedData)
     const updatedPost = receivedData.post;
     const updatedPosts = posts.map(post => 
       post._id === updatedPost._id ? updatedPost : post
     );
     setPosts([...updatedPosts]);
-    const email = await fetchEmail(receivedData.post._id, token);
-    if (email) {
-      await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
+    try {
+      const email = await fetchUserEmailById(receivedData.post.userId);
+      if (receivedData.post.completed) {
+        await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
+        setCompletedChallenge(receivedData.post.challenge);
+        setShowSuccessMessage(true);
+      } else { 
+        await sendEmail('unsuccess', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
+        setUnsuccessfulChallenge(receivedData.post.chosenCharity);
+        setShowUnsuccessfulMessage(true);
+      }
+      setTimeout(() => {
+        setShowSuccessMessage(false)
+        setShowUnsuccessfulMessage(false);
+      }, 10000)   
+    } catch (error) {
+      console.log('An error occurred:', error);
     }
-    setCompletedChallenge(receivedData.post.challenge);
-    setShowSuccessMessage(true);
-    setTimeout(() => {
-      setShowSuccessMessage(false);
-    }, 10000); 
   };
-
-  const onUnsuccessful = async (challengeId, challengeName, incentiveAmount) => {
-    const email = await fetchEmail(challengeId, token);
-    if (email) {
-      await sendEmail('unsuccess', email, challengeName, incentiveAmount);
-    }
-    setUnsuccessfulChallenge(challengeName);
-    setShowUnsuccessfulMessage(true);
-    setShowSuccessMessage(false);
-    setTimeout(() => {
-      setShowUnsuccessfulMessage(false);
-    }, 10000)
-  };
-
 
   const logout = () => {
     window.localStorage.removeItem("token");
     navigate('/login');
   }
 
-  if(token) {
+  if (token) {
     return (
       <>
-       <div className="navbar">
-        <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="navbar-items">
-          <button className="navbar-button" onClick={goToHome}>Home</button>
-          <button className="navbar-button" onClick={newChallenge}>Create Challenge</button>
-          <button className="navbar-button" onClick={logout}>Log out </button>
-        </div>
-      </div>
-       <div className="container" style={{ backgroundImage: `url(${carrots})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
-        <div className='form-container'>
-          {viewForm ? (
-            <ChallengeCreateForm 
-              token={token} 
-              setToken={setToken}
-              setViewForm={setViewForm}
-              navigate={navigate} 
-            />
-          ) : (
-            <div id='feed' role="feed">
-              {posts.map(
-                (post) => ( <Post
-                  post={post} 
-                  key={post._id} 
-                  token={token} 
-                  onUpdate={onUpdate} 
-                  onUnsuccessful={onUnsuccessful} 
-                   /> )
-              )}
+        <div className="feed-background">
+
+          <div className="navbar">
+            <img src={logo} alt="Logo" className="navbar-logo" />
+            <div className="navbar-buttons">
+              <button onClick={goToHome} className="navbar-button">Home</button>
+              <button onClick={newChallenge} className="navbar-button">Create Challenge</button>
+              <button onClick={logout} className="navbar-button">Log out</button>
+            </div>
+          </div>
+
+        {showPaymentMessage && (
+            <div className="payment-message">
+              Payment Success, Good luck with your challenge!
             </div>
           )}
-          {showSuccessMessage && (
+
+        {showSuccessMessage && (
             <div className="success-message">
               Congratulations - Great Job on completing your challenge of {completedChallenge}!
             </div>
@@ -150,17 +137,42 @@ const Feed = ({ navigate }) => {
               Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
             </div>
           )}
+
+          <div className="form-container">
+            {viewForm ? (
+              <ChallengeCreateForm 
+                token={token}
+                setToken={setToken}
+                setViewForm={setViewForm}
+                setShowPaymentMessage={setShowPaymentMessage}
+                navigate={navigate}
+              />
+            ) : (
+              <div id="feed" role="feed">
+                {posts.map((post) => (
+                  <Post
+                    post={post}
+                    key={post._id}
+                    token={token}
+                    onUpdate={onUpdate}
+    
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-  <div className="website-footer">
+
+        <div className="website-footer">
           <div className="footer-content">
-            <p>Copyright © 2023 Your Company</p>
+            <p>Copyright © 2023 Just Carrot</p>
             <div className="footer-links">
-              <Link to="/">Home</Link>
-              <Link to="/about">About Us</Link>
-              <Link to="/contact">Contact</Link>
+              <Link to="/terms">Terms & Conditions</Link>
+              <Link to="/privacy">Privacy Policy</Link>
             </div>
           </div>
         </div>
+  
       </>
     );
   } else {

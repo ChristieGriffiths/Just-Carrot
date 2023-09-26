@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import signUpImage from '../../assets/signUpImage.jpeg';
 import './SignUpForm.css';
+import '../Navbar.css';
+import '../Footer.css';
+
 
 const SignUpForm = ({ navigate }) => {
   const [firstName, setFirstName] = useState("")
@@ -50,35 +53,32 @@ const SignUpForm = ({ navigate }) => {
 
 
   return (
-    <div className="main-container">
+    <div className="sign-up-main-container">
       <div className="navbar">
         <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="auth-links"> {/* Wrapped buttons with auth-links div */}
+        <div className="navbar-button">
           <Link to="/" className="navbar-button link-button">Home</Link>
           <Link to="/login" className="navbar-button link-button">Sign In</Link>
         </div>
       </div>
       <div className="content">
-        <h1 id="Sign up">Sign up</h1>
-        <form className="SignUpForm" onSubmit={handleSubmit}>
+
+        <form className="Login-SignUp-Form" onSubmit={handleSubmit}>
           <input placeholder="First name" id="firstName" type='text' value={firstName} minLength="2" onChange={handleFirstNameChange} required />
           <input placeholder="Surname" id="surname" type='text' value={surname} minLength="2" onChange={handleSurnameChange} required />
           <input placeholder="Email" id="email" type='text' pattern='^.*@.*\.(com|co\.uk)$' title="Please enter a valid email address" value={email} minLength="3" onChange={handleEmailChange} required />
           <input placeholder="Password" id="password" type='password' value={password} minLength="5" onChange={handlePasswordChange} required />
           <p className="validation-error"> {validationError.password}</p>
-          <input id='submit' type="submit" value="Submit" />
+          <input className= "SignUpInput" type="submit" value="Submit" />
         </form>
-        <div className="sign-up-image-container">
-          <img src={signUpImage} alt="img" />
-        </div>
+  
       </div>
       <div className="website-footer">
         <div className="footer-content">
           <p>Copyright © 2023 Just Carrot</p>
           <div className="footer-links">
-            <Link to="/">Home</Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/contact">Contact</Link>
+          <Link to="/terms">Terms & Conditions</Link>
+            <Link to="/privacy">Privacy Policy</Link>
           </div>
         </div>
       </div>

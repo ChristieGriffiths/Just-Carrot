@@ -54,7 +54,7 @@ const PageFour = ({ onButtonClick, handleChosenCharity }) => {
         ))}
       </div>
       <input
-        className="f6 grow br2 ph3 pv2 mb2 dib white"
+        className="PageFourNextButton"
         style={{ borderStyle: "none", width: "100%", backgroundColor: "#f39200" }}
         type="submit"
         value="Next"

@@ -1,60 +1,3 @@
-/* Existing styles */
-.navbar {
-  background-color: #333;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: right;
-  font-family: 'Helvetica Neue', sans-serif; /* Added */
-  font-weight: bold; /* Added */
-}
-
-.link-button {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: bold;
-}
-
-.navbar-logo {
-  height: 100px;
-}
-.navbar-items {
-  display: flex;
-  justify-content: flex-end;  /* Align items to the right */
-  flex-grow: 1;
-}
-
-.navbar-button {
-  color: white;
-  background-color: transparent;
-  border: none;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  margin: 0 15px; /* Increased margin to space out buttons */ /* Reduced margin to lessen space between buttons */
-  padding: 0;
-  flex-grow: 0;  /* Prevent buttons from taking extra space */
-  text-decoration: none;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: bold;
-}
-
-
-.navbar-button:hover {
-  background-color: transparent;
-  border: none;
-}
-
-.auth-links {
-
-  align-items: center;
-}
-
-.auth-separator {
-  margin: 0 8px;
-  color: white;
-}
-
-/* Existing styles */
 .content-container {
   position: relative;
 }
@@ -64,7 +7,6 @@
   max-height: 100%;
 }
 
-/* New styles */
 .how-it-works-image {
   display: flex;
   justify-content: center;
