@@ -7,9 +7,9 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/x-date-pickers": "^6.11.1",
+    "@stripe/react-stripe-js": "^2.3.0",
     "@stripe/stripe-js": "^2.1.6",
     "cypress": "^10.7.0",
-    "eslint": "^8.23.0",
     "react": "^18.2.0",
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build",
+    "build": "npx react-scripts build",
     "test": "npm run test:unit && npm run test:feature",
     "test:unit": "cypress run --component",
     "test:feature": "cypress run",
@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint": "^8.50.0"
   }
 }

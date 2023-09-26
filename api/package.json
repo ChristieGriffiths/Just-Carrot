@@ -34,9 +34,16 @@
     "supertest": "^6.2.4"
   },
   "devDependencies": {
+    "eslint": "^8.50.0",
     "jest": "^27.5.1"
   },
   "nodemonConfig": {
     "ext": "js,hbs"
-  }
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true,
+      "es6": true
+    },
 }

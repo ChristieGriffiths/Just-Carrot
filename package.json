@@ -16,8 +16,5 @@
     "build": "cd frontend && react-scripts build",
     "test": "cd frontend && react-scripts test",
     "eject": "cd frontend && react-scripts eject"
-  },
-  "devDependencies": {
-    "react-scripts": "^5.0.1"
   }
 }
