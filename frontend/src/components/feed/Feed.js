@@ -91,9 +91,10 @@ const Feed = ({ navigate }) => {
         setUnsuccessfulChallenge(receivedData.post.chosenCharity);
         setShowUnsuccessfulMessage(true);
       }
-      // setTimeout(() => {
-      //   setShowSuccessMessage(false) && setShowUnsuccessfulMessage(false);
-      // }, 10000)
+      setTimeout(() => {
+        setShowSuccessMessage(false)
+        setShowUnsuccessfulMessage(false);
+      }, 10000)
     
       console.log('About to set completed challenge');
       console.log('Completed challenge set');
@@ -131,7 +132,7 @@ const Feed = ({ navigate }) => {
             </div>
           )}
           {showUnsuccessfulMessage && (
-            <div className="unsuccessfull-message">
+            <div className="unsuccessful-message">
               Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
             </div>
           )}
