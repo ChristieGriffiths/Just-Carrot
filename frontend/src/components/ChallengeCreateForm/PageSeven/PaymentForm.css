@@ -35,7 +35,7 @@ button[type="submit"] {
 
 .PaymentButton {
   border-style: none;
-  width: 100%;
+  width: 80%;
   background-color: orange; /* Making the button orange */
   color: white;
   padding: 10px;

@@ -13,7 +13,7 @@ import tachyons from "tachyons";
 import "react-datepicker/dist/react-datepicker.css"
 
 
-const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
+const ChallengeCreateForm = ({token, setToken, setViewForm, setShowPaymentMessage } ) => {
   const [challenge, setChallenge] = useState("");
   const [completeDate, setCompleteDate] = useState(null);
   const [completeTime, setCompleteTime] = useState(null);
@@ -151,7 +151,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm} ) => {
         pagefour: <PageFour onButtonClick={nextPage} handleChosenCharity={handleChosenCharity} />,
         pagefive: <PageFive onButtonClick={nextPage} handleChosenValidation={handleChosenValidation} />,
         pagesix: <PageSix onButtonClick={nextPage} challenge={challenge} completeDate={completeDate} completeTime={completeTime} incentiveAmount={incentiveAmount} chosenCharity={chosenCharity} chosenValidation={chosenValidation} />,
-        pageseven: <PageSeven incentiveAmount={incentiveAmount} handlePaymentId={handlePaymentId} />,
+        pageseven: <PageSeven incentiveAmount={incentiveAmount} handlePaymentId={handlePaymentId} setShowPaymentMessage={setShowPaymentMessage} />,
       }[page]}
     </div>
   );
