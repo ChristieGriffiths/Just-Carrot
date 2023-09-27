@@ -23,8 +23,7 @@ const CARD_OPTIONS = {
   },
   hidePostalCode: true
 };
-export default function PaymentForm({ incentiveAmount, handlePaymentId }) {
-  const [success, setSuccess] = useState(false);
+export default function PaymentForm({ incentiveAmount, handlePaymentId, setShowPaymentMessage }) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -46,12 +45,13 @@ export default function PaymentForm({ incentiveAmount, handlePaymentId }) {
         });
 
         if (response.data.success) {
-          console.log('Successful payment');
-          setSuccess(true);
-          console.log('this should display paymentIntentId', response.data.paymentIntentId)
-          handlePaymentId(response.data.paymentIntentId);
-        }
 
+          handlePaymentId(response.data.paymentIntentId);
+          setShowPaymentMessage(true)
+          setTimeout(() => {
+            setShowPaymentMessage(false);
+          }, 10000);
+        }
       } catch (error) {
         console.log('Error', error);
       }
@@ -62,16 +62,10 @@ export default function PaymentForm({ incentiveAmount, handlePaymentId }) {
 
   return (
     <div className="PaymentFormContainer">
-      {!success ? (
         <form className="Form" onSubmit={handleSubmit} >
               <CardElement options={CARD_OPTIONS} />
           <button className="PaymentButton" type="submit">Pay</button>
         </form>
-      ) : (
-        <div className="CenteredMessage">
-          <h2>Good luck!</h2>
-        </div>
-      )}
     </div>
   );
 }
