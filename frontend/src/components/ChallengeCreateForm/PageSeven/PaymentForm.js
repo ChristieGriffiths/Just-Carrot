@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import './PaymentForm.css';
@@ -45,7 +45,6 @@ export default function PaymentForm({ incentiveAmount, handlePaymentId, setShowP
         });
 
         if (response.data.success) {
-
           handlePaymentId(response.data.paymentIntentId);
           setShowPaymentMessage(true)
           setTimeout(() => {

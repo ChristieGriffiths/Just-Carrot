@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import signUpImage from '../../assets/signUpImage.jpeg';
 import './SignUpForm.css';
 import '../Navbar.css';
 import '../Footer.css';
-
 
 const SignUpForm = ({ navigate }) => {
   const [firstName, setFirstName] = useState("")

@@ -20,12 +20,12 @@ const PageFive = ({ onButtonClick, handleChosenValidation }) => {
         <h2>How would you like to verify completion:</h2>
       </div>
       <div className="options">
-        <div
+        {/* <div
           className={`photo ${selectedVerificationMethod === 'Photo' ? 'selected' : ''}`}
           onClick={() => toggleSelected('Photo')}
         >
           <h1>Photo</h1>
-        </div>
+        </div> */}
         <div
           className={`selfVerify ${selectedVerificationMethod === 'Self-Verify' ? 'selected' : ''}`}
           onClick={() => toggleSelected('Self-Verify')}

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import './LoginForm.css'
 import '../Navbar.css';
 import logo from '../../assets/logo.png';
-import loginImage from '../../assets/loginImage.jpg';
 
 const LogInForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
@@ -34,16 +33,6 @@ const LogInForm = ({ navigate }) => {
     }
   }
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value)
-  }
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value)
-  }
-
-
-  
   return (
     <div className="log-in-main-container">
       <div className="navbar">
