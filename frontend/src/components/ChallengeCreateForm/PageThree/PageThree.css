@@ -1,0 +1,8 @@
+.slider {
+  padding: 40px;
+  font-size: 16px;
+}
+
+.MuiSlider-valueLabelLabel {
+  font-size: 20px; /* Adjust the font size as needed */
+}

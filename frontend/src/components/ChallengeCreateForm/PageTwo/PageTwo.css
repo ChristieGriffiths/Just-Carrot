@@ -1,0 +1,48 @@
+.main-container {
+  display: flex;
+  justify-content: flex-start; /* Align form to the top of the container */
+  align-items: center;
+  height: 100vh;
+  background-color: transparent; /* Making container transparent */
+}
+
+.PageTwoFormContainer {
+  margin: 100px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: transparent; 
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 18vh;
+}
+
+
+.date-input, .time-input {
+
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center; /* Centering the text inside the inputs */
+  background: transparent;
+  border:  none;
+}
+
+
+.button-wrapper {
+  margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.PageTwoNextButton {
+  border-style: none;
+  width: 100%;
+  background-color: orange; /* Making the button orange */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

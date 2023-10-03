@@ -1,0 +1,40 @@
+.feed-background {
+  display: flex;
+  flex-direction: column;
+  min-height:150vh; /* Minimum full height of the viewport */
+
+  background-image: url('../../assets/blue.png');
+  background-size: 100%; /* To make sure the image covers the full container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+.form-container {
+  position: absolute;  
+  top: 0;         
+  left: 0;          
+  width: 100%;    
+
+}
+
+#feed {
+  margin-top: 150px; 
+}
+
+.success-message,
+.unsuccessful-message,
+.payment-message {
+    width: 100%;
+    max-width: 1000px;
+    padding: 50px;
+    margin: auto;
+    margin-top: 250px;
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
+}

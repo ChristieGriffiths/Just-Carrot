@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6d3e6c23.css",
+    "main.js": "/static/js/main.2faa829f.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/loginImage.jpg": "/static/media/loginImage.a20a6bb28eb117db8e4a.jpg",
+    "static/media/blue.png": "/static/media/blue.c570d952316d4754e0d9.png",
+    "static/media/HomePageImage.jpg": "/static/media/HomePageImage.b346641b11a49624e106.jpg",
+    "static/media/aboutUs.png": "/static/media/aboutUs.5b83653bfa5f9f0bd179.png",
+    "static/media/privacy.jpg": "/static/media/privacy.beb1e8052337f3421057.jpg",
+    "static/media/GiveDirectlyImage.png": "/static/media/GiveDirectlyImage.9a604ba9b11b47629a1f.png",
+    "static/media/NTIImage.png": "/static/media/NTIImage.44399dc7389675e5e5c7.png",
+    "static/media/AMFImage.png": "/static/media/AMFImage.f742276bf47d5186013a.png",
+    "static/media/signUpImage.jpeg": "/static/media/signUpImage.e9407f066e63c8268e8d.jpeg",
+    "static/media/terms.jpg": "/static/media/terms.db266556fd165606cddc.jpg",
+    "static/media/howItWorks.png": "/static/media/howItWorks.67b807ad464ca1b541de.png",
+    "static/media/logo.png": "/static/media/logo.7714a05590e2db22a302.png",
+    "static/media/NTILogo.png": "/static/media/NTILogo.2dfd7ea59909a4ae3d90.png",
+    "static/media/AMFLogo.png": "/static/media/AMFLogo.c28340453dc9bb3f16b5.png",
+    "index.html": "/index.html",
+    "main.6d3e6c23.css.map": "/static/css/main.6d3e6c23.css.map",
+    "main.2faa829f.js.map": "/static/js/main.2faa829f.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d3e6c23.css",
+    "static/js/main.2faa829f.js"
+  ]
+}

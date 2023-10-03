@@ -1,0 +1,10 @@
+.about-us-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-us-container img {
+  max-width: 40%;
+
+}

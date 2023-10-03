@@ -1,0 +1,31 @@
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.choice-container {
+  padding: 16px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.choice-content {
+  font-size: 24px;
+  text-align: center;
+  padding: 16px;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.confirmation-page {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  padding: 16px;
+  border-radius: 4px;
+  width:60%;
+  margin: auto; 
+  padding: 20px;
+}

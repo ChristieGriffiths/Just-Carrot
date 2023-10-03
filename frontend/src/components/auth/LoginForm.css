@@ -1,0 +1,50 @@
+.login-image-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 70%;
+  margin-top: -50vh;
+  margin-bottom: 0;
+  z-index: -1;
+}
+
+.login-image-container img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0;
+}
+
+.log-in-main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Minimum full height of the viewport */
+
+  background-image: url('../../assets/loginImage.jpg');
+  background-size: cover; /* To make sure the image covers the full container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+.content {
+  flex: 1;
+  background-color: transparent; 
+}
+
+.login-form {
+  margin-left: 40px;  /* Add left margin */
+  background-color: rgba(255, 255, 255, 0.1); /* Slight opacity */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Almost invisible border */
+}
+
+h1#Log\ in {
+  text-align: left;
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.LoginForm {
+  position: relative;
+  left: 0;
+  margin-left: 0;
+}

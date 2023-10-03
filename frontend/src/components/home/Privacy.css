@@ -1,0 +1,20 @@
+.privacy-content {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+}
+
+.privacy-image {
+  max-width: 50%;  /* Adjust based on your preference */
+  height: auto;
+
+}
+
+.privacy-text-wrapper {
+  flex: 1;  /* Take up remaining space */
+  margin: 20px;
+}
+
+.privacy-text {
+  font-size: 16px;
+  line-height: 1.5;
+}

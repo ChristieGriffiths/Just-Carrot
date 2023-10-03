@@ -1,0 +1,44 @@
+/* Make the form container larger */
+.PaymentFormContainer {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: transparent;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the form itself larger */
+.Form {
+  font-size: 1.5em;
+}
+
+/* Enlarge the button */
+button[type="submit"] {
+  padding: 15px 30px;
+  font-size: 1.2em;
+}
+
+/* Style for Stripe Card Element */
+.StripeElement {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2em;
+}
+
+/* Centered Message styling */
+.CenteredMessage {
+  text-align: center;
+  font-size: 2em;
+}
+
+
+.PaymentButton {
+  border-style: none;
+  width: 80%;
+  background-color: orange; /* Making the button orange */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 30px;
+}
