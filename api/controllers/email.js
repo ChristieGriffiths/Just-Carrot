@@ -6,7 +6,7 @@ const imageAsBase64 = fs.readFileSync(imagePath, { encoding: "base64" });
 require('dotenv').config();
 
 const sendEmail = async (req, res) => {
-
+  console.log("?????????")
   const { to, subject, text } = req.body;
   let transporter = await nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,

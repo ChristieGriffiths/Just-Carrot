@@ -19,7 +19,7 @@ const UsersController = {
   FetchEmailById: async (req, res) => { // New method
     const userId = req.params.userId;
     try {
-      const user = await User.findById(userId).select("email"); // Fetch only the email field
+      const user = await User.findById(userId).select("email");
       if (user) {
         res.status(200).json({ email: user.email });
       } else {
