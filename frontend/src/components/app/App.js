@@ -7,6 +7,7 @@ import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
 import React from 'react';
 import Feed from '../feed/Feed'
+import {Helmet} from "react-helmet";
 import {
   useNavigate,
   Routes,
@@ -17,6 +18,12 @@ import {
 const App = () => {
   return (
     <div>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Just Carrot</title>
+                <meta name="Title" content="favicon title" />
+            </Helmet>
+      
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/terms' element={<Terms/>}/>
