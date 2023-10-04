@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import './LoginForm.css'
 import '../Navbar.css';
 import logo from '../../assets/logo.png';
+import BarLoader from "react-spinners/BarLoader";
+import useLoading from '../Loading';
+
 
 const LogInForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("")
+
+  const loading = useLoading(2000)
 
   const handleSubmit = async (event) => {
     event.preventDefault();

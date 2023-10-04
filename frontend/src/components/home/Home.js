@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './Home.css';
 import '../Footer.css';
 import '../Navbar.css';
@@ -10,7 +10,7 @@ import BarLoader from "react-spinners/BarLoader";
 import useLoading from '../Loading';
 
 const Home = () => {
-  const loading = useLoading(4000)
+  const loading = useLoading(2000)
 
   const handleHowItWorksClick = () => {
     const howItWorksImageElement = document.getElementById('how-it-works-image');

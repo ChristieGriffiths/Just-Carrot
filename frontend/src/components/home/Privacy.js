@@ -3,13 +3,14 @@ import './Home.css';
 import '../Navbar.css';
 import '../Footer.css';
 import './Privacy.css'
-
+import BarLoader from "react-spinners/BarLoader";
+import useLoading from '../Loading';
 import { Link } from "react-router-dom";
-
 import logo from '../../assets/logo.png';
-import privacy from '../../assets/privacy.jpg'; // Assuming you meant this to be the privacy image
+import privacy from '../../assets/privacy.jpg';
 
 const Privacy = () => {
+  const loading = useLoading(2000)
 
   return (
     <>
@@ -21,18 +22,28 @@ const Privacy = () => {
           <Link to="/login" className="navbar-button">Sign In</Link>
         </div>
       </div>
-      <div className="content-container">
-        <div className="privacy-content">
-          <img src={privacy} alt="Privacy Policy" className="privacy-image" />
-          <div className="privacy-text-wrapper">  {/* New wrapper div */}
-            <p className="privacy-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
-              Donec in efficitur leo. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-              Nullam dictum felis eu pede mollis pretium.
-            </p>
+      {loading ? (
+        <div className="loader-container"> {/* Loading block */}
+          <BarLoader
+            color={"#F37A24"}
+            loading={loading}
+            size={150}
+          />
+        </div>
+      ) : (
+        <div className="content-container"> {/* Content block */}
+          <div className="privacy-content">
+            <img src={privacy} alt="Privacy Policy" className="privacy-image" />
+            <div className="privacy-text-wrapper">
+              <p className="privacy-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
+                Donec in efficitur leo. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                Nullam dictum felis eu pede mollis pretium.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div className="website-footer">
         <div className="footer-content">
           <p>Copyright © 2023 Just Carrot</p>
@@ -44,6 +55,6 @@ const Privacy = () => {
       </div>
     </>
   );
-}
+};
 
 export default Privacy;
