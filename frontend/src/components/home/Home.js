@@ -18,25 +18,25 @@ const Home = () => {
   };
 
   return (
-    <>
-      <div className="navbar">
-        <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="navbar-button">
-          <button className="navbar-button" onClick={handleHowItWorksClick}>How it works</button>
-          <Link to="/aboutus" className="navbar-button link-button">About us</Link>
-          <Link to="/signup" className="navbar-button link-button">Sign Up</Link>
-          <Link to="/login" className="navbar-button link-button">Sign In</Link>
-        </div>
+    loading ? (
+      <div className="loader-container">
+        <BarLoader
+          color={"#F37A24"}
+          loading={loading}
+          size={150}
+        />
       </div>
-      {loading ? (
-        <div className="loader-container">
-          <BarLoader
-            color={"#F37A24"}
-            loading={loading}
-            size={150}
-          />
+    ) : (
+      <>
+        <div className="navbar">
+          <img src={logo} alt="Logo" className="navbar-logo" />
+          <div className="navbar-button">
+            <button className="navbar-button" onClick={handleHowItWorksClick}>How it works</button>
+            <Link to="/aboutus" className="navbar-button link-button">About us</Link>
+            <Link to="/signup" className="navbar-button link-button">Sign Up</Link>
+            <Link to="/login" className="navbar-button link-button">Sign In</Link>
+          </div>
         </div>
-      ) : (
         <div className="content-container">
           <div className="home-page-container">
             <img src={homePageImage} alt="Home Page" />
@@ -45,18 +45,18 @@ const Home = () => {
             <img src={howItWorks} alt="How It Works" />
           </div>
         </div>
-      )}
-      <div className="website-footer">
-        <div className="footer-content">
-          <p>Copyright © 2023 Just Carrot</p>
-          <div className="footer-links">
-            <Link to="/terms">Terms & Conditions</Link>
-            <Link to="/privacy">Privacy Policy</Link>
+        <div className="website-footer">
+          <div className="footer-content">
+            <p>Copyright © 2023 Just Carrot</p>
+            <div className="footer-links">
+              <Link to="/terms">Terms & Conditions</Link>
+              <Link to="/privacy">Privacy Policy</Link>
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
+    )
   );
-}
+};
 
 export default Home;

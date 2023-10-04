@@ -13,25 +13,25 @@ const Privacy = () => {
   const loading = useLoading(2000)
 
   return (
-    <>
-      <div className="navbar">
-        <img src={logo} alt="Logo" className="navbar-logo" />
-        <div className="navbar-items">
-          <Link to="/" className="navbar-button">Home</Link>
-          <Link to="/signup" className="navbar-button">Sign Up</Link>
-          <Link to="/login" className="navbar-button">Sign In</Link>
-        </div>
+    loading ? (
+      <div className="loader-container">
+        <BarLoader
+          color={"#F37A24"}
+          loading={loading}
+          size={150}
+        />
       </div>
-      {loading ? (
-        <div className="loader-container"> {/* Loading block */}
-          <BarLoader
-            color={"#F37A24"}
-            loading={loading}
-            size={150}
-          />
+    ) : (
+      <>
+        <div className="navbar">
+          <img src={logo} alt="Logo" className="navbar-logo" />
+          <div className="navbar-items">
+            <Link to="/" className="navbar-button">Home</Link>
+            <Link to="/signup" className="navbar-button">Sign Up</Link>
+            <Link to="/login" className="navbar-button">Sign In</Link>
+          </div>
         </div>
-      ) : (
-        <div className="content-container"> {/* Content block */}
+        <div className="content-container">
           <div className="privacy-content">
             <img src={privacy} alt="Privacy Policy" className="privacy-image" />
             <div className="privacy-text-wrapper">
@@ -43,18 +43,18 @@ const Privacy = () => {
             </div>
           </div>
         </div>
-      )}
-      <div className="website-footer">
-        <div className="footer-content">
-          <p>Copyright © 2023 Just Carrot</p>
-          <div className="footer-links">
-            <Link to="/terms">Terms & Conditions</Link>
-            <Link to="/privacy">Privacy Policy</Link>
+        <div className="website-footer">
+          <div className="footer-content">
+            <p>Copyright © 2023 Just Carrot</p>
+            <div className="footer-links">
+              <Link to="/terms">Terms & Conditions</Link>
+              <Link to="/privacy">Privacy Policy</Link>
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
+    )
   );
-};
+};  
 
 export default Privacy;

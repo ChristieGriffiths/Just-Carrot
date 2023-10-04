@@ -18,12 +18,11 @@ import {
 const App = () => {
   return (
     <div>
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>Just Carrot</title>
-                <meta name="Title" content="favicon title" />
-            </Helmet>
-      
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Just Carrot</title>
+          <meta name="Title" content="favicon title" />
+      </Helmet>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/terms' element={<Terms/>}/>

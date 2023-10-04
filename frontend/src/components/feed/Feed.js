@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode'; // Assuming jwt_decode is imported
+import jwt_decode from 'jwt-decode';
 import Post from '../post/Post';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
 import '../Navbar.css';
 import '../Footer.css';
+import useLoading from '../Loading';
+import BarLoader from "react-spinners/BarLoader";
 
 import { sendEmail, fetchUserEmailById } from './email'; 
 import { Link } from "react-router-dom";
@@ -19,6 +21,7 @@ const Feed = ({ navigate }) => {
   const [showUnsuccessfulMessage, setShowUnsuccessfulMessage] = useState(false);
   const [unsuccessfulChallenge, setUnsuccessfulChallenge] = useState(null);
   const [showPaymentMessage, setShowPaymentMessage] = useState(null)
+  const loading = useLoading(2000)
 
   useEffect(() => {
 
@@ -121,75 +124,84 @@ const Feed = ({ navigate }) => {
   if (token) {
     return (
       <>
-        <div className="feed-background">
-
-          <div className="navbar">
-            <img src={logo} alt="Logo" className="navbar-logo" />
-            <div className="navbar-buttons">
-              <button onClick={HideChallengeForm} className="navbar-button">Home</button>
-              <button onClick={newChallenge} className="navbar-button">Create Challenge</button>
-              <button onClick={logout} className="navbar-button">Log out</button>
-            </div>
+        {loading ? (
+          <div className="loader-container">
+            <BarLoader
+              color={"#F37A24"}
+              loading={loading}
+              size={150}
+            />
           </div>
-
-        {showPaymentMessage && (
-            <div className="payment-message">
-              Payment Success, Good luck with your challenge!
-            </div>
-          )}
-
-        {showSuccessMessage && (
-            <div className="success-message">
-              Congratulations - Great Job on completing your challenge of {completedChallenge}!
-            </div>
-          )}
-          {showUnsuccessfulMessage && (
-            <div className="unsuccessful-message">
-              Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
-            </div>
-          )}
-
-          <div className="form-container">
-            {viewForm ? (
-              <ChallengeCreateForm 
-                token={token}
-                setToken={setToken}
-                setViewForm={setViewForm}
-                setShowPaymentMessage={setShowPaymentMessage}
-                navigate={navigate}
-              />
-            ) : (
-              <div id="feed" role="feed">
-                {posts.map((post) => (
-                  <Post
-                    post={post}
-                    key={post._id}
-                    token={token}
-                    onUpdate={onUpdate}
-    
-                  />
-                ))}
+        ) : (
+          <>
+            <div className="feed-background">
+              <div className="navbar">
+                <img src={logo} alt="Logo" className="navbar-logo" />
+                <div className="navbar-buttons">
+                  <button onClick={HideChallengeForm} className="navbar-button">Home</button>
+                  <button onClick={newChallenge} className="navbar-button">Create Challenge</button>
+                  <button onClick={logout} className="navbar-button">Log out</button>
+                </div>
               </div>
-            )}
-          </div>
-        </div>
 
-        <div className="website-footer">
-          <div className="footer-content">
-            <p>Copyright © 2023 Just Carrot</p>
-            <div className="footer-links">
-              <Link to="/terms">Terms & Conditions</Link>
-              <Link to="/privacy">Privacy Policy</Link>
+              {showPaymentMessage && (
+                <div className="payment-message">
+                  Payment Success, Good luck with your challenge!
+                </div>
+              )}
+
+              {showSuccessMessage && (
+                <div className="success-message">
+                  Congratulations - Great Job on completing your challenge of {completedChallenge}!
+                </div>
+              )}
+
+              {showUnsuccessfulMessage && (
+                <div className="unsuccessful-message">
+                  Unlucky but nice try! On the bright side, you donated to {unsuccessfulChallenge}.
+                </div>
+              )}
+
+              <div className="form-container">
+                {viewForm ? (
+                  <ChallengeCreateForm 
+                    token={token}
+                    setToken={setToken}
+                    setViewForm={setViewForm}
+                    setShowPaymentMessage={setShowPaymentMessage}
+                    navigate={navigate}
+                  />
+                ) : (
+                  <div id="feed" role="feed">
+                    {posts.map((post) => (
+                      <Post
+                        post={post}
+                        key={post._id}
+                        token={token}
+                        onUpdate={onUpdate}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-  
+
+            <div className="website-footer">
+              <div className="footer-content">
+                <p>Copyright © 2023 Just Carrot</p>
+                <div className="footer-links">
+                  <Link to="/terms">Terms & Conditions</Link>
+                  <Link to="/privacy">Privacy Policy</Link>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </>
     );
   } else {
     navigate('/signin');
   }
-
-}
+};
 
 export default Feed;
