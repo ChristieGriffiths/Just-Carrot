@@ -7,16 +7,10 @@ import logo from '../../assets/logo.png';
 import homePageImage from '../../assets/HomePageImage.jpg';
 import howItWorks from '../../assets/howItWorks.png';
 import BarLoader from "react-spinners/BarLoader";
+import useLoading from '../Loading';
 
 const Home = () => {
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 4000)
-  }, [])
+  const loading = useLoading(4000)
 
   const handleHowItWorksClick = () => {
     const howItWorksImageElement = document.getElementById('how-it-works-image');

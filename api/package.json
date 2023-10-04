@@ -1,7 +1,7 @@
 {
-  "name": "acebook",
+  "name": "justcarrot",
   "version": "0.0.0",
-  "description": "Template for the AceBook project",
+  "description": "Just Carrot",
   "license": "CC BY-NC-SA",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">=18.1.0"
+    "node": "18.1.0"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
