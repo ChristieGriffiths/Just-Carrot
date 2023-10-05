@@ -2,7 +2,7 @@ import React from 'react';
 import './Home.css';
 import '../Footer.css';
 import '../Navbar.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.png';
 import homePageImage from '../../assets/HomePageImage.jpg';
 import howItWorks from '../../assets/howItWorks.png';
@@ -10,11 +10,16 @@ import BarLoader from "react-spinners/BarLoader";
 import useLoading from '../Loading';
 
 const Home = () => {
+  const navigate = useNavigate();
   const loading = useLoading(2000)
 
   const handleHowItWorksClick = () => {
     const howItWorksImageElement = document.getElementById('how-it-works-image');
     if (howItWorksImageElement) { howItWorksImageElement.scrollIntoView({ behavior: 'smooth' }); }
+  };
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
   };
 
   return (
@@ -43,6 +48,7 @@ const Home = () => {
           </div>
           <div className="how-it-works-image" id="how-it-works-image">
             <img src={howItWorks} alt="How It Works" />
+            <button className="overlay-signup-button" onClick={handleSignUpClick}>Begin</button>
           </div>
         </div>
         <div className="website-footer">
