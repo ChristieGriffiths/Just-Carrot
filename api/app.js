@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
-
+const tokenChecker = require("./middleware/tokenChecker")
 const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
@@ -24,24 +24,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "./build")));
-
-const tokenChecker = (req, res, next) => {
-  let token;
-  const authHeader = req.get("Authorization");
-  if (authHeader) {
-    token = authHeader.slice(7);
-  }
-
-  JWT.verify(token, process.env.JWT_SECRET , (err, payload) => {
-    if (err) {
-      console.log(err);
-      res.status(401).json({ message: "auth error" });
-    } else {
-      req.user_id = payload.user_id;
-      next();
-    }
-  });
-};
 
 app.use("/api/posts", tokenChecker, postsRouter);
 app.use("/api/tokens", tokensRouter);
