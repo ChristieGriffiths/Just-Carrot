@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
-import Post from '../post/Post';
+import Challenge from '../challenge/Challenge';
 import ChallengeCreateForm from '../ChallengeCreateForm/ChallengeCreateForm';
 import './Feed.css';
 import '../Navbar.css';
@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
 
 const Feed = ({ navigate }) => {
-  const [posts, setPosts] = useState([]);
+  const [challenges, setChallenges] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [viewForm, setViewForm] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -25,7 +25,6 @@ const Feed = ({ navigate }) => {
 
   useEffect(() => {
 
-    
     if (token) {
       try {
         console.log(token);
@@ -40,26 +39,24 @@ const Feed = ({ navigate }) => {
           return;
         }
         
-        fetch("/api/posts", {
+        fetch("/api/challenges", {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         })
         .then(response => response.json())
         .then(data => {
-          if (data.posts) {
-            console.log(data.posts);
+          if (data.challenges) {
+            console.log(data.challenges);
             window.localStorage.setItem("token", data.token);
             setToken(window.localStorage.getItem("token"));
-            const userPosts = data.posts.filter(post => post.userId === userId);
-            setPosts(userPosts);
-            console.log(userPosts);
+            const userChallenges = data.challenges.filter(challenge => challenge.userId === userId);
+            setChallenges(userChallenges);
           } else {
             navigate("/login");
           }
         })
         .catch(error => {
-          console.error("Error fetching posts:", error);
           navigate("/login");
         });
 
@@ -85,25 +82,25 @@ const Feed = ({ navigate }) => {
 
   const onUpdate = async (receivedData) => {
     try {
-      const updatedPost = receivedData.post;
-      const updatedPosts = posts.map(post => 
-        post._id === updatedPost._id ? updatedPost : post
+      const updatedChallenge = receivedData.challenge;
+      const updatedChallenges = challenges.map(challenge => 
+        challenge._id === updatedChallenge._id ? updatedChallenge : challenge
       );
-      setPosts([...updatedPosts]);
+      setChallenges([...updatedChallenges]);
       
-      const email = await fetchUserEmailById(receivedData.post.userId);
+      const email = await fetchUserEmailById(receivedData.challenge.userId);
       if (!email) {
-        console.error('Email not found for user ID:', receivedData.post.userId);
+        console.error('Email not found for user ID:', receivedData.challenge.userId);
         return;
       }
   
-      if (receivedData.post.completed) {
-        await sendEmail('success', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
-        setCompletedChallenge(receivedData.post.challenge);
+      if (receivedData.challenge.completed) {
+        await sendEmail('success', email, receivedData.challenge.challenge, receivedData.challenge.incentiveAmount);
+        setCompletedChallenge(receivedData.challenge.challenge);
         setShowSuccessMessage(true);
       } else { 
-        await sendEmail('unsuccess', email, receivedData.post.challenge, receivedData.post.incentiveAmount);
-        setUnsuccessfulChallenge(receivedData.post.chosenCharity);
+        await sendEmail('unsuccess', email, receivedData.challenge.challenge, receivedData.challenge.incentiveAmount);
+        setUnsuccessfulChallenge(receivedData.challenge.chosenCharity);
         setShowUnsuccessfulMessage(true);
       }
       setTimeout(() => {
@@ -173,10 +170,10 @@ const Feed = ({ navigate }) => {
                   />
                 ) : (
                   <div id="feed" role="feed">
-                    {posts.map((post) => (
-                      <Post
-                        post={post}
-                        key={post._id}
+                    {challenges.map((challenge) => (
+                      <Challenge
+                        challenge={challenge}
+                        key={challenge._id}
                         token={token}
                         onUpdate={onUpdate}
                       />

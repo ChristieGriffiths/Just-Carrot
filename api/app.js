@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const tokenChecker = require("./middleware/tokenChecker")
-const postsRouter = require("./routes/posts");
+const challengesRouter = require("./routes/challenges");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
 const emailRoutes = require("./routes/email");
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "./build")));
 
-app.use("/api/posts", tokenChecker, postsRouter);
+app.use("/api/challenges", tokenChecker, challengesRouter);
 app.use("/api/tokens", tokensRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/email", emailRoutes);
@@ -61,6 +61,5 @@ mongoose.connect(mongoDbUrl, {
   console.log("Mongoose error", err);
 });
 
-require('./controllers/schedule');
 
 module.exports = app;

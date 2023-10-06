@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PostSchema = new mongoose.Schema({
+const ChallengeSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   challenge: { type: String, required: true },
   completeDate: { type: Date, required: true },  
@@ -13,6 +13,6 @@ const PostSchema = new mongoose.Schema({
   paymentIntentId: { type: String, required: false, default: "default" },
 });
 
-const Post = mongoose.model('Post', PostSchema);
+const Challenge = mongoose.model('Challenge', ChallengeSchema);
 
-module.exports = Post;
+module.exports = Challenge;

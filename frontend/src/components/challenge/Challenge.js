@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import './Post.css';
+import './Challenge.css';
 
-const Post = ({ post, token, onUpdate}) => {
+const Challenge = ({ challenge, token, onUpdate}) => {
     const [remainingTime, setRemainingTime] = useState('');
     const [showConfirmation, setShowConfirmation] = useState(false);
 
     useEffect(() => {
       const calculateTimeLeft = () => {
-        const dateOnly = post.completeDate.split('T')[0];
+        const dateOnly = challenge.completeDate.split('T')[0];
 
         
-        const targetDateStr = `${dateOnly}T${post.completeTime}`;
+        const targetDateStr = `${dateOnly}T${challenge.completeTime}`;
         const targetDate = new Date(targetDateStr);
     
         const now = new Date();
@@ -30,9 +30,9 @@ const Post = ({ post, token, onUpdate}) => {
       const timerId = setInterval(calculateTimeLeft, 1000);
   
       return () => clearInterval(timerId);
-    }, [post]);
+    }, [challenge]);
 
-  if (post.completed !== null) {
+  if (challenge.completed !== null) {
     return null;
   }
 
@@ -43,7 +43,7 @@ const Post = ({ post, token, onUpdate}) => {
   const handleConfirm = async () => {
     console.log("handleConfirm called"); // Debugging line
   try {
-    const response = await fetch(`/api/posts/${post._id}`, {
+    const response = await fetch(`/api/challenges/${challenge._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const Post = ({ post, token, onUpdate}) => {
 
 const handleUnsuccessful = async () => {
   try {
-    const response = await fetch(`/api/posts/${post._id}`, {
+    const response = await fetch(`/api/challenges/${challenge._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const handleUnsuccessful = async () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          paymentIntentId: post.paymentIntentId,
+          paymentIntentId: challenge.paymentIntentId,
         }),
       });
   
@@ -120,14 +120,14 @@ const handleUnsuccessful = async () => {
   
   return (
     <div className="apple-style-container">
-      <article data-cy="post" key={post.challenge}>
+      <article data-cy="challenge" key={challenge.challenge}>
         <div>
           <span style={{ fontSize: '2rem' }}>Challenge: </span> {/* Bigger font */}
-          {post.challenge} 
+          {challenge.challenge} 
         </div>
         <div>Complete by: {remainingTime}</div>
-        <div>Incentive: £ {post.incentiveAmount}</div>
-        <div>Charity: {post.chosenCharity}</div>
+        <div>Incentive: £ {challenge.incentiveAmount}</div>
+        <div>Charity: {challenge.chosenCharity}</div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           {showConfirmation ? (
             <>
@@ -146,4 +146,4 @@ const handleUnsuccessful = async () => {
   );
 };
 
-export default Post;
+export default Challenge;
