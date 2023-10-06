@@ -1,31 +1,31 @@
-const Post = require("../models/post");
+const Challenge = require("../models/challenge");
 const TokenGenerator = require("../models/token_generator");
 const User = require('../models/user');
 const { sendEmail } = require('./email');
 const mongoose = require('mongoose');
-const postLocks = {};
+const challengeLocks = {};
 
 
 
-const PostsController = {
+const ChallengesController = {
   Index: async (req, res) => {
     try {
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
-      const posts = await Post.find();
-      res.status(200).json({ posts: posts, token: token });
+      const challenges = await Challenge.find();
+      res.status(200).json({ challenges: challenges, token: token });
     } catch (err) {
       return res.status(500).json({ message: err.message });
     }
   },
 
-  GetEmailByPostId: async (req) => {
+  GetEmailByChallengeId: async (req) => {
     try {
-      const post = await Post.findById(req.params.id);
-      if (!post) {
+      const challenge = await Challenge.findById(req.params.id);
+      if (!challenge) {
         return null;
       }
       
-      const user = await User.findById(post.userId);
+      const user = await User.findById(challenge.userId);
       if (!user) {
         return null;
       }
@@ -38,8 +38,8 @@ const PostsController = {
   },
 
   Create: (req, res) => {
-    const post = new Post(req.body);
-    post.save(async (err) => {
+    const challenge = new Challenge(req.body);
+    challenge.save(async (err) => {
       if (err) {
         return res.status(400).json({ message: err.message });
       }
@@ -53,14 +53,14 @@ const PostsController = {
       const id = req.params.id;
       const update = { completed: req.body.completed };
 
-      const updatedPost = await Post.findByIdAndUpdate(id, update, { new: true });
+      const updatedChallenge = await Challenge.findByIdAndUpdate(id, update, { new: true });
 
-      if (!updatedPost) {
-        return res.status(404).json({ message: "Post not found" });
+      if (!updatedChallenge) {
+        return res.status(404).json({ message: "Challenge not found" });
       }
 
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
-      res.status(200).json({ post: updatedPost, token: token });
+      res.status(200).json({ challenge: updatedChallenge, token: token });
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -68,13 +68,13 @@ const PostsController = {
 
   CheckForReminderEmails: async () => {
     try {
-      const posts = await Post.find({ completed: null, emailReminder: false });
-      for (const post of posts) {
-        const datePart = post.completeDate.toISOString().split('T')[0];
-        const completeDateTime = new Date(`${datePart}T${post.completeTime}:00`);
+      const challenges = await Challenge.find({ completed: null, emailReminder: false });
+      for (const challenge of challenges) {
+        const datePart = challenge.completeDate.toISOString().split('T')[0];
+        const completeDateTime = new Date(`${datePart}T${challenge.completeTime}:00`);
         const currentDateTime = new Date();
         if (currentDateTime > completeDateTime) {
-          const email = await PostsController.GetEmailByPostId({ params: { id: post._id } });
+          const email = await ChallengesController.GetEmailByChallengeId({ params: { id: challenge._id } });
           if (email) {
             await sendEmail({
               body: {
@@ -83,7 +83,7 @@ const PostsController = {
                 text: "Hey there, you have 24 hours to confirm or deny the completion of your challenge otherwise your money will automatically be donated to charity"
               }
             });
-            await Post.findByIdAndUpdate(post._id, { emailReminder: true }, { new: true });
+            await Challenge.findByIdAndUpdate(challenge._id, { emailReminder: true }, { new: true });
           }
         }
       }
@@ -92,16 +92,16 @@ const PostsController = {
     }
   },
 
-  CheckForExpiredPosts: async () => {
+  CheckForExpiredChallenges: async () => {
     try {
-      const posts = await Post.find({ completed: null, emailReminder: true });
-      for (const post of posts) {
-        const datePart = post.completeDate.toISOString().split('T')[0];
-        const completeDateTime = new Date(`${datePart}T${post.completeTime}:00`);
+      const challenges = await Challenge.find({ completed: null, emailReminder: true });
+      for (const challenge of challenges) {
+        const datePart = challenge.completeDate.toISOString().split('T')[0];
+        const completeDateTime = new Date(`${datePart}T${challenge.completeTime}:00`);
         const currentDateTime = new Date();
         const timeDifference = (currentDateTime - completeDateTime) / (1000 * 60 * 60);
         if (timeDifference > 24) {
-          const email = await PostsController.GetEmailByPostId({ params: { id: post._id } });
+          const email = await ChallengesController.GetEmailByChallengeId({ params: { id: challenge._id } });
           if (email) {
             await sendEmail({
               body: {
@@ -110,21 +110,21 @@ const PostsController = {
                 text: "You have not confirmed or denied the completion of your challenge, and your incentive has been donated to your chosen charity."
               }
             });
-            await Post.findByIdAndUpdate(post._id, { completed: false }, { new: true });
+            await Challenge.findByIdAndUpdate(challenge._id, { completed: false }, { new: true });
           }
         }
       }
     } catch (err) {
-      console.error("Error in CheckForExpiredPosts:", err);
+      console.error("Error in CheckForExpiredChallenges:", err);
     }
   },
 
   RunScheduledChecks: async () => {
-    await PostsController.CheckForReminderEmails();
-    await PostsController.CheckForExpiredPosts();
+    await ChallengesController.CheckForReminderEmails();
+    await ChallengesController.CheckForExpiredChallenges();
   }
 };
+  
+setInterval(ChallengesController.RunScheduledChecks, 1000 * 60);
 
-setInterval(PostsController.RunScheduledChecks, 1000 * 60);
-
-module.exports = PostsController;
+module.exports = ChallengesController;

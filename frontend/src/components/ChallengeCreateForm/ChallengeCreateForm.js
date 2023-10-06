@@ -105,7 +105,7 @@ const ChallengeCreateForm = ({token, setToken, setViewForm, setShowPaymentMessag
         const decoded = jwt_decode(token);
         const userId = decoded.user_id;
         
-        const response = await fetch('/api/posts', {
+        const response = await fetch('/api/challenges', {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
