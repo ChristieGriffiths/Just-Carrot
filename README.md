@@ -1,6 +1,6 @@
-# JustCarrot.co.uk
+JustCarrot.co.uk
 
-## Description
+#Description
 
 JustCarrot.co.uk is a solo project aimed to assist users in changing their habits. Users can set goals with time limits and monetary incentives. On successfully completing the challenge, they get their money back; otherwise, the money is donated to a charity of their choice.
 
