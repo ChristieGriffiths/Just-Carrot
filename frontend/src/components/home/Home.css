@@ -28,13 +28,19 @@
 }
 
 .overlay-signup-button {
-  position: fixed; /* Use fixed instead of absolute to keep it fixed on the page */
-  bottom: 20px; /* For example, 20px from the bottom */
-  right: 20px; /* For example, 20px from the right */
+  margin: 0;
+  position: absolute;
+  top: 93.5%;
+  left: 52.5%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-color: green;
-  color: #333; /* Black but less black than the border */
-  padding: 10px 20px;
-  border: 2px solid black;
+  color: black;
+  padding: 30px 50px;
+  border: 15px solid black;
   cursor: pointer;
+  font-size: 3em;
+  font-weight: bold;
 }
+
 

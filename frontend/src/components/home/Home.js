@@ -48,7 +48,7 @@ const Home = () => {
           </div>
           <div className="how-it-works-image" id="how-it-works-image">
             <img src={howItWorks} alt="How It Works" />
-            <button className="overlay-signup-button" onClick={handleSignUpClick}>Begin</button>
+            <button className="overlay-signup-button" onClick={handleSignUpClick}>BEGIN</button>
           </div>
         </div>
         <div className="website-footer">
