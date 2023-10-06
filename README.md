@@ -1,7 +1,7 @@
 # [JustCarrot.co.uk](https://www.justcarrot.co.uk)
 
 
-Description
+**Description**: 
 
 JustCarrot.co.uk is a solo project aimed to assist users in changing their habits. Users can set goals with time limits and monetary incentives. On successfully completing the challenge, they get their money back; otherwise, the money is donated to a charity of their choice.
 
@@ -9,7 +9,7 @@ JustCarrot.co.uk is a solo project aimed to assist users in changing their habit
 - The payment feature is currently set up in test mode. For testing, you can use the fake credit card number `4242 4242 4242 4242` with expiry date `04/24` and CVC `424`.
 - The site is not yet protected against script injection vulnerabilities, so please refrain from entering personal details.
 
-### Technologies Used
+**Technologies Used**
 
 - Frontend: React, and other React-based libraries
 - Backend: Node.js, Express, MongoDB
@@ -17,17 +17,17 @@ JustCarrot.co.uk is a solo project aimed to assist users in changing their habit
 
 ---
 
-## Installation
+**Installation**
 
 Before you proceed, make sure you have Node.js and npm installed on your machine.
 
-### Clone the Repository
+**Clone the Repository**
 
 ```bash
 git clone <repository_url>
 ```
 
-### Backend Setup
+**Backend Setup**
 
 1. Navigate to the backend directory:
 
@@ -47,7 +47,7 @@ git clone <repository_url>
     JWT_SECRET=SUPER_SECRET npm start
     ```
 
-### Frontend Setup
+**Frontend Setup**
 
 1. Navigate to the frontend directory:
 
@@ -69,13 +69,13 @@ git clone <repository_url>
 
 ---
 
-## Code Structure
+**Code Structure**
 
-### Frontend
+**Frontend**
 
 - **React Components**: Located in `<project_root>/frontend/src/components`
 
-### Backend
+**Backend**
 
 - **API Endpoints**: Defined in `<project_root>/api/routes`
 - **Database Models**: Mongoose models are in `<project_root>/api/models`
