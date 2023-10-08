@@ -34,8 +34,9 @@
   left: 52.5%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-color: green;
+  background-color: orange;
   color: black;
+  border-radius: 15px;
   padding: 30px 50px;
   border: 15px solid black;
   cursor: pointer;

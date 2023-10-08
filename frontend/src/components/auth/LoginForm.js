@@ -56,11 +56,11 @@ const LogInForm = ({ navigate }) => {
           </div>
         </div>
         <div className="content">
-          <p>{errorMessage}</p>
           <form className="Login-SignUp-Form" onSubmit={handleSubmit}>
             <input placeholder='Email' id="email" type='text' value={email} onChange={(e) => setEmail(e.target.value)} />
             <input placeholder='Password' id="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
             <input className="SignUpInput" id='submit' type="submit" value="Submit" />
+          <p>{errorMessage}</p>
           </form>
         </div>
         <footer className="website-footer">
