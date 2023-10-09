@@ -44,15 +44,15 @@ describe("/challenges", () => {
       expect(response.status).toEqual(201);
     });
   
-//     test("creates a new post", async () => {
-//       await request(app)
-//         .post("/posts")
-//         .set("Authorization", `Bearer ${token}`)
-//         .send({ message: "hello world", token: token });
-//       let posts = await Post.find();
-//       expect(posts.length).toEqual(1);
-//       expect(posts[0].message).toEqual("hello world");
-//     });
+    test("creates a challnege", async () => {
+      await request(app)
+        .post("/api/challenges")
+        .set("Authorization", `Bearer ${token}`)
+        .send({challenge: "test", userId: "605c72ef68948850941b3c4b", completeTime: "16:22" , completeDate: "2023-10-06T00:00:00.000+00:00", chosenValidation: "test", chosenCharity: "test", incentiveAmount: 15,  token: token });
+      let challenges = await Challenge.find();
+      expect(challenges.length).toEqual(1);
+      expect(challenges[0].challenge).toEqual("test");
+    });
   
 //     test("returns a new token", async () => {
 //       let response = await request(app)
