@@ -7,7 +7,6 @@ JustCarrot.co.uk is a solo project aimed to assist users in changing their habit
 
 **Note**: 
 - The payment feature is currently set up in test mode. For testing, you can use the fake credit card number `4242 4242 4242 4242` with expiry date `04/24` and CVC `424`.
-- The site is not yet protected against script injection vulnerabilities, so please refrain from entering personal details.
 
 **Technologies Used**
 
