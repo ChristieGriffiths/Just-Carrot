@@ -1,4 +1,5 @@
 const app = require("../../app");
+const mongoose = require('mongoose');
 const request = require("supertest");
 require("../mongodb_helper");
 const Challenge = require("../../models/challenge");
@@ -27,11 +28,22 @@ describe("/challenges", () => {
 
   beforeEach(async () => {
     await Challenge.deleteMany({});
+    commonPayload = {
+      challenge: "test",
+      userId: "605c72ef68948850941b3c4b",
+      completeTime: "16:22",
+      completeDate: "2023-10-06T00:00:00.000+00:00",
+      chosenValidation: "test",
+      chosenCharity: "test",
+      incentiveAmount: 15,
+      token: token,
+    };
   });
 
   afterAll(async () => {
     await User.deleteMany({});
     await Challenge.deleteMany({});
+    await mongoose.connection.close(); 
   });
 
   describe("POST, when token is present", () => {
@@ -39,16 +51,16 @@ describe("/challenges", () => {
       let response = await request(app)
         .post("/api/challenges")
         .set("Authorization", `Bearer ${token}`)
-        .send({ challenge: "test", userId: "605c72ef68948850941b3c4b", completeTime: "16:22" , completeDate: "2023-10-06T00:00:00.000+00:00", chosenValidation: "test", chosenCharity: "test", incentiveAmount: 15,  token: token });
-        console.log(response.body);
+        .send(commonPayload);
+      console.log(response.body);
       expect(response.status).toEqual(201);
     });
   
-    test("creates a challnege", async () => {
+    test("creates a challenge", async () => {
       await request(app)
         .post("/api/challenges")
         .set("Authorization", `Bearer ${token}`)
-        .send({challenge: "test", userId: "605c72ef68948850941b3c4b", completeTime: "16:22" , completeDate: "2023-10-06T00:00:00.000+00:00", chosenValidation: "test", chosenCharity: "test", incentiveAmount: 15,  token: token });
+        .send(commonPayload);
       let challenges = await Challenge.find();
       expect(challenges.length).toEqual(1);
       expect(challenges[0].challenge).toEqual("test");
