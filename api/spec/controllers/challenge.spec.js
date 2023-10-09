@@ -1,23 +1,22 @@
 const app = require("../../app");
 const request = require("supertest");
 require("../mongodb_helper");
-const challenge = require("../../models/challenge");
+const Challenge = require("../../models/challenge");
 const User = require("../../models/user");
 const JWT = require("jsonwebtoken");
-const Challenge = require("../../models/challenge");
 const secret = process.env.JWT_SECRET;
 
 let token;
 
-describe("/api/challenges", () => {
+describe("/challenges", () => {
   beforeAll(async () => {
-    const user = new User({ email: "test@test.com", password: "12345678" });
+    const user = new User({ firstName: "test", surname: "test", email: "test@test.com", password: "12345678" });
     await user.save();
 
     token = JWT.sign(
       {
         user_id: user.id,
-        // Backdate this token of 5 minutes
+        
         iat: Math.floor(Date.now() / 1000) - 5 * 60,
         // Set the JWT token to expire in 10 minutes
         exp: Math.floor(Date.now() / 1000) + 10 * 60,
@@ -35,12 +34,13 @@ describe("/api/challenges", () => {
     await Challenge.deleteMany({});
   });
 
-  describe("CHALLENGE, when token is present", () => {
+  describe("POST, when token is present", () => {
     test("responds with a 201", async () => {
       let response = await request(app)
         .post("/api/challenges")
         .set("Authorization", `Bearer ${token}`)
-        .send({ message: "hello world", token: token });
+        .send({ challenge: "test", userId: "605c72ef68948850941b3c4b", completeTime: "16:22" , completeDate: "2023-10-06T00:00:00.000+00:00", chosenValidation: "test", chosenCharity: "test", incentiveAmount: 15,  token: token });
+        console.log(response.body);
       expect(response.status).toEqual(201);
     });
   
