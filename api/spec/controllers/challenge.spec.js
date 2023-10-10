@@ -93,13 +93,13 @@ describe("/challenges", () => {
       expect(challenges.length).toEqual(0);
     });
   
-//     test("a token is not returned", async () => {
-//       let response = await request(app)
-//         .post("/posts")
-//         .send({ message: "hello again world" });
-//       expect(response.body.token).toEqual(undefined);
-//     });
-//   })
+    test("a token is not returned", async () => {
+      let response = await request(app)
+        .post("/api/challenges")
+        .send(commonPayload);
+      expect(response.body.token).toEqual(undefined);
+    });
+  })
 
 //   describe("GET, when token is present", () => {
 //     test("returns every post in the collection", async () => {
@@ -172,5 +172,5 @@ describe("/challenges", () => {
 //         .get("/posts");
 //       expect(response.body.token).toEqual(undefined);
 //     })
-  })
+  // })
 });
