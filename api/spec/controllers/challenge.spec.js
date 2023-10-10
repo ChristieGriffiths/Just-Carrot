@@ -127,20 +127,20 @@ describe("/challenges", () => {
       expect(response.status).toEqual(200);
     })
 
-//     test("returns a new token", async () => {
-//       let post1 = new Post({message: "howdy!"});
-//       let post2 = new Post({message: "hola!"});
-//       await post1.save();
-//       await post2.save();
-//       let response = await request(app)
-//         .get("/posts")
-//         .set("Authorization", `Bearer ${token}`)
-//         .send({token: token});
-//       let newPayload = JWT.decode(response.body.token, process.env.JWT_SECRET);
-//       let originalPayload = JWT.decode(token, process.env.JWT_SECRET);
-//       expect(newPayload.iat > originalPayload.iat).toEqual(true);
-//     })
-//   })
+    test("returns a new token", async () => {
+      let challenge1 = new Challenge(commonPayload);
+      let challenge2 = new Challenge(commonPayload);
+      await challenge1.save();
+      await challenge2.save();
+      let response = await request(app)
+      .get("/api/challenges")
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+      let newPayload = JWT.decode(response.body.token, process.env.JWT_SECRET);
+      let originalPayload = JWT.decode(token, process.env.JWT_SECRET);
+      expect(newPayload.iat > originalPayload.iat).toEqual(true);
+    })
+  })
 
 //   describe("GET, when token is missing", () => {
 //     test("returns no posts", async () => {
@@ -172,5 +172,5 @@ describe("/challenges", () => {
 //         .get("/posts");
 //       expect(response.body.token).toEqual(undefined);
 //     })
-  })
+
 });
