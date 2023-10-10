@@ -77,13 +77,13 @@ describe("/challenges", () => {
     });  
   });
   
-//   describe("POST, when token is missing", () => {
-//     test("responds with a 401", async () => {
-//       let response = await request(app)
-//         .post("/posts")
-//         .send({ message: "hello again world" });
-//       expect(response.status).toEqual(401);
-//     });
+  describe("Challenge, when token is missing", () => {
+    test("responds with a 401", async () => {
+      let response = await request(app)
+        .post("/api/challenges")
+        .send(commonPayload);
+      expect(response.status).toEqual(401);
+    });
   
 //     test("a post is not created", async () => {
 //       await request(app)
@@ -172,5 +172,5 @@ describe("/challenges", () => {
 //         .get("/posts");
 //       expect(response.body.token).toEqual(undefined);
 //     })
-
+  })
 });
