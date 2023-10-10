@@ -101,19 +101,19 @@ describe("/challenges", () => {
     });
   })
 
-//   describe("GET, when token is present", () => {
-//     test("returns every post in the collection", async () => {
-//       let post1 = new Post({message: "howdy!"});
-//       let post2 = new Post({message: "hola!"});
-//       await post1.save();
-//       await post2.save();
-//       let response = await request(app)
-//         .get("/posts")
-//         .set("Authorization", `Bearer ${token}`)
-//         .send({token: token});
-//       let messages = response.body.posts.map((post) => ( post.message ));
-//       expect(messages).toEqual(["howdy!", "hola!"]);
-//     })
+  describe("GET, when token is present", () => {
+    test("returns every challenge in the collection", async () => {
+      let challenge1 = new Challenge(commonPayload);
+      let challenge2 = new Challenge(commonPayload);
+      await challenge1.save();
+      await challenge2.save();
+      let response = await request(app)
+        .get("/api/challenges")
+        .set("Authorization", `Bearer ${token}`)
+        .send({token: token});
+      let challenges = response.body.challenges.map((challenge) => ( challenge.challenge ));
+      expect(challenges).toEqual(["test", "test"]);
+    })
 
 //     test("the response code is 200", async () => {
 //       let post1 = new Post({message: "howdy!"});
@@ -172,5 +172,5 @@ describe("/challenges", () => {
 //         .get("/posts");
 //       expect(response.body.token).toEqual(undefined);
 //     })
-  // })
+  })
 });
