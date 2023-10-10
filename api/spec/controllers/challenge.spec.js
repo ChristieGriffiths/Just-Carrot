@@ -85,13 +85,13 @@ describe("/challenges", () => {
       expect(response.status).toEqual(401);
     });
   
-//     test("a post is not created", async () => {
-//       await request(app)
-//         .post("/posts")
-//         .send({ message: "hello again world" });
-//       let posts = await Post.find();
-//       expect(posts.length).toEqual(0);
-//     });
+    test("a challenge is not created", async () => {
+      await request(app)
+        .post("/api/challenges")
+        .send(commonPayload);
+      let challenges = await Challenge.find();
+      expect(challenges.length).toEqual(0);
+    });
   
 //     test("a token is not returned", async () => {
 //       let response = await request(app)
