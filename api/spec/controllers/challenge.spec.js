@@ -153,15 +153,15 @@ describe("/challenges", () => {
       expect(response.body.challenges).toEqual(undefined);
     })
 
-//     test("the response code is 401", async () => {
-//       let post1 = new Post({message: "howdy!"});
-//       let post2 = new Post({message: "hola!"});
-//       await post1.save();
-//       await post2.save();
-//       let response = await request(app)
-//         .get("/posts");
-//       expect(response.status).toEqual(401);
-//     })
+    test("the response code is 401", async () => {
+      let challenge1 = new Challenge(commonPayload);
+      let challenge2 = new Challenge(commonPayload);
+      await challenge1.save();
+      await challenge2.save();
+      let response = await request(app)
+      .get("/api/challenges")
+      expect(response.status).toEqual(401);
+    })
 
 //     test("does not return a new token", async () => {
 //       let post1 = new Post({message: "howdy!"});
