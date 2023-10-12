@@ -34,13 +34,13 @@ describe("/users", () => {
       expect(response.statusCode).toBe(400)
     });
 
-  //   test("does not create a user", async () => {
-  //     await request(app)
-  //       .post("/users")
-  //       .send({email: "skye@email.com"})
-  //       let users = await User.find()
-  //       expect(users.length).toEqual(0)
-  //   });
+    test("does not create a user", async () => {
+      await request(app)
+        .post("/api/users")
+        .send({email: "skye@email.com"})
+        let users = await User.find()
+        expect(users.length).toEqual(0)
+    });
   // })
   
   // describe("POST, when email is missing", () => {
