@@ -51,12 +51,12 @@ describe("/users", () => {
       expect(response.statusCode).toBe(400)
     });
 
-  //   test("does not create a user", async () => {
-  //     await request(app)
-  //       .post("/users")
-  //       .send({password: "1234"})
-  //     let users = await User.find()
-  //     expect(users.length).toEqual(0)
-  //   });
+    test("does not create a user", async () => {
+      await request(app)
+        .post("/api/users")
+        .send({password: "1234"})
+      let users = await User.find()
+      expect(users.length).toEqual(0)
+    });
   })
 })
